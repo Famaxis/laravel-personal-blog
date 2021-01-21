@@ -40,7 +40,7 @@
                             <input type="text" name="tags" id="tags">
 
                             <div class="form-group">
-                                <input type="submit" class="btn btn-success" value="Create post"/>
+                                <input type="submit" class="paper-btn btn-secondary" value="Create post"/>
                             </div>
                         </form>
 

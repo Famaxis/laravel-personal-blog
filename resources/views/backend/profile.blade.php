@@ -7,15 +7,27 @@
                 <img src="/avatar/{{ $user->avatar }}" style="max-height:150px; float:left; border-radius:50%; margin-right:25px;">
                 <h2>{{ $user->name }}'s Profile</h2>
                 <form enctype="multipart/form-data" action="{{ route('profile.update') }}" method="POST">
+                    @csrf
 
-                    <div class="form-group">
-                        <input type="text" name="name" value="{{$user->name}}" required>
+                    <div class="row flex-spaces">
+                        <div class="form-group">
+                            <label for="name">Username</label>
+                            <input type="text" name="name" value="{{$user->name}}" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" name="email" value="{{$user->email}}" id="email" required>
+                        </div>
                     </div>
 
-                    <label>Update Profile Image</label>
-                    <input type="file" name="avatar">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <input type="submit" class="pull-right btn btn-sm btn-primary">
+                    <div class="form-group">
+                        <label for="image-update">Update Profile Image</label>
+                        <input type="file" name="avatar"  class="input-block"  id="image-update">
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="paper-btn btn-secondary" value="Update">
+                    </div>
+
                 </form>
 
             </div>
