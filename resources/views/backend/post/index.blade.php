@@ -8,6 +8,7 @@
                     <thead>
                     <th>Title</th>
                     <th>Post</th>
+                    <th>Tags</th>
                     <th>Action</th>
                     </thead>
                     <tbody>
@@ -16,8 +17,15 @@
                             <td>{!! $post->title !!}</td>
                             <td>{!! $post->content !!}</td>
                             <td>
-                                <a href="/" class="btn btn-sm btn-outline-primary py-0" style="font-size: 0.8em;">Read Post</a>
-                                <a href="{{ route('post.edit', $post->slug) }}" class="btn btn-sm btn-outline-success py-0" style="font-size: 0.8em;">Edit Post</a>
+
+                                @foreach($post->tags as $tag)
+                                    <a href="{{ route('posts.fetch', $tag->slug) }}">{!! $tag->name !!}</a>
+                                @endforeach
+
+                            </td>
+                            <td>
+                                <a href="/" class="btn btn-sm btn-outline-primary py-0">Read Post</a>
+                                <a href="{{ route('post.edit', $post->slug) }}" class="btn btn-sm btn-outline-success py-0">Edit Post</a>
                                 <form action="{{route('post.destroy', $post->slug)}}" method="POST">
                                     @method('DELETE')
                                     @csrf

@@ -166,6 +166,7 @@ return [
          * Package Service Providers...
          */
         Intervention\Image\ImageServiceProvider::class,
+        Conner\Tagging\Providers\TaggingServiceProvider::class,
 
         /*
          * Application Service Providers...

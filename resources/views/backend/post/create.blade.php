@@ -37,8 +37,9 @@
                                 <label class="custom-control-label" for="customSwitch1">Is published?</label>
                             </div>
 
-                            <div class="form-group">
+                            <input type="text" name="tags" id="tags">
 
+                            <div class="form-group">
                                 <input type="submit" class="btn btn-success" value="Create post"/>
                             </div>
                         </form>
@@ -58,26 +59,36 @@
 @endsection
 
 @section('styles')
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+
 @endsection
 
-@section('javascript')
-    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
-    {{--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>--}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-    <script>
-        $("#selectbtn-tag").click(function () {
-            $("#selectall-tag > option").prop("selected", "selected");
-            $("#selectall-tag").trigger("change");
-        });
-        $("#deselectbtn-tag").click(function () {
-            $("#selectall-tag > option").prop("selected", "");
-            $("#selectall-tag").trigger("change");
-        });
+@section('scripts')
 
-        $(document).ready(function () {
-            $('.select2').select2();
+    <script>
+        $( document ).ready(function() {
+            $('#tags').selectize({
+                delimiter: ',',
+                persist: false,
+                valueField: 'tag',
+                labelField: 'tag',
+                searchField: 'tag',
+                options: tags,
+                create: function(input) {
+                    return {
+                        tag: input,
+                        text: input
+                    }
+                }
+            });
         });
     </script>
+
+    <script>
+        var tags = [
+                @foreach ($tags as $tag)
+            {tag: "{{$tag}}" },
+            @endforeach
+        ];
+    </script>
+
 @endsection

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Models\Post;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
+use Conner\Tagging\Model\Tag;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -20,9 +21,18 @@ class PostController extends Controller
         return view('backend.post.index', compact('posts'));
     }
 
+    public function fetch(Tag $tag)
+    {
+        $slug = $tag->slug;
+        $posts = Post::withAnyTag([$slug])->orderBy('created_at', 'desc')->paginate(5);
+
+        return view('backend.post.index', compact('posts'));
+    }
+
     public function create()
     {
-        return view('backend.post.create');
+        $tags = Post::existingTags()->pluck('name');
+        return view('backend.post.create', compact('tags'));
     }
 
     public function store(Request $request)
@@ -44,13 +54,15 @@ class PostController extends Controller
             echo $response;
         }
 
-        Post::create([
+        $post = Post::create([
             'content' => request('content'),
             'template' => request('template'),
             'is_published' => request('is_published'),
             'slug'    => Carbon::now()->format('Y-m-d-His'),
             'title' => $this->FirstSentence(request('content')),
         ]);
+
+        $post->tag(explode(',', $request->tags));
 
         return redirect()->route('posts');
     }

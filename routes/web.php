@@ -17,6 +17,7 @@ Route::group([
     'middleware' => ['auth']],
     function() {
         Route::get('post', [PostController::class, 'index'])->name('posts');
+        Route::get('post/tag/{tag:slug}', [PostController::class, 'fetch'])->name('posts.fetch');
         Route::get('/', [PostController::class, 'create'])->name('post.create');
         Route::post('/', [PostController::class, 'store'])->name('post.store');
         Route::get('/edit/{post:slug}', [PostController::class, 'edit'])->name('post.edit');
