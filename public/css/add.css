@@ -1,0 +1,14 @@
+:root {
+    --optional-color: #f0f9ff;
+    --success-light: #addeff;
+}
+
+.col {
+    display: flex;
+}
+
+table.table-alternating tbody tr:nth-of-type(2n),
+.card .card-header
+{
+    background-color: var(--optional-color);
+}

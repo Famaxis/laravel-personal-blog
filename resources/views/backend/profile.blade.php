@@ -2,10 +2,13 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <img src="/avatar/{{ $user->avatar }}" style="max-height:150px; float:left; border-radius:50%; margin-right:25px;">
-                <h2>{{ $user->name }}'s Profile</h2>
+        <div class="row flex-center">
+            <div>
+                <div class="flex-center">
+                    <img src="/avatar/{{ $user->avatar }}" style="max-height:150px; float:left; border-radius:50%; margin-right:25px;">
+                    <h2>{{ $user->name }}'s Profile</h2>
+                </div>
+
                 <form enctype="multipart/form-data" action="{{ route('profile.update') }}" method="POST">
                     @csrf
 

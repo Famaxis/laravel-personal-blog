@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Models\Post;
 use App\Http\Controllers\Controller;
+use App\Models\Post;
 use Carbon\Carbon;
 use Conner\Tagging\Model\Tag;
 use Illuminate\Http\Request;
+
 
 class PostController extends Controller
 {
@@ -17,14 +18,19 @@ class PostController extends Controller
 
     public function index()
     {
-        $posts = Post::orderBy('created_at', 'desc')->paginate(5);
+        $posts = Post::orderBy('created_at', 'desc')
+            ->with('tagged')
+            ->paginate(5);
         return view('backend.post.index', compact('posts'));
     }
 
     public function fetch(Tag $tag)
     {
         $slug = $tag->slug;
-        $posts = Post::withAnyTag([$slug])->orderBy('created_at', 'desc')->paginate(5);
+        $posts = Post::withAnyTag([$slug])
+            ->orderBy('created_at', 'desc')
+            ->with('tagged')
+            ->paginate(5);
 
         return view('backend.post.index', compact('posts'));
     }
@@ -37,34 +43,49 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        if($request->hasFile('upload')) {
-            $originName = $request->file('upload')->getClientOriginalName();
+        $this->handleUploadedImage(
+            $request->file('upload'),
+            $request->input('CKEditorFuncNum')
+        );
+
+        $post = Post::create([
+            'content'      => request('content'),
+            'is_published' => request('is_published'),
+            'slug'         => Carbon::now()->format('Y-m-d-His'),
+            'title'        => $this->firstSentence(request('content')),
+            'template'     => $this->randomTemplate(request('template')),
+        ]);
+        $post->tag(explode(',', $request->tags));
+
+        return redirect()->route('posts');
+    }
+
+    public function randomTemplate($template)
+    {
+        if ($template) {
+            return $template;
+        }
+        return 101;
+    }
+
+    public function handleUploadedImage($image, $CKEditorFuncNum)
+    {
+        if ($image !== null) {
+            $originName = $image->getClientOriginalName();
             $fileName = pathinfo($originName, PATHINFO_FILENAME);
-            $extension = $request->file('upload')->getClientOriginalExtension();
-            $fileName = $fileName.'_'.time().'.'.$extension;
+            $extension = $image->getClientOriginalExtension();
+            $fileName = $fileName . '_' . time() . '.' . $extension;
 
-            $request->file('upload')->move(public_path('images'), $fileName);
+            $image->move(public_path('images'), $fileName);
 
-            $CKEditorFuncNum = $request->input('CKEditorFuncNum');
-            $url = asset('images/'.$fileName);
+//            $CKEditorFuncNum = $request->input('CKEditorFuncNum');
+            $url = asset('images/' . $fileName);
             $msg = 'Image uploaded successfully';
             $response = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$msg')</script>";
 
             @header('Content-type: text/html; charset=utf-8');
             echo $response;
         }
-
-        $post = Post::create([
-            'content' => request('content'),
-            'template' => request('template'),
-            'is_published' => request('is_published'),
-            'slug'    => Carbon::now()->format('Y-m-d-His'),
-            'title' => $this->FirstSentence(request('content')),
-        ]);
-
-        $post->tag(explode(',', $request->tags));
-
-        return redirect()->route('posts');
     }
 
     function firstSentence($content)
@@ -79,9 +100,9 @@ class PostController extends Controller
         //title from first sentence
         $content = html_entity_decode(strip_tags($content));
 
-        $content = str_replace(" .",".",$content);
-        $content = str_replace(" ?","?",$content);
-        $content = str_replace(" !","!",$content);
+        $content = str_replace(" .", ".", $content);
+        $content = str_replace(" ?", "?", $content);
+        $content = str_replace(" !", "!", $content);
 
         if (preg_match('/^.*[^\s](\.|\?|\!)/U', $content, $match)) {
             return $match[0];

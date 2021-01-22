@@ -2,8 +2,6 @@
 
 @section('content')
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">Create Post</div>
                     <div class="card-body">
@@ -14,47 +12,46 @@
 
                         <form enctype="multipart/form-data" method="post" action="{{ route('post.store') }}">
                             @csrf
-                            <div class="form-group">
+                            <div class="form-group flex-right">
                                 <textarea class="form-control" name="content" rows="6" id="editor" required></textarea>
                             </div>
 
-                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-secondary active">
-                                    <input type="radio" name="template" id="option1" value="1" autocomplete="off"
-                                           checked> Active
-                                </label>
-                                <label class="btn btn-secondary">
-                                    <input type="radio" name="template" id="option2" value="2" autocomplete="off"> Radio
-                                </label>
-                                <label class="btn btn-secondary">
-                                    <input type="radio" name="template" id="option3" value="3" autocomplete="off"> Radio
-                                </label>
+                            <div class="row">
+                                <fieldset class="form-group col-4">
+                                    <legend>Сhoosing a color theme</legend>
+                                    <label for="template1" class="paper-radio">
+                                        <input type="radio" name="template" id="template1" value="option 1"> <span>This is the first option</span>
+                                    </label>
+                                    <label for="template2" class="paper-radio">
+                                        <input type="radio" name="template" id="template2" value="option 2"> <span>This is the second option</span>
+                                    </label>
+                                    <label for="template3" class="paper-radio">
+                                        <input type="radio" name="template" id="template3" value="option 3"> <span>This is the third option</span>
+                                    </label>
+                                </fieldset>
+
+                                <fieldset class="form-group col-4">
+                                    <label class="paper-switch-2">
+                                        <input id="published" name="is_published" type="checkbox" value="1" checked/>
+                                        <span class="paper-switch-slider round"></span>
+                                    </label>
+                                    <label for="published" class="paper-switch-2-label">
+                                        Is published?
+                                    </label>
+                                </fieldset>
                             </div>
 
-                            <div class="custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input" id="customSwitch1"
-                                       name="is_published" value="1" checked>
-                                <label class="custom-control-label" for="customSwitch1">Is published?</label>
+                            <div class="form-group">
+                                <label for="tags">Tags</label>
+                                <input type="text" name="tags" id="tags">
                             </div>
-
-                            <input type="text" name="tags" id="tags">
 
                             <div class="form-group">
                                 <input type="submit" class="paper-btn btn-secondary" value="Create post"/>
                             </div>
                         </form>
-
-
-                        <script>
-                            CKEDITOR.replace('editor', {
-                                filebrowserUploadUrl: "{{route('post.store', ['_token' => csrf_token() ])}}",
-                                filebrowserUploadMethod: 'form'
-                            });
-                        </script>
                     </div>
                 </div>
-            </div>
-        </div>
     </div>
 @endsection
 
@@ -63,6 +60,13 @@
 @endsection
 
 @section('scripts')
+
+    <script>
+        CKEDITOR.replace('editor', {
+            filebrowserUploadUrl: "{{route('post.store', ['_token' => csrf_token() ])}}",
+            filebrowserUploadMethod: 'form'
+        });
+    </script>
 
     <script>
         $( document ).ready(function() {
@@ -80,6 +84,23 @@
                     }
                 }
             });
+        });
+
+        // $(".item").on("click", function () {
+        //     [0].selectize.removeOption(1)
+        // });
+
+        $(document).on('click', 'div.selectize-input div.item', function(e) {
+            var select = $('#tags').selectize();
+            var selectSizeControl = select[0].selectize;
+            // 1. Get the value
+            var selectedValue = $(this).attr("data-value");
+            // 2. Remove the option
+            select[0].selectize.removeItem(selectedValue);
+
+            select[0].selectize.refreshItems();
+            select[0].selectize.refreshOptions();
+
         });
     </script>
 
