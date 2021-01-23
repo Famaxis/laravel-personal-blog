@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Services\ImageHandler;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
 use Image;
-use App\Models\User;
 
 
 class UserController extends Controller
 {
-    public function __construct()
+    private $imageHandler;
+
+    public function __construct(ImageHandler $imageHandler)
     {
+        $this->imageHandler = $imageHandler;
         $this->middleware('auth');
     }
 
@@ -24,18 +27,7 @@ class UserController extends Controller
     public function update(Request $request)
     {
         $user = Auth::user();
-
-        // Handle the user upload of avatar
-        if($request->hasFile('avatar')){
-            $avatar = $request->file('avatar');
-            $filename = time() . '.' . $avatar->getClientOriginalExtension();
-            Image::make($avatar)->save( public_path('/avatar/' . $filename ) );
-
-
-            $user->avatar = $filename;
-            $user->save();
-        }
-
+        $this->imageHandler->updateAvatar($request->file('avatar'));
         $user->update($request->all());
 
         return view('backend.profile', array('user' => Auth::user()) );

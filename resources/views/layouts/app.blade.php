@@ -12,8 +12,8 @@
     <!-- Scripts -->
     {{--        <script src="{{ asset('js/app.js') }}" defer></script>--}}
     <script src="https://cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
-    <script src="/js/jquery-3.5.1.min.js"></script>
-    <script src="/js/selectize.js"></script>
+    <script src="{{ asset('js/jquery-3.5.1.min.js') }}"></script>
+    <script src="{{ asset('js/selectize.js') }}"></script>
 
 
     <!-- Fonts -->

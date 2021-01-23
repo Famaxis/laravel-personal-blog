@@ -86,10 +86,6 @@
             });
         });
 
-        // $(".item").on("click", function () {
-        //     [0].selectize.removeOption(1)
-        // });
-
         $(document).on('click', 'div.selectize-input div.item', function(e) {
             var select = $('#tags').selectize();
             var selectSizeControl = select[0].selectize;

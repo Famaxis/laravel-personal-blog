@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use App\Services\ImageHandler;
 use Carbon\Carbon;
 use Conner\Tagging\Model\Tag;
 use Illuminate\Http\Request;
@@ -11,8 +12,11 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function __construct()
+    private $imageHandler;
+
+    public function __construct(ImageHandler $imageHandler)
     {
+        $this->imageHandler = $imageHandler;
         $this->middleware('auth');
     }
 
@@ -43,7 +47,7 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        $this->handleUploadedImage(
+        $this->imageHandler->handleUploadedImage(
             $request->file('upload'),
             $request->input('CKEditorFuncNum')
         );
@@ -66,26 +70,6 @@ class PostController extends Controller
             return $template;
         }
         return 101;
-    }
-
-    public function handleUploadedImage($image, $CKEditorFuncNum)
-    {
-        if ($image !== null) {
-            $originName = $image->getClientOriginalName();
-            $fileName = pathinfo($originName, PATHINFO_FILENAME);
-            $extension = $image->getClientOriginalExtension();
-            $fileName = $fileName . '_' . time() . '.' . $extension;
-
-            $image->move(public_path('images'), $fileName);
-
-//            $CKEditorFuncNum = $request->input('CKEditorFuncNum');
-            $url = asset('images/' . $fileName);
-            $msg = 'Image uploaded successfully';
-            $response = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$msg')</script>";
-
-            @header('Content-type: text/html; charset=utf-8');
-            echo $response;
-        }
     }
 
     function firstSentence($content)
