@@ -16,3 +16,12 @@ table.table-alternating tbody tr:nth-of-type(2n),
 .cke_dialog_ui_input_file {
     min-height: 400px;
 }
+
+a.active {
+    color: #1d68a7;
+    background-color: var(--optional-color);
+    cursor: not-allowed;
+    text-decoration: none;
+    pointer-events: none;
+    border: none;
+}

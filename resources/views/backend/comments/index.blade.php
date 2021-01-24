@@ -14,7 +14,7 @@
                         <tr>
                             <td>{{ $comment->comment}}</td>
                             <td>
-                                <form action="{{route('comment.destroy', $comment)}}" method="POST">
+                                <form action="{{route('comments.destroy', $comment)}}" method="POST">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit" class="btn btn-sm btn-outline-danger py-0">Delete</button>

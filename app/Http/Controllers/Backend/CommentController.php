@@ -17,7 +17,7 @@ class CommentController extends Controller
     {
         $comments = Comment::orderBy('created_at', 'desc')->paginate(5);
 
-        return view('backend.comment.index', compact('comments'));
+        return view('backend.comments.index', compact('comments'));
     }
 
     public function destroy(Comment $comment)

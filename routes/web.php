@@ -16,17 +16,21 @@ Route::group([
     'prefix' => '/home',
     'middleware' => ['auth']],
     function() {
-        Route::get('post', [PostController::class, 'index'])->name('posts');
-        Route::get('post/tag/{tag:slug}', [PostController::class, 'fetch'])->name('posts.fetch');
-        Route::get('/', [PostController::class, 'create'])->name('post.create');
-        Route::post('/', [PostController::class, 'store'])->name('post.store');
-        Route::get('/edit/{post:slug}', [PostController::class, 'edit'])->name('post.edit');
-        Route::post('/edit/{post:slug}', [PostController::class, 'update'])->name('post.update');
-        Route::delete('/{post:slug}', [PostController::class, 'destroy'])->name('post.destroy');
 
+        // Posts
+        Route::get('posts', [PostController::class, 'index'])->name('posts');
+        Route::get('posts/tag/{tag:slug}', [PostController::class, 'fetch'])->name('posts.fetch');
+        Route::get('/', [PostController::class, 'create'])->name('posts.create');
+        Route::post('/', [PostController::class, 'store'])->name('posts.store');
+        Route::get('/posts/{post:slug}', [PostController::class, 'edit'])->name('posts.edit');
+        Route::post('/posts/{post:slug}', [PostController::class, 'update'])->name('posts.update');
+        Route::delete('/{post:slug}', [PostController::class, 'destroy'])->name('posts.destroy');
+
+        //Comments
         Route::get('comments', [CommentController::class, 'index'])->name('comments');
-        Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');
+        Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 
+        //Profile
         Route::get('profile', [UserController::class, 'profile'])->name('profile');
         Route::post('profile', [UserController::class, 'update'])->name('profile.update');
 

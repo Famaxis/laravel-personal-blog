@@ -11,7 +11,6 @@
 
     <!-- Scripts -->
     {{--        <script src="{{ asset('js/app.js') }}" defer></script>--}}
-    <script src="https://cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
     <script src="{{ asset('js/jquery-3.5.1.min.js') }}"></script>
     <script src="{{ asset('js/selectize.js') }}"></script>
 
@@ -22,8 +21,9 @@
 
     <!-- Styles -->
     {{--    <link href="{{ asset('css/backend.css') }}" rel="stylesheet">--}}
-    <link href="https://unpkg.com/papercss@1.8.2/dist/paper.min.css" rel="stylesheet">
     <link href="{{ asset('css/selectize.css') }}" rel="stylesheet">
+    <link href="https://unpkg.com/papercss@1.8.2/dist/paper.min.css" rel="stylesheet">
+
     <link href="{{ asset('css/add.css') }}" rel="stylesheet">
     @yield('styles')
 </head>
@@ -46,9 +46,21 @@
                     </label>
                     <div class="collapsible-body">
                         <ul class="inline">
-                            <li><a href="{{ route('post.create') }}">New post</a></li>
-                            <li><a href="{{ route('posts') }}">Posts</a></li>
-                            <li><a href="{{ route('comments') }}">Comments</a></li>
+                            <li><a href="{{ route('posts.create')}}"
+                                   @if(route('posts.create') == Request::url())
+                                   class="active"
+                                        @endif
+                                >New post</a></li>
+                            <li><a href="{{ route('posts') }}"
+                                   @if(route('posts') == Request::url())
+                                   class="active"
+                                        @endif
+                                >Posts</a></li>
+                            <li><a href="{{ route('comments') }}"
+                                   @if(route('comments') == Request::url())
+                                   class="active"
+                                        @endif
+                                >Comments</a></li>
                         </ul>
                     </div>
                 </div>
@@ -72,7 +84,7 @@
         </nav>
     @endauth
 
-    <main class="py-4">
+    <main>
         @yield('content')
     </main>
 </div>

@@ -13,10 +13,12 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     private $imageHandler;
+    private $post;
 
     public function __construct(ImageHandler $imageHandler)
     {
         $this->imageHandler = $imageHandler;
+        $this->post = new Post;
         $this->middleware('auth');
     }
 
@@ -25,7 +27,7 @@ class PostController extends Controller
         $posts = Post::orderBy('created_at', 'desc')
             ->with('tagged')
             ->paginate(5);
-        return view('backend.post.index', compact('posts'));
+        return view('backend.posts.index', compact('posts'));
     }
 
     public function fetch(Tag $tag)
@@ -36,13 +38,13 @@ class PostController extends Controller
             ->with('tagged')
             ->paginate(5);
 
-        return view('backend.post.index', compact('posts'));
+        return view('backend.posts.index', compact('posts'));
     }
 
     public function create()
     {
         $tags = Post::existingTags()->pluck('name');
-        return view('backend.post.create', compact('tags'));
+        return view('backend.posts.create', compact('tags'));
     }
 
     public function store(Request $request)
@@ -55,54 +57,37 @@ class PostController extends Controller
         $post = Post::create([
             'content'      => request('content'),
             'is_published' => request('is_published'),
-            'slug'         => Carbon::now()->format('Y-m-d-His'),
-            'title'        => $this->firstSentence(request('content')),
-            'template'     => $this->randomTemplate(request('template')),
+            'slug'         => $this->post->generatePostSlug(request('slug')),
+            'title'        => $this->post->createPostTitle(request('content')),
+            'template'     => $this->post->generatePostTemplate(request('template')),
         ]);
         $post->tag(explode(',', $request->tags));
 
         return redirect()->route('posts');
     }
 
-    public function randomTemplate($template)
-    {
-        if ($template) {
-            return $template;
-        }
-        return 101;
-    }
-
-    function firstSentence($content)
-    {
-        //title from H1, if it exists
-        if (strpos($content, 'h1') !== false) {
-            $pattern = "#<\s*?h1\b[^>]*>(.*?)</h1\b[^>]*>#s";
-            preg_match($pattern, $content, $matches);
-            return $matches[1];
-        }
-
-        //title from first sentence
-        $content = html_entity_decode(strip_tags($content));
-
-        $content = str_replace(" .", ".", $content);
-        $content = str_replace(" ?", "?", $content);
-        $content = str_replace(" !", "!", $content);
-
-        if (preg_match('/^.*[^\s](\.|\?|\!)/U', $content, $match)) {
-            return $match[0];
-        } else {
-            return "Title";
-        }
-    }
-
     public function edit(Post $post)
     {
-        return view('backend.post.edit', compact('post'));
+//        $post->with('tagged');
+        $tags = Post::existingTags()->pluck('name');
+
+        return view('backend.posts.edit')
+            ->with(compact('post'))
+            ->with(compact('tags'));
     }
 
     public function update(Request $request, Post $post)
     {
-        $post->update($request->all());
+        $post->update([
+            'content'      => request('content'),
+            'is_published' => request('is_published'),
+            'slug'         => $this->post->generatePostSlug(request('slug')),
+            'title'        => $this->post->createPostTitle(request('content')),
+            'template'     => $this->post->generatePostTemplate(request('template')),
+        ]);
+//        $post->tag(explode(',', $request->tags));
+        $post->retag($request->tags);
+
         return redirect()->route('posts');
     }
 
