@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('settings.site_name', 'Laravel') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/jquery-3.5.1.min.js') }}"></script>
@@ -31,7 +31,7 @@
             <!-- Left Side Of Navbar -->
             <div class="col">
                 <div class="nav-brand">
-                    <h4><a href="{{ url('/') }}">{{ config('app.name', 'Laravel') }}</a></h4>
+                    <h4><a href="{{ url('/') }}">{{ config('settings.site_name', 'Laravel') }}</a></h4>
                 </div>
                 <div class="collapsible">
                     <input id="collapsible2" type="checkbox" name="collapsible2">
@@ -57,6 +57,11 @@
                                    class="active"
                                         @endif
                                 >Comments</a></li>
+                            <li><a href="{{ route('settings') }}"
+                                   @if(route('settings') == Request::url())
+                                   class="active"
+                                        @endif
+                                >Settings</a></li>
                         </ul>
                     </div>
                 </div>

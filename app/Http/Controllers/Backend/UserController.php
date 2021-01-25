@@ -16,7 +16,6 @@ class UserController extends Controller
     public function __construct(ImageHandler $imageHandler)
     {
         $this->imageHandler = $imageHandler;
-        $this->middleware('auth');
     }
 
     public function profile()

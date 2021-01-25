@@ -30,7 +30,6 @@
                     <div class="form-group">
                         <input type="submit" class="paper-btn btn-secondary" value="Update">
                     </div>
-
                 </form>
 
             </div>

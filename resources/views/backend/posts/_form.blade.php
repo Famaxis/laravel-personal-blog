@@ -49,8 +49,6 @@
 
 </div>
 
-
-
 <div class="form-group">
     <label for="tags">Tags</label>
     <input type="text" name="tags" id="tags" value="@isset ($post, $tags)
@@ -80,12 +78,14 @@
                 valueField: 'tag',
                 labelField: 'tag',
                 searchField: 'tag',
+                inputClass: 'selectize-input',
+                wrapperClass: 'selectize-control border',
                 options: tags,
                 create: function (input) {
                     return {
                         tag: input,
                     }
-                }
+                },
             });
         });
 

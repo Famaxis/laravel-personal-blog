@@ -17,7 +17,6 @@ class PostController extends Controller
     {
         $this->imageHandler = $imageHandler;
         $this->post = new Post;
-        $this->middleware('auth');
     }
 
     public function index()
