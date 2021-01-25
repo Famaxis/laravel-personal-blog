@@ -5,10 +5,8 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Services\ImageHandler;
-use Carbon\Carbon;
 use Conner\Tagging\Model\Tag;
 use Illuminate\Http\Request;
-
 
 class PostController extends Controller
 {
@@ -68,7 +66,6 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
-//        $post->with('tagged');
         $tags = Post::existingTags()->pluck('name');
 
         return view('backend.posts.edit')
@@ -85,7 +82,6 @@ class PostController extends Controller
             'title'        => $this->post->createPostTitle(request('content')),
             'template'     => $this->post->generatePostTemplate(request('template')),
         ]);
-//        $post->tag(explode(',', $request->tags));
         $post->retag($request->tags);
 
         return redirect()->route('posts');

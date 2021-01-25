@@ -4,13 +4,18 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Backend\CommentController;
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\Auth\LoginController;
 
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes(['register' => false]);
+//Auth::routes();
+// Authentication Routes...
+Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('login', [LoginController::class, 'login']);
+Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::group([
     'prefix' => '/home',

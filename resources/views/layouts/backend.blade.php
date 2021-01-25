@@ -10,7 +10,6 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    {{--        <script src="{{ asset('js/app.js') }}" defer></script>--}}
     <script src="{{ asset('js/jquery-3.5.1.min.js') }}"></script>
     <script src="{{ asset('js/selectize.js') }}"></script>
 
@@ -20,11 +19,8 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    {{--    <link href="{{ asset('css/backend.css') }}" rel="stylesheet">--}}
-    <link href="{{ asset('css/selectize.css') }}" rel="stylesheet">
     <link href="https://unpkg.com/papercss@1.8.2/dist/paper.min.css" rel="stylesheet">
-
-    <link href="{{ asset('css/add.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     @yield('styles')
 </head>
 <body>

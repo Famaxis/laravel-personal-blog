@@ -12,14 +12,16 @@
     <fieldset class="form-group col-4">
         <legend>Сhoosing a color theme</legend>
         <label for="template1" class="paper-radio">
-            <input type="radio" name="template" id="template1" value="template 1"> <span>This is the first option</span>
+            <input type="radio" name="template" id="template1" value="template 1">
+            <span>Red</span>
         </label>
         <label for="template2" class="paper-radio">
             <input type="radio" name="template" id="template2" value="template 2">
-            <span>This is the second option</span>
+            <span>Green</span>
         </label>
         <label for="template3" class="paper-radio">
-            <input type="radio" name="template" id="template3" value="template 3"> <span>This is the third option</span>
+            <input type="radio" name="template" id="template3" value="template 3">
+            <span>Blue</span>
         </label>
     </fieldset>
 
@@ -51,18 +53,14 @@
 
 <div class="form-group">
     <label for="tags">Tags</label>
-    <input type="text" name="tags" id="tags" value="
-        @isset ($post, $tags)
-
-    @foreach($post->tagged as $tagged)
-    {{$tagged->tag_name}},
-
-{{--                @foreach($post->tags as $tag)--}}
-    {{--        {{$tag->name}}, --}}
-    @endforeach
-    @endisset
-            ">
+    <input type="text" name="tags" id="tags" value="@isset ($post, $tags)
+    @foreach($post->tagged as $tagged){{$tagged->tag_name}},@endforeach
+    @endisset">
 </div>
+
+@section('styles')
+    <link href="{{ asset('css/selectize.css') }}" rel="stylesheet">
+@endsection
 
 @section('scripts')
     <script src="https://cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
