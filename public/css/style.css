@@ -25,3 +25,15 @@ a.active {
     pointer-events: none;
     border: none;
 }
+
+h1 {
+    margin: 1rem 0;
+}
+
+.row {
+    margin-bottom: 0;
+}
+
+.selectize-input {
+    border: none;
+}

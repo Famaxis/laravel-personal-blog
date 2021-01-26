@@ -51,9 +51,7 @@
 
 <div class="form-group">
     <label for="tags">Tags</label>
-    <input type="text" name="tags" id="tags" value="@isset ($post, $tags)
-    @foreach($post->tagged as $tagged){{$tagged->tag_name}},@endforeach
-    @endisset">
+    <input type="text" name="tags" id="tags" value="@isset ($post, $tags)@foreach($post->tagged as $tagged){{$tagged->tag_name}},@endforeach @endisset">
 </div>
 
 @section('styles')
@@ -104,13 +102,7 @@
     </script>
 
     <script>
-        var tags = [
-                @foreach ($tags as $tag)
-            {
-                tag: "{{$tag}}"
-            },
-            @endforeach
-        ];
+        var tags = [@foreach ($tags as $tag){tag: "{{$tag}}"},@endforeach];
     </script>
 
 @endsection

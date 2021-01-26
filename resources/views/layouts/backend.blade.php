@@ -13,19 +13,18 @@
     <script src="{{ asset('js/jquery-3.5.1.min.js') }}"></script>
     <script src="{{ asset('js/selectize.js') }}"></script>
 
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
+    @yield('styles')
     <link href="https://unpkg.com/papercss@1.8.2/dist/paper.min.css" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-    @yield('styles')
+
 </head>
 <body>
 <div class="paper container container-lg" id="app">
-
     @auth
         <nav class="border row flex-edges">
             <!-- Left Side Of Navbar -->

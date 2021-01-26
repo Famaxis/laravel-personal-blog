@@ -1,6 +1,10 @@
 @extends('layouts.backend')
 
 @section('content')
+    @if(Route::current()->getName() === 'posts.fetch')
+       <h1>Posts tagged with {!! $tag->name !!}</h1>
+    @endif
+
     <table class="table-alternating">
         <thead>
         <th>Title</th>

@@ -3,23 +3,24 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Config;
+use App\Models\Setting;
 
 class SettingController extends Controller
 {
     public function index()
     {
-        return view('backend.settings.index');
+        $settings = Setting::first();
+        return view('backend.settings.index', compact('settings'));
     }
 
-    public function update(Request $request)
+    public function update()
     {
-        $settings = $request->input('name');
-//        Config::set('settings.site_name', $settings);
-        config(['settings.site_name' => $settings]);
+        $settings = Setting::first();
+        $settings->update([
+            'site_name'        => request('site_name'),
+            'comments_allowed' => request('comments_allowed'),
+        ]);
 
         return redirect()->route('settings');
-//        return view('backend.settings.index');
     }
 }
