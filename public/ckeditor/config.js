@@ -30,6 +30,9 @@ CKEDITOR.editorConfig = function( config ) {
 	config.defaultLanguage = 'en';
 	config.language = 'en';
 
+	// Extra plugins
+	config.extraPlugins = 'autosave';
+
 	// Common settings
 	config.toolbarCanCollapse = true;
 	config.disableObjectResizing = false;
@@ -42,6 +45,17 @@ CKEDITOR.editorConfig = function( config ) {
 	config.autocorrect_dash = "—";
 	config.disableNativeSpellChecker = false;
 
+	// Autosave
+	config.autosave = {
+		messageType : "no",
+		delay : 3,
+		autoLoad: true,
+		saveOnDestroy : true,
+		// saveDetectionSelectors : "a[href^='javascript:__doPostBack'][id*='Save'],a[id*='Cancel']",
+		saveDetectionSelectors : "input[type='submit']",
+		removeStorageAfterAutoLoad: false,
+	};
+
 	// Remove some buttons provided by the standard plugins, which are
 	// not needed in the Standard(s) toolbar.
 	config.removeButtons = 'Underline,Subscript,Superscript';
@@ -52,10 +66,5 @@ CKEDITOR.editorConfig = function( config ) {
 	// Simplify the dialog windows.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
 
-	// Autosave
-	config.autosave = {
-		messageType : "no",
-		delay : 20,
-		autoLoad: true
-	}
+
 };

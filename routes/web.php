@@ -23,7 +23,7 @@ Route::group([
     function() {
         // Posts
         Route::get('posts', [PostController::class, 'index'])->name('posts');
-        Route::get('posts/tag/{tag:slug}', [PostController::class, 'fetch'])->name('posts.fetch');
+        Route::get('posts/tag/{tag:slug}', [PostController::class, 'fetchByTag'])->name('posts.fetch');
         Route::get('/', [PostController::class, 'create'])->name('posts.create');
         Route::post('/', [PostController::class, 'store'])->name('posts.store');
         Route::get('/posts/{post:slug}', [PostController::class, 'edit'])->name('posts.edit');

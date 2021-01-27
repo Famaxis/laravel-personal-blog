@@ -27,7 +27,7 @@ class PostController extends Controller
         return view('backend.posts.index', compact('posts'));
     }
 
-    public function fetch(Tag $tag)
+    public function fetchByTag(Tag $tag)
     {
         $slug = $tag->slug;
         $posts = Post::withAnyTag([$slug])

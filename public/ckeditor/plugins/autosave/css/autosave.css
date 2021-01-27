@@ -38,7 +38,7 @@ table.diff {
   border-collapse: collapse;
   border: 1px solid darkgray
 }
-table.diff tbody {
+table.diff tbody { 
   font-family: Courier, monospace;
 }
 table.diff tbody th {
@@ -112,7 +112,7 @@ div.autoSaveMessage div {
   font-weight: bold;
 }
 .cke .hidden {
-  opacity: 0;
+  opacity: 0; 
   visibility: hidden;
 }
 .cke .show {
