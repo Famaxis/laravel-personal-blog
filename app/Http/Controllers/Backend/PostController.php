@@ -35,14 +35,14 @@ class PostController extends Controller
             ->with('tagged')
             ->paginate(5);
 
-//        return view('backend.posts.index', compact('posts'));
         return view('backend.posts.index')
             ->with(compact('posts'))
             ->with(compact('tag'));
     }
 
-    public function create()
+    public function create(Request $request)
     {
+        $request->flash();
         $tags = Post::existingTags()->pluck('name');
         return view('backend.posts.create', compact('tags'));
     }

@@ -6,10 +6,10 @@
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
                 <div class="card-body margin-large">
-                        <form method="POST" action="{{ route('login') }}">
-                            @csrf
+                    <form method="POST" action="{{ route('login') }}">
+                        @csrf
 
-                            <div class="flex-center">
+                        <div class="flex-center">
                             <fieldset class="form-group">
                                 <label for="email">E-Mail Address</label>
                                 <input id="email" type="email" class="@error('email') is-invalid @enderror" name="email"
@@ -47,10 +47,10 @@
                             <div class="row">
                                 <button type="submit" class="paper-btn btn-secondary">Login</button>
                             </div>
-                            </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
 @endsection

@@ -7,7 +7,7 @@
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
 
-        <form enctype="multipart/form-data" method="post" action="{{ route('posts.store') }}">
+        <form enctype="multipart/form-data" data-persist="garlic" method="post" action="{{ route('posts.store') }}">
             @csrf
             @include('backend.posts._form')
 

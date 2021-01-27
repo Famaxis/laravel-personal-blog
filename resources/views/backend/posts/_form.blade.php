@@ -3,7 +3,7 @@
 @enderror
 
 <div class="form-group flex-right">
-        <textarea class="form-control" name="content" rows="6" id="editor" required>
+        <textarea class="form-control" name="content" rows="6" id="editor">
             @isset ($post){{$post->content}}@endisset
         </textarea>
 </div>
@@ -29,12 +29,12 @@
         <label class="paper-switch-2">
             <input id="published" name="is_published" type="checkbox" value="1"
                    @isset($post)
-                       @if($post->is_published)
-                       checked
-                       @endif
+                   @if($post->is_published)
+                   checked
+                   @endif
                    @else
                    checked
-                   @endisset
+                    @endisset
             />
             <span class="paper-switch-slider round"></span>
         </label>
@@ -51,7 +51,8 @@
 
 <div class="form-group">
     <label for="tags">Tags</label>
-    <input type="text" name="tags" id="tags" value="@isset ($post, $tags)@foreach($post->tagged as $tagged){{$tagged->tag_name}},@endforeach @endisset">
+    <input type="text" name="tags" id="tags"
+           value="@isset ($post, $tags)@foreach($post->tagged as $tagged){{$tagged->tag_name}},@endforeach @endisset">
 </div>
 
 @section('styles')
@@ -59,7 +60,9 @@
 @endsection
 
 @section('scripts')
-    <script src="https://cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
+{{--    <script src="https://cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>--}}
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+
 
     <script>
         CKEDITOR.replace('editor', {
@@ -99,10 +102,10 @@
             select[0].selectize.refreshOptions();
         });
 
-    </script>
-
-    <script>
         var tags = [@foreach ($tags as $tag){tag: "{{$tag}}"},@endforeach];
+
+
+
     </script>
 
 @endsection
