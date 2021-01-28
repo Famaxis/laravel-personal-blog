@@ -1,6 +1,10 @@
+/* Additional styles for framework. Not standalone */
+
 :root {
     --optional-color: #f0f9ff;
-    --success-light: #addeff;
+    --darker-optional: #addeff;
+    --link: #1376ad;
+    --link-line: #6ac4f6;
 }
 
 .col {
@@ -18,7 +22,7 @@ table.table-alternating tbody tr:nth-of-type(2n),
 }
 
 a.active {
-    color: #1d68a7;
+    color: var(--link);
     background-color: var(--optional-color);
     cursor: not-allowed;
     text-decoration: none;
@@ -36,4 +40,20 @@ h1 {
 
 .selectize-input {
     border: none;
+}
+
+img {
+    object-fit: cover;
+}
+
+.form-group .paper-switch-2 input:checked+.paper-switch-slider {
+    background-color: var(--darker-optional);
+}
+.title-link {
+    color: var(--link);
+    background-image: none;
+    border-bottom-left-radius: 15px 3px;
+    border-bottom-right-radius: 15px 5px;
+    border-bottom: 5px solid #41403e;
+    border-bottom-color: var(--link-line);
 }

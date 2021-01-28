@@ -12,7 +12,7 @@
             @include('backend.posts._form')
 
             <div class="form-group">
-                <input type="submit" class="paper-btn btn-secondary" id="save" value="Create post"/>
+                <input type="submit" class="paper-btn btn-secondary" value="Create post"/>
             </div>
         </form>
     </div>

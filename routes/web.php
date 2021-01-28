@@ -6,11 +6,11 @@ use App\Http\Controllers\Backend\CommentController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Backend\SettingController;
+use App\Http\Controllers\Backend\EditorImageUploadController;
+use App\Http\Controllers\Frontend\PostController as FrontPost;
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 // Authentication Routes
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
@@ -26,6 +26,7 @@ Route::group([
         Route::get('posts/tag/{tag:slug}', [PostController::class, 'fetchByTag'])->name('posts.fetch');
         Route::get('/', [PostController::class, 'create'])->name('posts.create');
         Route::post('/', [PostController::class, 'store'])->name('posts.store');
+        Route::post('/image', [EditorImageUploadController::class, 'uploadImage'])->name('upload_image');
         Route::get('/posts/{post:slug}', [PostController::class, 'edit'])->name('posts.edit');
         Route::post('/posts/{post:slug}', [PostController::class, 'update'])->name('posts.update');
         Route::delete('/{post:slug}', [PostController::class, 'destroy'])->name('posts.destroy');
@@ -42,3 +43,7 @@ Route::group([
         Route::get('settings', [SettingController::class, 'index'])->name('settings');
         Route::post('settings', [SettingController::class, 'update'])->name('settings.update');
     });
+
+// Posts
+Route::get('/', [FrontPost::class, 'index'])->name('front.posts');
+Route::get('/{post:slug}', [FrontPost::class, 'show'])->name('front.posts.show');

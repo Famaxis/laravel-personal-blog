@@ -60,13 +60,12 @@
 @endsection
 
 @section('scripts')
-{{--    <script src="https://cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>--}}
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 
 
     <script>
         CKEDITOR.replace('editor', {
-            filebrowserUploadUrl: "{{route('posts.store', ['_token' => csrf_token() ])}}",
+            filebrowserUploadUrl: "{{route('upload_image', ['_token' => csrf_token() ])}}",
             filebrowserUploadMethod: 'form'
         });
     </script>

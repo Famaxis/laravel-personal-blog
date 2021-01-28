@@ -4,18 +4,15 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Post;
-use App\Services\ImageHandler;
 use Conner\Tagging\Model\Tag;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    private $imageHandler;
     private $post;
 
-    public function __construct(ImageHandler $imageHandler)
+    public function __construct()
     {
-        $this->imageHandler = $imageHandler;
         $this->post = new Post;
     }
 
@@ -49,11 +46,6 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        $this->imageHandler->handleUploadedImage(
-            $request->file('upload'),
-            $request->input('CKEditorFuncNum')
-        );
-
         $post = Post::create([
             'content'      => request('content'),
             'is_published' => request('is_published'),
