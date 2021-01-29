@@ -19,6 +19,7 @@ class Post extends Model
         return $this->morphMany(Comment::class, 'commentable')->whereNull('parent_id');
     }
 
+    // user can choose template, or it will be picked randomly
     public function generatePostTemplate($template)
     {
         if ($template) {
@@ -27,6 +28,7 @@ class Post extends Model
         return "template 4";
     }
 
+    // user can choose slug, or it will be generated from timestamp
     public function generatePostSlug($slug)
     {
         if ($slug) {
@@ -35,26 +37,34 @@ class Post extends Model
         return Carbon::now()->format('Y-m-d-His');
     }
 
-    public function createPostTitle($content)
+    // for using first sentence in meta: page title or/and in description
+    public function generateFirstSentence($content, $description)
     {
-        //title from H1, if it exists
+        // title from H1, if it exists
         if (strpos($content, 'h1') !== false) {
             $pattern = "#<\s*?h1\b[^>]*>(.*?)</h1\b[^>]*>#s";
             preg_match($pattern, $content, $matches);
             return $matches[1];
         }
 
+        // preparing content
         $content = html_entity_decode(strip_tags($content));
 
         $content = str_replace(" .", ".", $content);
         $content = str_replace(" ?", "?", $content);
         $content = str_replace(" !", "!", $content);
 
-        //title from first sentence
+        // first sentence from the content
         if (preg_match('/^.*[^\s](\.|\?|\!)/U', $content, $match)) {
             return $match[0];
-        } else {
-            return "Title";
+        } else if ($description) {
+            // first sentence from the description
+            if (preg_match('/^.*[^\s](\.|\?|\!)/U', $description, $match)) {
+                return $match[0];
+            }
         }
+        // if method can't generate first sentence neither from content or description
+        return null;
+
     }
 }

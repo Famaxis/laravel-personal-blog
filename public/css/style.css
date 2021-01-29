@@ -17,6 +17,10 @@ table.table-alternating tbody tr:nth-of-type(2n),
     background-color: var(--optional-color);
 }
 
+.unpublished {
+    background-color: var(--muted-light) !important;
+}
+
 .cke_dialog_ui_input_file {
     min-height: 400px;
 }
@@ -56,4 +60,26 @@ img {
     border-bottom-right-radius: 15px 5px;
     border-bottom: 5px solid #41403e;
     border-bottom-color: var(--link-line);
+}
+
+.read-more {
+    background-image: none;
+    margin: -1rem;
+    border-left: 2px solid var(--primary);
+    box-shadow: -9px 0px 10px 3px #34659530;
+    backdrop-filter: hue-rotate(-114deg) saturate(1.5);
+    align-items: center;
+    justify-content: center;
+}
+
+#description {
+    min-width: 100%;
+}
+
+.btn-small {
+    padding: .4rem;
+}
+
+.tags {
+    margin: 1rem 0 0 0;
 }

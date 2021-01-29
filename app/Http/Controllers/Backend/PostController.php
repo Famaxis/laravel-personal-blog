@@ -47,11 +47,12 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $post = Post::create([
-            'content'      => request('content'),
-            'is_published' => request('is_published'),
-            'slug'         => $this->post->generatePostSlug(request('slug')),
-            'title'        => $this->post->createPostTitle(request('content')),
-            'template'     => $this->post->generatePostTemplate(request('template')),
+            'content'        => request('content'),
+            'description'    => request('description'),
+            'is_published'   => request('is_published'),
+            'slug'           => $this->post->generatePostSlug(request('slug')),
+            'first_sentence' => $this->post->generateFirstSentence(request('content'), request('description')),
+            'template'       => $this->post->generatePostTemplate(request('template')),
         ]);
         $post->tag(explode(',', $request->tags));
 
@@ -70,11 +71,12 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $post->update([
-            'content'      => request('content'),
-            'is_published' => request('is_published'),
-            'slug'         => $this->post->generatePostSlug(request('slug')),
-            'title'        => $this->post->createPostTitle(request('content')),
-            'template'     => $this->post->generatePostTemplate(request('template')),
+            'content'        => request('content'),
+            'description'    => request('description'),
+            'is_published'   => request('is_published'),
+            'slug'           => $this->post->generatePostSlug(request('slug')),
+            'first_sentence' => $this->post->generateFirstSentence(request('content'), request('description')),
+            'template'       => $this->post->generatePostTemplate(request('template')),
         ]);
         $post->retag($request->tags);
 

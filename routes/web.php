@@ -17,6 +17,7 @@ Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('login', [LoginController::class, 'login']);
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
+// Backend
 Route::group([
     'prefix' => '/home',
     'middleware' => ['auth']],
@@ -29,7 +30,7 @@ Route::group([
         Route::post('/image', [EditorImageUploadController::class, 'uploadImage'])->name('upload_image');
         Route::get('/posts/{post:slug}', [PostController::class, 'edit'])->name('posts.edit');
         Route::post('/posts/{post:slug}', [PostController::class, 'update'])->name('posts.update');
-        Route::delete('/{post:slug}', [PostController::class, 'destroy'])->name('posts.destroy');
+        Route::delete('/posts/destroy/{post:slug}', [PostController::class, 'destroy'])->name('posts.destroy');
 
         // Comments
         Route::get('comments', [CommentController::class, 'index'])->name('comments');
@@ -44,6 +45,7 @@ Route::group([
         Route::post('settings', [SettingController::class, 'update'])->name('settings.update');
     });
 
-// Posts
+// Posts in frontend
 Route::get('/', [FrontPost::class, 'index'])->name('front.posts');
+Route::get('/tag/{tag:slug}', [FrontPost::class, 'fetchByTag'])->name('front.posts.fetch');
 Route::get('/{post:slug}', [FrontPost::class, 'show'])->name('front.posts.show');

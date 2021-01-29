@@ -7,6 +7,11 @@
 
             {!! $post->content !!}
 
+            @foreach($post->tags as $tag)
+                <a class="paper-btn btn-small"
+                   href="{{ route('posts.fetch', $tag->slug) }}">{!! $tag->name !!}</a>
+            @endforeach
+
         </article>
     </div>
 @endsection

@@ -50,6 +50,11 @@
 </div>
 
 <div class="form-group">
+    <label for="description">Description</label>
+    <textarea id="description" name="description" rows="3">@isset ($post){{$post->description}}@endisset</textarea>
+</div>
+
+<div class="form-group">
     <label for="tags">Tags</label>
     <input type="text" name="tags" id="tags"
            value="@isset ($post, $tags)@foreach($post->tagged as $tagged){{$tagged->tag_name}},@endforeach @endisset">
