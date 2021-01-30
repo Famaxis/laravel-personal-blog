@@ -83,3 +83,11 @@ img {
 .tags {
     margin: 1rem 0 0 0;
 }
+
+.selectize-control.multi .selectize-input>div,
+.selectize-control.multi .selectize-input>div.active{
+    background-color: black !important;
+    padding: .2rem .7rem;
+    font-size: 1rem;
+    color: #ffffff;
+}

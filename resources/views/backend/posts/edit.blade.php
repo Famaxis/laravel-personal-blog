@@ -3,11 +3,8 @@
 @section('content')
     <div class="container">
         <h1>Update Post</h1>
-        @error('content')
-        <div class="alert alert-danger">{{ $message }}</div>
-        @enderror
 
-        <form method="post" action="{{ route('posts.update', $post->slug) }} ">
+        <form method="post" enctype="multipart/form-data" data-persist="garlic" action="{{ route('posts.update', $post->slug) }} ">
             @csrf
             @include('backend.posts._form')
 

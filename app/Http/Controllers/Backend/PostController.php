@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Conner\Tagging\Model\Tag;
 use Illuminate\Http\Request;
+use App\Http\Requests\StorePostRequest;
 
 class PostController extends Controller
 {
@@ -37,14 +38,13 @@ class PostController extends Controller
             ->with(compact('tag'));
     }
 
-    public function create(Request $request)
+    public function create()
     {
-        $request->flash();
         $tags = Post::existingTags()->pluck('name');
         return view('backend.posts.create', compact('tags'));
     }
 
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
         $post = Post::create([
             'content'        => request('content'),
@@ -68,7 +68,7 @@ class PostController extends Controller
             ->with(compact('tags'));
     }
 
-    public function update(Request $request, Post $post)
+    public function update(StorePostRequest $request, Post $post)
     {
         $post->update([
             'content'        => request('content'),
@@ -86,6 +86,6 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
-        return redirect()->route('posts');
+        return redirect()->back();
     }
 }

@@ -26,7 +26,7 @@
                 <td>
                     @foreach($post->tags as $tag)
                         <a class="paper-btn btn-small"
-                           href="{{ route('front.posts.fetch', $tag->slug) }}">{!! $tag->name !!}</a>
+                           href="{{ route('posts.fetch', $tag->slug) }}">{!! $tag->name !!}</a>
                     @endforeach
                 </td>
                 <td>{!! $post->first_sentence !!}</td>

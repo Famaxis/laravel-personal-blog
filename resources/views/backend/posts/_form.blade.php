@@ -1,6 +1,3 @@
-@error('content')
-<div class="alert alert-danger">{{ $message }}</div>
-@enderror
 
 <div class="form-group flex-right">
         <textarea class="form-control" name="content" rows="6" id="editor">
@@ -44,14 +41,17 @@
     </fieldset>
     <div class="form-group">
         <label for="slug">Slug</label>
-        <input type="text" name="slug" id="slug" value="@isset ($post){{$post->slug}}@endisset">
+        @error('slug')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+        <input type="text" name="slug" id="slug" value="{{ old('slug') }}@isset ($post){{$post->slug}}@endisset">
     </div>
 
 </div>
 
 <div class="form-group">
     <label for="description">Description</label>
-    <textarea id="description" name="description" rows="3">@isset ($post){{$post->description}}@endisset</textarea>
+    <textarea id="description" name="description" rows="3">@if(old('description')){{ old('description') }}@else @isset ($post){{$post->description}}@endisset @endif</textarea>
 </div>
 
 <div class="form-group">
@@ -66,7 +66,6 @@
 
 @section('scripts')
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
-
 
     <script>
         CKEDITOR.replace('editor', {
@@ -107,8 +106,6 @@
         });
 
         var tags = [@foreach ($tags as $tag){tag: "{{$tag}}"},@endforeach];
-
-
 
     </script>
 

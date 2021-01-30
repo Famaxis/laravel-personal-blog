@@ -40,6 +40,23 @@ class Post extends Model
     // for using first sentence in meta: page title or/and in description
     public function generateFirstSentence($content, $description)
     {
+        $sentence = $this->prepareFirstSentence($content, $description);
+
+        // if string is too long for type STRING in db
+        if($sentence) {
+            if (strlen($sentence) > 255) {
+                $result = mb_strimwidth($sentence, 0, 255, "...");
+                return $result;
+            } else {
+                return $sentence;
+            }
+        } else {
+            return null;
+        }
+    }
+
+    public function prepareFirstSentence ($content, $description)
+    {
         // title from H1, if it exists
         if (strpos($content, 'h1') !== false) {
             $pattern = "#<\s*?h1\b[^>]*>(.*?)</h1\b[^>]*>#s";
@@ -50,6 +67,7 @@ class Post extends Model
         // preparing content
         $content = html_entity_decode(strip_tags($content));
 
+        // removing some possible misprints
         $content = str_replace(" .", ".", $content);
         $content = str_replace(" ?", "?", $content);
         $content = str_replace(" !", "!", $content);
@@ -62,9 +80,9 @@ class Post extends Model
             if (preg_match('/^.*[^\s](\.|\?|\!)/U', $description, $match)) {
                 return $match[0];
             }
+        } else {
+            // if method can't generate first sentence neither from content or description
+            return null;
         }
-        // if method can't generate first sentence neither from content or description
-        return null;
-
     }
 }
