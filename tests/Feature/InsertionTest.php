@@ -10,7 +10,7 @@ use App\Models\Post;
 
 class InsertionTest extends TestCase
 {
-    public function test_post_can_be_added()
+    public function testPostCanBeAdded()
     {
         $user = User::first();
 

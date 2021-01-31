@@ -1,7 +1,7 @@
 
 <div class="form-group flex-right">
         <textarea class="form-control" name="content" rows="6" id="editor">
-            @isset ($post){{$post->content}}@endisset
+            {{ old('content', $post->content ?? null) }}
         </textarea>
 </div>
 
@@ -24,6 +24,8 @@
 
     <fieldset class="form-group col-4">
         <label class="paper-switch-2">
+
+
             <input id="published" name="is_published" type="checkbox" value="1"
                    @isset($post)
                    @if($post->is_published)
@@ -33,6 +35,10 @@
                    checked
                     @endisset
             />
+
+{{--            <input id="published" name="is_published" type="checkbox" value="1"--}}
+{{--                    {{ old('is_published', $post->is_published ?? 'checked' ?? '')  }}--}}
+{{--            />--}}
             <span class="paper-switch-slider round"></span>
         </label>
         <label for="published" class="paper-switch-2-label">
@@ -44,20 +50,49 @@
         @error('slug')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
-        <input type="text" name="slug" id="slug" value="{{ old('slug') }}@isset ($post){{$post->slug}}@endisset">
+        <input type="text" name="slug" id="slug" value="{{ old('slug', $post->slug ?? null) }}">
     </div>
 
 </div>
 
 <div class="form-group">
     <label for="description">Description</label>
-    <textarea id="description" name="description" rows="3">@if(old('description')){{ old('description') }}@else @isset ($post){{$post->description}}@endisset @endif</textarea>
-</div>
+
+    <textarea id="description" name="description" rows="3">{{ old('description', $post->description ?? null) }}</textarea>
+
+{{--    <textarea id="description" name="description" rows="3">@php--}}
+{{--            if(old('description')) {--}}
+{{--                echo old('description');--}}
+{{--            } elseif (isset($post)){--}}
+{{--                echo $post->description;--}}
+{{--            }--}}
+{{--        @endphp</textarea>--}}
+{{--</div>--}}
 
 <div class="form-group">
     <label for="tags">Tags</label>
+{{--    <input type="text" name="tags" id="tags"--}}
+{{--           value="{{isset($post) ? implode(',', $post->tagged->pluck('tag_name')->toArray() ):''}}">--}}
+
     <input type="text" name="tags" id="tags"
-           value="@isset ($post, $tags)@foreach($post->tagged as $tagged){{$tagged->tag_name}},@endforeach @endisset">
+           value="@php
+               if(old('tags')) {
+                    echo old('tags');
+                } elseif (isset($post)){
+                    echo implode(',', $post->tagged->pluck('tag_name')->toArray() );
+                }
+           @endphp">
+
+{{--    <input type="text" name="tags" id="tags"--}}
+{{--           value="@php--}}
+{{--               if(old('tags')) {--}}
+{{--                    echo old('tags');--}}
+{{--                } elseif (isset($post, $tags)){--}}
+{{--                    foreach ($post->tagged as $tagged){--}}
+{{--                        echo $tagged->tag_name .',';--}}
+{{--                    }--}}
+{{--                }--}}
+{{--@endphp">--}}
 </div>
 
 @section('styles')

@@ -32,6 +32,8 @@ class Post extends Model
     public function generatePostSlug($slug)
     {
         if ($slug) {
+            // replacing whitespaces
+            $slug = str_replace(" ", "_", $slug);
             return $slug;
         }
         return Carbon::now()->format('Y-m-d-His');
