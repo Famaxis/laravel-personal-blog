@@ -42,9 +42,10 @@ class Post extends Model
     // for using first sentence in meta: page title or/and in description
     public function generateFirstSentence($content, $description)
     {
+        // let's see, what we can extract from content and description...
         $sentence = $this->prepareFirstSentence($content, $description);
 
-        // if string is too long for type STRING in db
+        // if extracted string is too long for type STRING in db, make it shorter
         if($sentence) {
             if (strlen($sentence) > 255) {
                 $result = mb_strimwidth($sentence, 0, 255, "...");
@@ -52,6 +53,7 @@ class Post extends Model
             } else {
                 return $sentence;
             }
+        // if there is nothing that we can extract, let it be null
         } else {
             return null;
         }

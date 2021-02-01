@@ -8,14 +8,15 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\EditorImageUploadController;
 use App\Http\Controllers\Frontend\PostController as FrontPost;
-
-
+use App\Http\Controllers\SitemapController;
 
 
 // Authentication Routes
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('login', [LoginController::class, 'login']);
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::get('sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 
 // Backend
 Route::group([
