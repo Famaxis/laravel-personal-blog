@@ -16,6 +16,7 @@ Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('login', [LoginController::class, 'login']);
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
+// Sitemap
 Route::get('sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 
 // Backend

@@ -13,7 +13,8 @@ class PostController extends Controller
         $posts = Post::where('is_published', 1)
             ->with('tagged')
             ->orderBy('created_at', 'desc')
-            ->paginate(5);
+            ->paginate(5)
+            ->onEachSide(1);
 
         return view('frontend.posts.index', compact('posts'));
     }
@@ -22,8 +23,19 @@ class PostController extends Controller
     {
         $tags = Post::existingTags()->pluck('name');
 
+        $next = Post::where('is_published', 1)
+            ->where('id', '>', $post->id)
+            ->oldest('id')
+            ->first();
+        $prev = Post::where('is_published', 1)
+            ->where('id', '<', $post->id)
+            ->latest('id')
+            ->first();
+
         return view('frontend.posts.single')
             ->with(compact('post'))
+            ->with(compact('next'))
+            ->with(compact('prev'))
             ->with(compact('tags'));
     }
 

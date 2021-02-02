@@ -48,8 +48,7 @@ class Post extends Model
         // if extracted string is too long for type STRING in db, make it shorter
         if($sentence) {
             if (strlen($sentence) > 255) {
-                $result = mb_strimwidth($sentence, 0, 255, "...");
-                return $result;
+                return mb_strimwidth($sentence, 0, 255, "...");
             } else {
                 return $sentence;
             }

@@ -21,7 +21,8 @@ class PostController extends Controller
     {
         $posts = Post::orderBy('created_at', 'desc')
             ->with('tagged')
-            ->paginate(5);
+            ->paginate(5)
+            ->onEachSide(1);
         return view('backend.posts.index', compact('posts'));
     }
 

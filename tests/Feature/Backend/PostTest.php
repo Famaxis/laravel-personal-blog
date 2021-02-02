@@ -2,8 +2,6 @@
 
 namespace Tests\Feature\Backend;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class PostTest extends TestCase
@@ -13,12 +11,12 @@ class PostTest extends TestCase
         $this->withoutExceptionHandling();
         $response = $this->actingAsAdmin()
             ->post('/home', [
-            'content' => 'Here is content.',
-            'is_published' => true,
-            'slug' => 'a slug',
-            'description' => 'Description',
-            'tags' => 'tag, second tag, third tag'
-        ]);
+                'content'      => 'Here is content.',
+                'is_published' => true,
+                'slug'         => 'a slug',
+                'description'  => 'Description',
+                'tags'         => 'tag, second tag, third tag'
+            ]);
         $response->assertStatus(302);
     }
 
@@ -49,7 +47,8 @@ class PostTest extends TestCase
     {
         return array_merge([
             'content' => "Here is updated content.",
-            'slug' => "a new slug",
-            'tags' => 'tag, third tag'
+            'slug'    => "a new slug",
+            'tags'    => 'tag, third tag'
         ], $overrides);
-    }}
+    }
+}

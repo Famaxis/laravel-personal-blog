@@ -3,28 +3,26 @@
 namespace App\Services;
 
 use Auth;
-use Image;
+use Illuminate\Support\Facades\Storage;
 
 class ImageHandler
 {
     public function handleUploadedImage($image, $CKEditorFuncNum)
     {
         if ($image !== null) {
-        $originName = $image->getClientOriginalName();
-        $fileName = pathinfo($originName, PATHINFO_FILENAME);
-        $extension = $image->getClientOriginalExtension();
-        $fileName = $fileName . '.' . $extension;
+            $originName = $image->getClientOriginalName();
+            $fileName = pathinfo($originName, PATHINFO_FILENAME);
+            $extension = $image->getClientOriginalExtension();
+            $fileName = $fileName . '.' . $extension;
 
-        $image->move(public_path('images'), $fileName);
+            $image->move(public_path('images'), $fileName);
 
-//            $CKEditorFuncNum = $request->input('CKEditorFuncNum');
-        $url = asset('images/' . $fileName);
-        $msg = 'Image uploaded successfully';
-        $response = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$msg')</script>";
+            $url = asset('images/' . $fileName);
+            $response = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url')</script>";
 
-        @header('Content-type: text/html; charset=utf-8');
-        echo $response;
-        exit;
+            @header('Content-type: text/html; charset=utf-8');
+            echo $response;
+            exit;
         }
     }
 
@@ -34,7 +32,12 @@ class ImageHandler
 
         if ($avatar !== null) {
             $filename = time() . '.' . $avatar->getClientOriginalExtension();
-            Image::make($avatar)->save(public_path('/avatar/' . $filename));
+            if ($user->avatar) {
+                // deleting previous avatar
+                Storage::disk('public')->delete('/avatar/' . $user->avatar);
+            }
+
+            $avatar->move(public_path('avatar'), $filename);
 
             $user->avatar = $filename;
             $user->save();

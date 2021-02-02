@@ -29,6 +29,6 @@ class UserController extends Controller
         $this->imageHandler->updateAvatar($request->file('avatar'));
         $user->update($request->all());
 
-        return view('backend.profile', array('user' => Auth::user()) );
+        return redirect()->back();
     }
 }

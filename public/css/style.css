@@ -91,3 +91,9 @@ img {
     font-size: 1rem;
     color: #ffffff;
 }
+
+.ionicon {
+    width: 1rem;
+    height: 1rem;
+    margin: -0.2rem;
+}
