@@ -34,7 +34,7 @@ a.active {
     border: none;
 }
 
-h1 {
+h1, h2 {
     margin: 1rem 0;
 }
 

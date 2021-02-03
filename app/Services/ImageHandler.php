@@ -32,13 +32,13 @@ class ImageHandler
 
         if ($avatar !== null) {
             $filename = time() . '.' . $avatar->getClientOriginalExtension();
+
             if ($user->avatar) {
                 // deleting previous avatar
                 Storage::disk('public')->delete('/avatar/' . $user->avatar);
             }
 
             $avatar->move(public_path('avatar'), $filename);
-
             $user->avatar = $filename;
             $user->save();
         }

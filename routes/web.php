@@ -41,6 +41,7 @@ Route::group([
         // Profile
         Route::get('profile', [UserController::class, 'profile'])->name('profile');
         Route::post('profile', [UserController::class, 'update'])->name('profile.update');
+        Route::post('profile/password', [UserController::class, 'changePassword'])->name('profile.password_change');
 
         // Settings
         Route::get('settings', [SettingController::class, 'index'])->name('settings');
