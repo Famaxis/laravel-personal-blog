@@ -25,7 +25,6 @@
     <fieldset class="form-group col-4">
         <label class="paper-switch-2">
 
-
             <input id="published" name="is_published" type="checkbox" value="1"
                    @isset($post)
                    @if($post->is_published)
@@ -36,9 +35,6 @@
                     @endisset
             />
 
-{{--            <input id="published" name="is_published" type="checkbox" value="1"--}}
-{{--                    {{ old('is_published', $post->is_published ?? 'checked' ?? '')  }}--}}
-{{--            />--}}
             <span class="paper-switch-slider round"></span>
         </label>
         <label for="published" class="paper-switch-2-label">

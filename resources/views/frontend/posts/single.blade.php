@@ -6,7 +6,7 @@
             <h1 class="article-title">{!! $post->title !!}</h1>
 
             {!! $post->content !!}
-
+        </article>
             <p>
                 @if($next)
 
@@ -24,9 +24,11 @@
 
             @foreach($post->tags as $tag)
                 <a class="paper-btn btn-small"
-                   href="{{ route('posts.fetch', $tag->slug) }}">{!! $tag->name !!}</a>
+                   href="{{ route('front.posts.fetch', $tag->slug) }}">{!! $tag->name !!}</a>
             @endforeach
 
-        </article>
+@include('frontend.comments._form')
+@include('frontend.comments._list')
+
     </div>
 @endsection
