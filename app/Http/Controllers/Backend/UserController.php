@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     private $imageHandler;
+
     public function __construct(ImageHandler $imageHandler)
     {
         $this->imageHandler = $imageHandler;

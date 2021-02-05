@@ -26,6 +26,7 @@
                 <a class="paper-btn btn-small"
                    href="{{ route('front.posts.fetch', $tag->slug) }}">{!! $tag->name !!}</a>
             @endforeach
+        <hr class="margin-large">
 
 @include('frontend.comments._form')
 @include('frontend.comments._list')

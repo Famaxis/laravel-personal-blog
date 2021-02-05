@@ -6,18 +6,21 @@
             <div class="col-md-8">
                 <table class="table table-striped">
                     <thead>
+                    <th>Nickname</th>
                     <th>Comment</th>
                     <th>Action</th>
                     </thead>
                     <tbody>
                     @foreach($comments as $comment)
                         <tr>
+                            <td>{{ $comment->name}}</td>
                             <td>{{ $comment->comment}}</td>
                             <td>
+                                <a href="{{ route('front.posts.show',$comment->post->slug) . '#' . $comment->created_at->format('Y-m-d_h-i-s') }}" class="paper-btn btn-secondary-outline">Read</a>
                                 <form action="{{route('comments.destroy', $comment)}}" method="POST">
                                     @method('DELETE')
                                     @csrf
-                                    <button type="submit" class="btn btn-sm btn-outline-danger py-0">Delete</button>
+                                    <button type="submit" class="paper-btn btn-danger-outline">Delete</button>
                                 </form>
                             </td>
                         </tr>

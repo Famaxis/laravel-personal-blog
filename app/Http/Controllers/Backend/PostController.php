@@ -5,16 +5,18 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Conner\Tagging\Model\Tag;
-use Illuminate\Http\Request;
 use App\Http\Requests\StorePostRequest;
+use App\Services\PostHandler;
 
 class PostController extends Controller
 {
     private $post;
+    private $postHandler;
 
-    public function __construct()
+    public function __construct(PostHandler $postHandler)
     {
         $this->post = new Post;
+        $this->postHandler = $postHandler;
     }
 
     public function index()
@@ -51,9 +53,9 @@ class PostController extends Controller
             'content'        => request('content'),
             'description'    => request('description'),
             'is_published'   => request('is_published'),
-            'slug'           => $this->post->generatePostSlug(request('slug')),
-            'first_sentence' => $this->post->generateFirstSentence(request('content'), request('description')),
-            'template'       => $this->post->generatePostTemplate(request('template')),
+            'slug'           => $this->postHandler->generatePostSlug(request('slug')),
+            'first_sentence' => $this->postHandler->generateFirstSentence(request('content'), request('description')),
+            'template'       => $this->postHandler->generatePostTemplate(request('template')),
         ]);
         $post->tag(explode(',', $request->tags));
 
@@ -75,9 +77,9 @@ class PostController extends Controller
             'content'        => request('content'),
             'description'    => request('description'),
             'is_published'   => request('is_published'),
-            'slug'           => $this->post->generatePostSlug(request('slug')),
-            'first_sentence' => $this->post->generateFirstSentence(request('content'), request('description')),
-            'template'       => $this->post->generatePostTemplate(request('template')),
+            'slug'           => $this->postHandler->generatePostSlug(request('slug')),
+            'first_sentence' => $this->postHandler->generateFirstSentence(request('content'), request('description')),
+            'template'       => $this->postHandler->generatePostTemplate(request('template')),
         ]);
         $post->retag($request->tags);
 
