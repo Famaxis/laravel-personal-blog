@@ -9,7 +9,8 @@ class CommentRequest extends FormRequest
     public function rules()
     {
         return [
-            'comment' => 'required|min:2|max:1000'
+            'comment' => 'required|min:2|max:1000',
+            'name'    => 'max:200'
         ];
     }
 
@@ -18,6 +19,7 @@ class CommentRequest extends FormRequest
         return [
             'comment.min'      => 'Too short',
             'comment.max'      => 'Too long',
+            'name.max'         => 'Too long',
             'comment.required' => 'Text can\'t be empty',
         ];
     }

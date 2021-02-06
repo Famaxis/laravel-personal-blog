@@ -13,10 +13,11 @@
                     <tbody>
                     @foreach($comments as $comment)
                         <tr>
-                            <td>{{ $comment->name}}</td>
-                            <td>{{ $comment->comment}}</td>
+                            <td>{{ $comment->name }}</td>
+                            <td>{{ $comment->comment }}</td>
                             <td>
-                                <a href="{{ route('front.posts.show',$comment->post->slug) . '#' . $comment->created_at->format('Y-m-d_h-i-s') }}" class="paper-btn btn-secondary-outline">Read</a>
+                                <a href="{{ route('front.posts.show', $comment->post->slug) . '#' . $comment->created_at->format('Y-m-d_h-i-s') }}" class="paper-btn btn-secondary-outline">Read</a>
+                                <a href="{{ route('comments.edit', $comment) }}" class="paper-btn btn-success-outline">Edit</a>
                                 <form action="{{route('comments.destroy', $comment)}}" method="POST">
                                     @method('DELETE')
                                     @csrf

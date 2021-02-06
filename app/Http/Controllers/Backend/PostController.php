@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Post;
-use Conner\Tagging\Model\Tag;
 use App\Http\Requests\StorePostRequest;
+use App\Models\Post;
 use App\Services\PostHandler;
+use Conner\Tagging\Model\Tag;
 
 class PostController extends Controller
 {

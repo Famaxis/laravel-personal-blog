@@ -7,9 +7,9 @@ use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\EditorImageUploadController;
+use App\Http\Controllers\Frontend\CommentController as FrontComment;
 use App\Http\Controllers\Frontend\PostController as FrontPost;
 use App\Http\Controllers\SitemapController;
-use App\Http\Controllers\Frontend\CommentController as FrontComment;
 
 
 // Authentication Routes
@@ -30,14 +30,18 @@ Route::group([
         Route::get('posts/tag/{tag:slug}', [PostController::class, 'fetchByTag'])->name('posts.fetch');
         Route::get('/', [PostController::class, 'create'])->name('posts.create');
         Route::post('/', [PostController::class, 'store'])->name('posts.store');
-        Route::post('image', [EditorImageUploadController::class, 'uploadImage'])->name('upload_image');
         Route::get('posts/{post:slug}', [PostController::class, 'edit'])->name('posts.edit');
         Route::post('posts/{post:slug}', [PostController::class, 'update'])->name('posts.update');
         Route::delete('posts/destroy/{post:slug}', [PostController::class, 'destroy'])->name('posts.destroy');
 
+        // Image
+        Route::post('image', [EditorImageUploadController::class, 'uploadImage'])->name('upload_image');
+
         // Comments
         Route::get('comments', [CommentController::class, 'index'])->name('comments');
-        Route::delete('comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
+        Route::get('comments/{comment}', [CommentController::class, 'edit'])->name('comments.edit');
+        Route::post('comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
+        Route::delete('comments/delete/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 
         // Profile
         Route::get('profile', [UserController::class, 'profile'])->name('profile');
@@ -49,6 +53,7 @@ Route::group([
         Route::post('settings', [SettingController::class, 'update'])->name('settings.update');
     });
 
+// Saving comment
 Route::post('comment/{post:id}', [FrontComment::class, 'store'])->name('comment.store');
 
 // Posts in frontend
