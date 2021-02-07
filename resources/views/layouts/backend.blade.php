@@ -31,7 +31,7 @@
             <!-- Left Side Of Navbar -->
             <div class="col">
                 <div class="nav-brand">
-                    <h4><a href="{{ url('/') }}">{{ config('settings.site_name', 'Laravel') }}</a></h4>
+                    <h4><a href="{{ url('/') }}">{{ $settings->site_name }}</a></h4>
                 </div>
                 <div class="collapsible">
                     <input id="collapsible2" type="checkbox" name="collapsible2">

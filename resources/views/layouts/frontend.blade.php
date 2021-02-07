@@ -4,10 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    @yield('meta')
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('settings.site_name', 'Laravel') }}</title>
+    <title> @yield('title') {{ $settings->site_name }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/jquery-3.5.1.min.js') }}"></script>
@@ -30,7 +32,7 @@
             <!-- Left Side Of Navbar -->
             <div class="col">
                 <div class="nav-brand">
-                    <h4><a href="{{ url('/') }}">{{ config('settings.site_name', 'Laravel') }}</a></h4>
+                    <h4><a href="{{ url('/') }}">{{ $settings->site_name }}</a></h4>
                 </div>
                 <div class="collapsible">
                     <input id="collapsible2" type="checkbox" name="collapsible2">

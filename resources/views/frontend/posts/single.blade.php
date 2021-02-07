@@ -1,5 +1,13 @@
 @extends('layouts.frontend')
 
+@section('meta')
+<meta name="description" content="{!! $post->first_sentence !!}">
+@endsection
+
+@section('title')
+{!! $post->first_sentence !!} |
+@endsection
+
 @section('content')
     <div class="container">
         <article class="article">
@@ -30,7 +38,9 @@
         <hr class="margin-large">
 
 {{--        Comments --}}
+        @if($settings->comments_allowed)
 @include('frontend.comments._form')
+        @endif
 @include('frontend.comments._list')
 
     </div>
