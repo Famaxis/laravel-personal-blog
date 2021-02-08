@@ -1,15 +1,15 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Backend\PostController;
-use App\Http\Controllers\Backend\CommentController;
-use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Backend\SettingController;
+use App\Http\Controllers\Backend\CommentController;
 use App\Http\Controllers\Backend\EditorImageUploadController;
+use App\Http\Controllers\Backend\PostController;
+use App\Http\Controllers\Backend\SettingController;
+use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Frontend\CommentController as FrontComment;
 use App\Http\Controllers\Frontend\PostController as FrontPost;
 use App\Http\Controllers\SitemapController;
+use Illuminate\Support\Facades\Route;
 
 
 // Authentication Routes
@@ -22,9 +22,9 @@ Route::get('sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 
 // Backend
 Route::group([
-    'prefix' => '/home',
+    'prefix'     => '/home',
     'middleware' => ['auth']],
-    function() {
+    function () {
         // Posts
         Route::get('posts', [PostController::class, 'index'])->name('posts');
         Route::get('posts/tag/{tag:slug}', [PostController::class, 'fetchByTag'])->name('posts.fetch');
@@ -54,7 +54,7 @@ Route::group([
     });
 
 // Saving comment
-Route::post('comment/{post:id}', [FrontComment::class, 'store'])->name('comment.store');
+Route::post('comment/{post:slug}', [FrontComment::class, 'store'])->name('comment.store');
 
 // Posts in frontend
 Route::get('/', [FrontPost::class, 'index'])->name('front.posts');

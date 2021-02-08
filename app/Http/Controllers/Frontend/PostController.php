@@ -21,22 +21,23 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-        $tags = Post::existingTags()->pluck('name');
+        // optimizing queries number
+        if($post->tagNames())  {
+            $tags = Post::existingTags()->pluck('name');
+        } else {
+            $tags = [];
+        }
 
-        $next = Post::where('is_published', 1)
-            ->where('id', '>', $post->id)
+        $next = Post::where('id', '>', $post->id)
+            ->where('is_published', 1)
             ->oldest('id')
             ->first();
-        $prev = Post::where('is_published', 1)
-            ->where('id', '<', $post->id)
+        $prev = Post::where('id', '<', $post->id)
+            ->where('is_published', 1)
             ->latest('id')
             ->first();
 
-        return view('frontend.posts.single')
-            ->with(compact('post'))
-            ->with(compact('next'))
-            ->with(compact('prev'))
-            ->with(compact('tags'));
+        return view('frontend.posts.single', compact('post','next', 'prev', 'tags'));
     }
 
     public function fetchByTag(Tag $tag)
@@ -47,8 +48,6 @@ class PostController extends Controller
             ->with('tagged')
             ->paginate(5);
 
-        return view('frontend.posts.index')
-            ->with(compact('posts'))
-            ->with(compact('tag'));
+        return view('frontend.posts.index', compact('posts','tag'));
     }
 }

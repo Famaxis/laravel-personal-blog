@@ -1,10 +1,7 @@
 @extends('layouts.backend')
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <table class="table table-striped">
+                <table class="table-alternating">
                     <thead>
                     <th>Nickname</th>
                     <th>Comment</th>
@@ -31,7 +28,5 @@
                 </table>
 
                 {!! $comments->links() !!}
-            </div>
-        </div>
-    </div>
+
 @endsection

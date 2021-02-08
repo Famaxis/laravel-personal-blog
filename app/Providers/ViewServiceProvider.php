@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Models\Setting;
+use Illuminate\Support\Facades\Schema;
 
 class ViewServiceProvider extends ServiceProvider
 {
@@ -25,10 +26,10 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-//        View::composer(['layouts.frontend', 'layouts.backend'], function ($view) {
-//            $view->with('settings', Setting::first());
-//        });
+        // checking table existence, or migrations will fail
+        if (Schema::hasTable('settings')) {
+            View::share('settings', Setting::first());
+        }
 
-        View::share('settings', Setting::first());
     }
 }

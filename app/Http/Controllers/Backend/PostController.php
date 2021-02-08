@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use App\Services\PostHandler;
 use Conner\Tagging\Model\Tag;
@@ -21,8 +21,8 @@ class PostController extends Controller
 
     public function index()
     {
-        $posts = Post::orderBy('created_at', 'desc')
-            ->with('tagged')
+        $posts = Post::with('tagged')
+            ->orderBy('created_at', 'desc')
             ->paginate(5)
             ->onEachSide(1);
         return view('backend.posts.index', compact('posts'));
@@ -32,13 +32,11 @@ class PostController extends Controller
     {
         $slug = $tag->slug;
         $posts = Post::withAnyTag([$slug])
-            ->orderBy('created_at', 'desc')
             ->with('tagged')
+            ->orderBy('created_at', 'desc')
             ->paginate(5);
 
-        return view('backend.posts.index')
-            ->with(compact('posts'))
-            ->with(compact('tag'));
+        return view('backend.posts.index', compact('posts','tag'));
     }
 
     public function create()
@@ -47,7 +45,7 @@ class PostController extends Controller
         return view('backend.posts.create', compact('tags'));
     }
 
-    public function store(StorePostRequest $request)
+    public function store(PostRequest $request)
     {
         $post = Post::create([
             'content'        => request('content'),
@@ -66,12 +64,10 @@ class PostController extends Controller
     {
         $tags = Post::existingTags()->pluck('name');
 
-        return view('backend.posts.edit')
-            ->with(compact('post'))
-            ->with(compact('tags'));
+        return view('backend.posts.edit', compact('post','tags'));
     }
 
-    public function update(StorePostRequest $request, Post $post)
+    public function update(PostRequest $request, Post $post)
     {
         $post->update([
             'content'        => request('content'),
