@@ -4,6 +4,10 @@
 <meta name="description" content="{!! $post->first_sentence !!}">
 @endsection
 
+@section('styles')
+<link href="{{ asset('css/colors/' . $post->template . '.css') }}" rel="stylesheet">
+@endsection
+
 @section('title')
 {!! $post->first_sentence !!} |
 @endsection

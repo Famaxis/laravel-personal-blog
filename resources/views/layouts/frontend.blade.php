@@ -20,9 +20,10 @@
 {{--    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">--}}
 
     <!-- Styles -->
-    @yield('styles')
     <link href="https://unpkg.com/papercss@1.8.2/dist/paper.min.css" rel="stylesheet">
+    <link href="{{ asset('css/colors/' . $settings->main_template . '.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    @yield('styles')
 
 </head>
 <body>

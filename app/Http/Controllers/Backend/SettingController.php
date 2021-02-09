@@ -19,6 +19,7 @@ class SettingController extends Controller
         $settings->update([
             'site_name'        => request('site_name'),
             'comments_allowed' => request('comments_allowed'),
+            'main_template' => request('main_template'),
         ]);
 
         return redirect()->route('settings');

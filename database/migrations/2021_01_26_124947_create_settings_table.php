@@ -16,7 +16,7 @@ class CreateSettingsTable extends Migration
         Schema::create('settings', function (Blueprint $table) {
             $table->increments('id');
             $table->string('site_name')->default('My blog');
-            $table->string('main_template')->default(1);
+            $table->string('main_template')->default('blue');
             $table->boolean('comments_allowed')->default(true)->nullable();
         });
     }

@@ -8,17 +8,17 @@
 <div class="row">
     <fieldset class="form-group col-4">
         <legend>Сhoosing a color theme</legend>
-        <label for="template1" class="paper-radio">
-            <input type="radio" name="template" id="template1" value="template 1">
+        <label for="blue" class="paper-radio">
+            <input type="radio" name="template" id="blue" value="blue" @isset($post) {{ ($post->template==='blue')? "checked" : "" }} @endisset >
+            <span>Blue</span>
+        </label>
+        <label for="red" class="paper-radio">
+            <input type="radio" name="template" id="red" value="red" @isset($post) {{ ($post->template==='red')? "checked" : "" }} @endisset >
             <span>Red</span>
         </label>
-        <label for="template2" class="paper-radio">
-            <input type="radio" name="template" id="template2" value="template 2">
-            <span>Green</span>
-        </label>
-        <label for="template3" class="paper-radio">
-            <input type="radio" name="template" id="template3" value="template 3">
-            <span>Blue</span>
+        <label for="purple" class="paper-radio">
+            <input type="radio" name="template" id="purple" value="purple" @isset($post) {{ ($post->template==='purple')? "checked" : "" }} @endisset >
+            <span>Purple</span>
         </label>
     </fieldset>
 
@@ -56,19 +56,8 @@
 
     <textarea id="description" name="description" rows="3">{{ old('description', $post->description ?? null) }}</textarea>
 
-{{--    <textarea id="description" name="description" rows="3">@php--}}
-{{--            if(old('description')) {--}}
-{{--                echo old('description');--}}
-{{--            } elseif (isset($post)){--}}
-{{--                echo $post->description;--}}
-{{--            }--}}
-{{--        @endphp</textarea>--}}
-{{--</div>--}}
-
 <div class="form-group">
     <label for="tags">Tags</label>
-{{--    <input type="text" name="tags" id="tags"--}}
-{{--           value="{{isset($post) ? implode(',', $post->tagged->pluck('tag_name')->toArray() ):''}}">--}}
 
     <input type="text" name="tags" id="tags"
            value="@php
@@ -79,16 +68,6 @@
                 }
            @endphp">
 
-{{--    <input type="text" name="tags" id="tags"--}}
-{{--           value="@php--}}
-{{--               if(old('tags')) {--}}
-{{--                    echo old('tags');--}}
-{{--                } elseif (isset($post, $tags)){--}}
-{{--                    foreach ($post->tagged as $tagged){--}}
-{{--                        echo $tagged->tag_name .',';--}}
-{{--                    }--}}
-{{--                }--}}
-{{--@endphp">--}}
 </div>
 
 @section('styles')

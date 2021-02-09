@@ -24,6 +24,22 @@
             </label>
         </fieldset>
 
+        <fieldset class="form-group col-4">
+            <legend>Сhoosing a color theme</legend>
+            <label for="blue" class="paper-radio">
+                <input type="radio" name="main_template" id="blue" value="blue" {{ ($settings->main_template==='blue')? "checked" : "" }} >
+                <span>Blue</span>
+            </label>
+            <label for="red" class="paper-radio">
+                <input type="radio" name="main_template" id="red" value="red" {{ ($settings->main_template==='red')? "checked" : "" }} >
+                <span>Red</span>
+            </label>
+            <label for="purple" class="paper-radio">
+                <input type="radio" name="main_template" id="purple" value="purple" {{ ($settings->main_template==='purple')? "checked" : "" }} >
+                <span>Purple</span>
+            </label>
+        </fieldset>
+
         <div class="form-group">
             <input type="submit" class="paper-btn btn-secondary" value="Update">
         </div>

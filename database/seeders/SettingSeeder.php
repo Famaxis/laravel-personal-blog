@@ -11,7 +11,7 @@ class SettingSeeder extends Seeder
     {
         DB::table('settings')->insert([
             'site_name' => 'My blog',
-            'main_template' => 1,
+            'main_template' => 'blue',
             'comments_allowed' => true,
         ]);
     }

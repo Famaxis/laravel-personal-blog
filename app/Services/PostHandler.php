@@ -12,7 +12,16 @@ class PostHandler
         if ($template) {
             return $template;
         }
-        return "template 4";
+
+        $random_num = mt_rand(1, 3);
+        switch ($random_num) {
+            case 1:
+                return "blue";
+            case 2:
+                return "red";
+            case 3:
+                return "purple";
+        }
     }
 
     // user can choose slug, or it will be generated from timestamp
