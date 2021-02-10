@@ -55,6 +55,7 @@ Route::group([
 
 // Saving comment
 Route::post('comment/{post:slug}', [FrontComment::class, 'store'])->name('comment.store');
+Route::post('comment/admin/{post:slug}', [FrontComment::class, 'storeForAdmin'])->name('comment.store_for_admin');
 
 // Posts in frontend
 Route::get('/', [FrontPost::class, 'index'])->name('front.posts');
