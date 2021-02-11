@@ -3,13 +3,12 @@
 @auth
     <form action="{{ route('comment.store_for_admin', $post->id) }}" data-persist="garlic" method="POST">
         @csrf
-
         <div class="row flex-right">
-            <div class="form-group col-9">
+            <div class="form-group col-12">
                 <label for="comment">Comment</label>
                 <textarea id="comment" name="comment" rows="3" class="input-block"></textarea>
             </div>
-            <div class="form-group">
+            <div class="form-group col">
                 <input type="submit" class="paper-btn btn-secondary" value="Comment">
             </div>
         </div>

@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         @if(Route::current()->getName() === 'front.posts.fetch')
-            <h1>Posts tagged with {!! $tag->name !!}</h1>
+            <h2>Posts tagged with {!! $tag->name !!}</h2>
         @endif
         <article class="article">
             @foreach($posts as $post)
@@ -44,6 +44,13 @@
                                    href="{{ route('front.posts.fetch', $tag->slug) }}">{!! $tag->name !!}</a>
                             @endforeach
                         </p>
+
+
+                            @if($post->comments->count())
+                                <p><a href="{{ route('front.posts.show',$post->slug) . '#comments' }}">Comments: {{ $post->comments->count() }}</a></p>
+
+                            @endif
+
 
                     </div>
                     <a href="{{ route('front.posts.show',$post->slug) }}" class="read-more

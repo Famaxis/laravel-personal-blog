@@ -51,9 +51,9 @@ class PostController extends Controller
             'content'        => request('content'),
             'description'    => request('description'),
             'is_published'   => request('is_published'),
-            'slug'           => $this->postHandler->generatePostSlug(request('slug')),
+            'slug'           => $this->postHandler->generateSlug(request('slug')),
             'first_sentence' => $this->postHandler->generateFirstSentence(request('content'), request('description')),
-            'template'       => $this->postHandler->generatePostTemplate(request('template')),
+            'template'       => $this->postHandler->generateTemplate(request('template')),
         ]);
         $post->tag(explode(',', $request->tags));
 
@@ -73,9 +73,9 @@ class PostController extends Controller
             'content'        => request('content'),
             'description'    => request('description'),
             'is_published'   => request('is_published'),
-            'slug'           => $this->postHandler->generatePostSlug(request('slug')),
+            'slug'           => $this->postHandler->generateSlug(request('slug')),
             'first_sentence' => $this->postHandler->generateFirstSentence(request('content'), request('description')),
-            'template'       => $this->postHandler->generatePostTemplate(request('template')),
+            'template'       => $this->postHandler->generateTemplate(request('template')),
         ]);
         $post->retag($request->tags);
 

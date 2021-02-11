@@ -7,7 +7,7 @@ use Carbon\Carbon;
 class PostHandler
 {
     // user can choose template, or it will be picked randomly
-    public function generatePostTemplate($template)
+    public function generateTemplate($template)
     {
         if ($template) {
             return $template;
@@ -25,7 +25,7 @@ class PostHandler
     }
 
     // user can choose slug, or it will be generated from timestamp
-    public function generatePostSlug($slug)
+    public function generateSlug($slug)
     {
         if ($slug) {
             // replacing whitespaces

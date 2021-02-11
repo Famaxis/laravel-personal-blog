@@ -25,6 +25,7 @@ a.active {
     text-decoration: none;
     pointer-events: none;
     border: none;
+    background-image: none;
 }
 
 h1, h2 {
@@ -74,7 +75,7 @@ img {
     background-color: black !important;
     padding: .2rem .7rem;
     font-size: 1rem;
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 .ionicon {
@@ -99,4 +100,8 @@ input, select, textarea {
     height: 0;
     width: 0;
     z-index: -1;
+}
+
+header.container {
+    background-color: var(--optional-color);
 }

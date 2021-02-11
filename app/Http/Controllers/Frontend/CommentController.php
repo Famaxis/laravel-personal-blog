@@ -42,7 +42,6 @@ class CommentController extends Controller
         }
 
         $comment->name = $this->commentHandler->setDefaultNickname(request('name'));
-
         $comment->comment = strip_tags($request->comment);
         $comment->post_id = $post;
         // guest doesn't have user_id

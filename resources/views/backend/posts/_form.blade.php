@@ -55,6 +55,7 @@
     <label for="description">Description</label>
 
     <textarea id="description" name="description" rows="3">{{ old('description', $post->description ?? null) }}</textarea>
+</div>
 
 <div class="form-group">
     <label for="tags">Tags</label>

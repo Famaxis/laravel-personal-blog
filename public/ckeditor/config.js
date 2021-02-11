@@ -48,7 +48,7 @@ CKEDITOR.editorConfig = function( config ) {
 	// Autosave
 	config.autosave = {
 		messageType : "no",
-		delay : 3,
+		delay : 1,
 		autoLoad: true,
 		saveOnDestroy : true,
 		// saveDetectionSelectors : "a[href^='javascript:__doPostBack'][id*='Save'],a[id*='Cancel']",

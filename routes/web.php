@@ -10,6 +10,7 @@ use App\Http\Controllers\Frontend\CommentController as FrontComment;
 use App\Http\Controllers\Frontend\PostController as FrontPost;
 use App\Http\Controllers\SitemapController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Backend\PageController;
 
 
 // Authentication Routes
@@ -33,6 +34,10 @@ Route::group([
         Route::get('posts/{post:slug}', [PostController::class, 'edit'])->name('posts.edit');
         Route::post('posts/{post:slug}', [PostController::class, 'update'])->name('posts.update');
         Route::delete('posts/destroy/{post:slug}', [PostController::class, 'destroy'])->name('posts.destroy');
+
+        // Pages
+        Route::get('/pages/create', [PageController::class, 'create'])->name('pages.create');
+        Route::post('/pages/create', [PageController::class, 'store'])->name('pages.store');
 
         // Image
         Route::post('image', [EditorImageUploadController::class, 'uploadImage'])->name('upload_image');

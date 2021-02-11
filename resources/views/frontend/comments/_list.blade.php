@@ -1,5 +1,7 @@
 @if($post->comments->count() > 0)
+    <a id="comments"></a>
     <p>Comments: {{ $post->comments()->count() }}</p>
+
     @foreach($post->comments as $comment)
         <div class="row flex-right shadow padding margin border">
             <a id="{{ $comment->created_at->format('Y-m-d_h-i-s') }}"></a>

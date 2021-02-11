@@ -11,6 +11,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::where('is_published', 1)
+            ->with('comments')
             ->with('tagged')
             ->orderBy('created_at', 'desc')
             ->paginate(5)
