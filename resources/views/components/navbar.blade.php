@@ -33,8 +33,8 @@
                            class="active"
                                 @endif
                         >Settings</a></li>
-                    <li><a href="{{ route('pages.create')}}"
-                           @if(route('pages.create') == Request::url())
+                    <li><a href="{{ route('pages')}}"
+                           @if(route('pages') == Request::url())
                            class="active"
                                 @endif
                         >Pages</a></li>

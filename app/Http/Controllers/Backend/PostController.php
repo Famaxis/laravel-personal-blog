@@ -3,20 +3,20 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PostRequest;
+use App\Http\Requests\ResourceRequest;
 use App\Models\Post;
-use App\Services\PostHandler;
+use App\Services\MetadataHandler;
 use Conner\Tagging\Model\Tag;
 
 class PostController extends Controller
 {
     private $post;
-    private $postHandler;
+    private $metadataHandler;
 
-    public function __construct(PostHandler $postHandler)
+    public function __construct(MetadataHandler $metadataHandler)
     {
         $this->post = new Post;
-        $this->postHandler = $postHandler;
+        $this->metadataHandler = $metadataHandler;
     }
 
     public function index()
@@ -45,15 +45,15 @@ class PostController extends Controller
         return view('backend.posts.create', compact('tags'));
     }
 
-    public function store(PostRequest $request)
+    public function store(ResourceRequest $request)
     {
         $post = Post::create([
             'content'        => request('content'),
             'description'    => request('description'),
             'is_published'   => request('is_published'),
-            'slug'           => $this->postHandler->generateSlug(request('slug')),
-            'first_sentence' => $this->postHandler->generateFirstSentence(request('content'), request('description')),
-            'template'       => $this->postHandler->generateTemplate(request('template')),
+            'slug'           => $this->metadataHandler->generateSlug(request('slug')),
+            'first_sentence' => $this->metadataHandler->generateFirstSentence(request('content'), request('description')),
+            'template'       => $this->metadataHandler->generateTemplate(request('template')),
         ]);
         $post->tag(explode(',', $request->tags));
 
@@ -67,15 +67,15 @@ class PostController extends Controller
         return view('backend.posts.edit', compact('post','tags'));
     }
 
-    public function update(PostRequest $request, Post $post)
+    public function update(ResourceRequest $request, Post $post)
     {
         $post->update([
             'content'        => request('content'),
             'description'    => request('description'),
             'is_published'   => request('is_published'),
-            'slug'           => $this->postHandler->generateSlug(request('slug')),
-            'first_sentence' => $this->postHandler->generateFirstSentence(request('content'), request('description')),
-            'template'       => $this->postHandler->generateTemplate(request('template')),
+            'slug'           => $this->metadataHandler->generateSlug(request('slug')),
+            'first_sentence' => $this->metadataHandler->generateFirstSentence(request('content'), request('description')),
+            'template'       => $this->metadataHandler->generateTemplate(request('template')),
         ]);
         $post->retag($request->tags);
 

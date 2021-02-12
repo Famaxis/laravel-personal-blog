@@ -34,8 +34,12 @@
 
 <div class="form-group">
     <label for="description">Description</label>
-
     <textarea id="description" name="description" rows="3">{{ old('description', $page->description ?? null) }}</textarea>
+</div>
+
+<div class="form-group">
+    <label for="css">Css</label>
+    <textarea id="css" name="css" rows="3">{{ old('css', $page->css ?? null) }}</textarea>
 </div>
 
 @section('styles')

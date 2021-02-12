@@ -4,7 +4,7 @@ namespace App\Services;
 
 use Carbon\Carbon;
 
-class PostHandler
+class MetadataHandler
 {
     // user can choose template, or it will be picked randomly
     public function generateTemplate($template)

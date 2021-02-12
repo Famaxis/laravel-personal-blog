@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class PostRequest extends FormRequest
+class ResourceRequest extends FormRequest
 {
     public function authorize()
     {
@@ -17,7 +17,8 @@ class PostRequest extends FormRequest
         return [
             'slug' => [
                 'max:255',
-                Rule::unique('posts', 'slug')->ignore($this->post)
+                Rule::unique('posts', 'slug')->ignore($this->post),
+                Rule::unique('pages', 'slug')->ignore($this->page)
             ]
         ];
     }
