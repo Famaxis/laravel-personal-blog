@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\PageController;
+use App\Http\Controllers\Backend\TagController;
 
 
 // Posts
@@ -25,6 +26,9 @@ Route::post('/pages/create', [PageController::class, 'store'])->name('pages.stor
 Route::get('pages/{page:slug}', [PageController::class, 'edit'])->name('pages.edit');
 Route::post('pages/{page:slug}', [PageController::class, 'store'])->name('pages.update');
 Route::delete('pages/destroy/{page:slug}', [PageController::class, 'destroy'])->name('pages.destroy');
+
+// Tags
+Route::get('tags', [TagController::class, 'index'])->name('tags');
 
 // Image
 Route::post('image', [EditorImageUploadController::class, 'uploadImage'])->name('upload_image');

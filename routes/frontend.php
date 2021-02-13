@@ -3,7 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Frontend\CommentController;
 use App\Http\Controllers\Frontend\PostController;
-use App\Http\Controllers\SitemapController;
+use App\Http\Controllers\Frontend\SitemapController;
 use Illuminate\Support\Facades\Route;
 
 

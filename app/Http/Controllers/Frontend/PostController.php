@@ -10,12 +10,14 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::where('is_published', 1)
-            ->with('comments')
-            ->with('tagged')
-            ->orderBy('created_at', 'desc')
-            ->paginate(5)
-            ->onEachSide(1);
+        $posts = cache()->remember('index-posts', 86400, function () {
+            return Post::published()
+                ->with('comments')
+                ->with('tagged')
+                ->orderBy('created_at', 'desc')
+                ->paginate(5)
+                ->onEachSide(1);
+        });
 
         return view('frontend.posts.index', compact('posts'));
     }
@@ -30,11 +32,11 @@ class PostController extends Controller
         }
 
         $next = Post::where('id', '>', $post->id)
-            ->where('is_published', 1)
+            ->published()
             ->oldest('id')
             ->first();
         $prev = Post::where('id', '<', $post->id)
-            ->where('is_published', 1)
+            ->published()
             ->latest('id')
             ->first();
 
@@ -45,6 +47,7 @@ class PostController extends Controller
     {
         $slug = $tag->slug;
         $posts = Post::withAnyTag([$slug])
+            ->published()
             ->orderBy('created_at', 'desc')
             ->with('tagged')
             ->paginate(5);

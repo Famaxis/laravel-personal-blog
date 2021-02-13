@@ -38,6 +38,11 @@
                            class="active"
                                 @endif
                         >Pages</a></li>
+                    <li><a href="{{ route('tags')}}"
+                           @if(route('tags') == Request::url())
+                           class="active"
+                                @endif
+                        >Tags</a></li>
                 </ul>
             </div>
         </div>

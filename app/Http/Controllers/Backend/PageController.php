@@ -10,12 +10,14 @@ use Illuminate\Support\Facades\Storage;
 
 class PageController extends Controller
 {
-    private $metadataHandler;
-
-    public function __construct(MetadataHandler $metadataHandler)
-    {
-        $this->metadataHandler = $metadataHandler;
-    }
+//    private $page;
+//    private $metadataHandler;
+//
+//    public function __construct(MetadataHandler $metadataHandler)
+//    {
+////        $this->page = new Page;
+//        $this->metadataHandler = $metadataHandler;
+//    }
 
     public function index()
     {
@@ -30,19 +32,20 @@ class PageController extends Controller
         return view('backend.pages.create');
     }
 
-    public function store()
+    public function store(ResourceRequest $request)
     {
         $page = new Page();
-        $page->create([
-            'content'     => request('content'),
-            'title'       => request('title'),
-            'description' => request('description'),
-            'slug'        => $this->metadataHandler->generateSlug(request('slug')),
-            'template'    => $this->metadataHandler->generateTemplate(request('template')),
-            'css'         => $this->cssHandler(
-                request('css'),
-                $this->metadataHandler->generateSlug(request('slug'))),
-        ]);
+//        $page->create([
+//            'content'     => request('content'),
+//            'title'       => request('title'),
+//            'description' => request('description'),
+//            'slug'        => $this->metadataHandler->generateSlug(request('slug')),
+//            'template'    => $this->metadataHandler->generateTemplate(request('template')),
+//            'css'         => $this->cssHandler(
+//                request('css'),
+//                $this->metadataHandler->generateSlug(request('slug'))),
+//        ]);
+        $page->create($request->except('_token'));
 
         return redirect()->route('pages');
     }
@@ -58,19 +61,7 @@ class PageController extends Controller
 
     public function update(ResourceRequest $request, Page $page)
     {
-//        $page = $request->validated();
-
-        $page->update([
-            'content'     => request('content'),
-            'title'       => request('title'),
-            'description' => request('description'),
-            'slug'        => $this->metadataHandler->generateSlug(request('slug')),
-            'template'    => $this->metadataHandler->generateTemplate(request('template')),
-            'css'         => $this->cssHandler(
-                request('css'),
-                $this->metadataHandler->generateSlug(request('slug'))),
-        ]);
-
+        $page->update($request->except('_token'));
 
         return redirect()->route('pages');
     }

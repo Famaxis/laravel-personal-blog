@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Frontend;
 
+use App\Http\Controllers\Controller;
 use App\Models\Post;
-use Illuminate\Support\Facades\Cache;
 
 class SitemapController extends Controller
 {
     public function index()
     {
-        $posts = Cache::remember('sitemap-posts', 86400, function () {
-            return Post::where('is_published', 1)
+        $posts = cache()->remember('sitemap-posts', 86400, function () {
+            return Post::published()
                 ->orderBy('created_at', 'desc')
                 ->get();
         });
