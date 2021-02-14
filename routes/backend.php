@@ -24,7 +24,7 @@ Route::get('/pages/', [PageController::class, 'index'])->name('pages');
 Route::get('/pages/create', [PageController::class, 'create'])->name('pages.create');
 Route::post('/pages/create', [PageController::class, 'store'])->name('pages.store');
 Route::get('pages/{page:slug}', [PageController::class, 'edit'])->name('pages.edit');
-Route::post('pages/{page:slug}', [PageController::class, 'store'])->name('pages.update');
+Route::post('pages/{page:slug}', [PageController::class, 'update'])->name('pages.update');
 Route::delete('pages/destroy/{page:slug}', [PageController::class, 'destroy'])->name('pages.destroy');
 
 // Tags

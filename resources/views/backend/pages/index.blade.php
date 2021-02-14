@@ -2,13 +2,13 @@
 
 @section('content')
 
-    <div class="form-group">
+    <div class="form-group margin-top">
         <a class="paper-btn" href="{{ route('pages.create') }}">Create page</a>
     </div>
     <table class="table-alternating">
         <thead>
         <th>Description</th>
-        <th>Content</th>
+        <th>Contents</th>
         <th>Title</th>
         <th>Template</th>
         <th>Action</th>
@@ -17,7 +17,7 @@
         @foreach($pages as $page)
             <tr>
                 <td>{!! $page->description!!}</td>
-                <td>{!! $page->content !!}</td>
+                <td>{!! $page->contents !!}</td>
                 <td>{!! $page->title !!}</td>
                 <td>{!! $page->template !!}</td>
                 <td>

@@ -8,16 +8,9 @@ use Illuminate\Http\Request;
 
 class EditorImageUploadController extends Controller
 {
-    private $imageHandler;
-
-    public function __construct(ImageHandler $imageHandler)
-    {
-        $this->imageHandler = $imageHandler;
-    }
-
     public function uploadImage (Request $request)
     {
-        $this->imageHandler->handleUploadedImage(
+        ImageHandler::handleUploadedImage(
             $request->file('upload'),
             $request->input('CKEditorFuncNum')
         );

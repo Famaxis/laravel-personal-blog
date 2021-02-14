@@ -1,7 +1,7 @@
 
 <div class="form-group flex-right">
-        <textarea class="form-control" name="content" rows="6" id="editor">
-            {{ old('content', $post->content ?? null) }}
+        <textarea class="form-control" name="contents" rows="6" id="editor">
+            {{ old('contents', $post->contents ?? null) }}
         </textarea>
 </div>
 

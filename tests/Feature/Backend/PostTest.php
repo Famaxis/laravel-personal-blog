@@ -11,7 +11,7 @@ class PostTest extends TestCase
         $this->withoutExceptionHandling();
         $response = $this->actingAsAdmin()
             ->post('/home', [
-                'content'      => 'Here is content.',
+                'contents'      => 'Here is content.',
                 'is_published' => true,
                 'slug'         => 'a slug',
                 'description'  => 'Description',
@@ -46,7 +46,7 @@ class PostTest extends TestCase
     private function validParams($overrides = [])
     {
         return array_merge([
-            'content' => "Here is updated content.",
+            'contents' => "Here is updated content.",
             'slug'    => "a new slug",
             'tags'    => 'tag, third tag'
         ], $overrides);

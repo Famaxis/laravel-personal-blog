@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Storage;
 
 class ImageHandler
 {
-    public function handleUploadedImage($image, $CKEditorFuncNum)
+    public static function handleUploadedImage($image, $CKEditorFuncNum)
     {
         if ($image !== null) {
             $originName = $image->getClientOriginalName();
@@ -26,7 +26,7 @@ class ImageHandler
         }
     }
 
-    public function updateAvatar($avatar)
+    public static function updateAvatar($avatar)
     {
         $user = Auth::user();
 

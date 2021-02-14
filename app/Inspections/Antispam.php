@@ -4,7 +4,7 @@ namespace App\Inspections;
 
 class Antispam
 {
-    protected $keywords = [
+    protected static $keywords = [
         'http',
         'www',
         '%',
@@ -13,9 +13,9 @@ class Antispam
         '.info'
     ];
 
-    public function detect($body, $name)
+    public static function detect($body, $name)
     {
-        foreach ($this->keywords as $keyword) {
+        foreach (static::$keywords as $keyword) {
             if (stripos($body, $keyword) !== false || stripos($name, $keyword) !== false) {
                 return true;
             }

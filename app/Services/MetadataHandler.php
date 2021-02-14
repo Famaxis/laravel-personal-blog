@@ -7,7 +7,7 @@ use Carbon\Carbon;
 class MetadataHandler
 {
     // user can choose template, or it will be picked randomly
-    public function generateTemplate($template)
+    public static function generateTemplate($template)
     {
         if ($template) {
             return $template;
@@ -25,7 +25,7 @@ class MetadataHandler
     }
 
     // user can choose slug, or it will be generated from timestamp
-    public function generateSlug($slug)
+    public static function generateSlug($slug)
     {
         if ($slug) {
             // replacing whitespaces
@@ -36,10 +36,10 @@ class MetadataHandler
     }
 
     // for using first sentence in meta: page title or/and in description
-    public function generateFirstSentence($content, $description)
+    public static function generateFirstSentence($content, $description)
     {
         // let's see, what we can extract from content and description...
-        $sentence = $this->prepareFirstSentence($content, $description);
+        $sentence = static::prepareFirstSentence($content, $description);
 
         // if extracted string is too long for type STRING in db, make it shorter
         if($sentence) {
@@ -54,7 +54,7 @@ class MetadataHandler
         }
     }
 
-    public function prepareFirstSentence ($content, $description)
+    public static function prepareFirstSentence ($content, $description)
     {
         // title from H1, if it exists
         if (strpos($content, 'h1') !== false) {

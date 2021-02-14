@@ -17,7 +17,7 @@ class CreatePostsTable extends Migration
             $table->increments('id');
             $table->string('first_sentence')->nullable();
             $table->text('description')->nullable();
-            $table->text('content')->nullable();
+            $table->text('contents')->nullable();
             $table->string('slug')->unique();
             $table->string('template')->default('blue');
             $table->boolean('is_published')->default(true)->nullable();

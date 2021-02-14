@@ -12,13 +12,6 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    private $imageHandler;
-
-    public function __construct(ImageHandler $imageHandler)
-    {
-        $this->imageHandler = $imageHandler;
-    }
-
     public function profile()
     {
         return view('backend.profile', array('user' => Auth::user()) );
@@ -27,7 +20,7 @@ class UserController extends Controller
     public function update(Request $request)
     {
         $user = Auth::user();
-        $this->imageHandler->updateAvatar($request->file('avatar'));
+        ImageHandler::updateAvatar($request->file('avatar'));
         $user->update($request->all());
 
         return redirect()->back();

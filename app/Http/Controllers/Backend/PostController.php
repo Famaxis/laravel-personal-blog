@@ -10,15 +10,6 @@ use Conner\Tagging\Model\Tag;
 
 class PostController extends Controller
 {
-    private $post;
-    private $metadataHandler;
-
-    public function __construct(MetadataHandler $metadataHandler)
-    {
-        $this->post = new Post;
-        $this->metadataHandler = $metadataHandler;
-    }
-
     public function index()
     {
         $posts = Post::with('tagged')
@@ -36,7 +27,7 @@ class PostController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(5);
 
-        return view('backend.posts.index', compact('posts','tag'));
+        return view('backend.posts.index', compact('posts', 'tag'));
     }
 
     public function create()
@@ -48,12 +39,12 @@ class PostController extends Controller
     public function store(ResourceRequest $request)
     {
         $post = Post::create([
-            'content'        => request('content'),
-            'description'    => request('description'),
-            'is_published'   => request('is_published'),
-            'slug'           => $this->metadataHandler->generateSlug(request('slug')),
-            'first_sentence' => $this->metadataHandler->generateFirstSentence(request('content'), request('description')),
-            'template'       => $this->metadataHandler->generateTemplate(request('template')),
+            'contents'       => $request->contents,
+            'is_published'   => $request->is_published,
+            'description'    => $request->description,
+            'slug'           => MetadataHandler::generateSlug($request->slug),
+            'first_sentence' => MetadataHandler::generateFirstSentence($request->contents, $request->description),
+            'template'       => MetadataHandler::generateTemplate($request->template),
         ]);
         $post->tag(explode(',', $request->tags));
 
@@ -64,18 +55,18 @@ class PostController extends Controller
     {
         $tags = Post::existingTags()->pluck('name');
 
-        return view('backend.posts.edit', compact('post','tags'));
+        return view('backend.posts.edit', compact('post', 'tags'));
     }
 
     public function update(ResourceRequest $request, Post $post)
     {
         $post->update([
-            'content'        => request('content'),
-            'description'    => request('description'),
-            'is_published'   => request('is_published'),
-            'slug'           => $this->metadataHandler->generateSlug(request('slug')),
-            'first_sentence' => $this->metadataHandler->generateFirstSentence(request('content'), request('description')),
-            'template'       => $this->metadataHandler->generateTemplate(request('template')),
+            'contents'       => $request->contents,
+            'is_published'   => $request->is_published,
+            'description'    => $request->description,
+            'slug'           => MetadataHandler::generateSlug($request->slug),
+            'first_sentence' => MetadataHandler::generateFirstSentence($request->contents, $request->description),
+            'template'       => MetadataHandler::generateTemplate($request->template),
         ]);
         $post->retag($request->tags);
 

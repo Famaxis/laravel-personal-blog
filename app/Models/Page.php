@@ -11,16 +11,14 @@ class Page extends Model
     use HasFactory;
 
     protected $guarded = [];
-    private $metadataHandler;
 
-    function __construct($attributes = array())
-    {
-        parent::__construct($attributes);
-        $this->metadataHandler = new MetadataHandler;
-    }
-
-    public function setSlugAttribute($value)
-    {
-        $this->attributes['slug'] = $this->metadataHandler->generateSlug($value);
-    }
+//    public function setSlugAttribute($value)
+//    {
+//        $this->attributes['slug'] = MetadataHandler::generateSlug($value);
+//    }
+//
+//    public function setTemplateAttribute($value)
+//    {
+//        $this->attributes['template'] = MetadataHandler::generateTemplate($value);
+//    }
 }

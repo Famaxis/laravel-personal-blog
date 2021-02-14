@@ -6,7 +6,7 @@ namespace App\Services;
 
 class CommentHandler
 {
-    public function setDefaultNickname($name) {
+    public static function setDefaultNickname($name) {
         if ($name) {
             return strip_tags($name);
         } else {

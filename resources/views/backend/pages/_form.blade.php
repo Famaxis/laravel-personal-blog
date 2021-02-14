@@ -1,7 +1,11 @@
+<div class="form-group">
+    <label for="title">Title</label>
+    <input type="text" class="input-block" name="title" id="title" value="{{ old('title', $page->title ?? null) }}">
+</div>
 
 <div class="form-group flex-right">
-        <textarea class="form-control" name="content" rows="6" id="editor">
-            {{ old('content', $page->content ?? null) }}
+        <textarea class="form-control" name="contents" rows="6" id="editor">
+            {{ old('contents', $page->contents ?? null) }}
         </textarea>
 </div>
 
@@ -39,7 +43,7 @@
 
 <div class="form-group">
     <label for="css">Css</label>
-    <textarea id="css" name="css" rows="3">{{ old('css', $page->css ?? null) }}</textarea>
+    <textarea id="css" name="css" class="input-block" rows="3">{{ old('css', $page->css ?? null) }}</textarea>
 </div>
 
 @section('styles')

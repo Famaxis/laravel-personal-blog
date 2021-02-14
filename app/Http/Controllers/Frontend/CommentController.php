@@ -12,16 +12,10 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
-    private $antispam;
-    private $commentHandler;
-
-    public function __construct(Antispam $antispam, CommentHandler $commentHandler)
+    public function __construct()
     {
         // comment frequency limiter, no restrictions for admin
         $this->middleware('throttle:2,1')->except('storeForAdmin');
-
-        $this->antispam = $antispam;
-        $this->commentHandler = $commentHandler;
     }
 
     // for guests
@@ -34,14 +28,14 @@ class CommentController extends Controller
             return redirect()->route('front.posts');
         }
 
-        if ($this->antispam->detect(
+        if (Antispam::detect(
             request('comment'),
             request('name')
         )) {
             return redirect()->route('front.posts');
         }
 
-        $comment->name = $this->commentHandler->setDefaultNickname(request('name'));
+        $comment->name = CommentHandler::setDefaultNickname(request('name'));
         $comment->comment = strip_tags($request->comment);
         $comment->post_id = $post;
         // guest doesn't have user_id

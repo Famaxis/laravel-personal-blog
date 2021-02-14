@@ -35,7 +35,7 @@
                         @if($post->description)
                             {!! $post->description !!}
                         @else
-                            {!! $post->content !!}
+                            {!! $post->contents !!}
                         @endif
 
                         <p class="tags">

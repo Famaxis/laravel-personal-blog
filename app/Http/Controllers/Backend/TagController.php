@@ -9,7 +9,6 @@ class TagController extends Controller
 {
     public function index()
     {
-//        $tags = Post::with('tag', 'tagged')->first()->tags->get(0)->count;
         $tags = Post::existingTags();
 
         return view('backend.tags', compact('tags'));

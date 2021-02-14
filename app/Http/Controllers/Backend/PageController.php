@@ -10,15 +10,6 @@ use Illuminate\Support\Facades\Storage;
 
 class PageController extends Controller
 {
-//    private $page;
-//    private $metadataHandler;
-//
-//    public function __construct(MetadataHandler $metadataHandler)
-//    {
-////        $this->page = new Page;
-//        $this->metadataHandler = $metadataHandler;
-//    }
-
     public function index()
     {
         $pages = Page::orderBy('created_at', 'desc')
@@ -35,17 +26,16 @@ class PageController extends Controller
     public function store(ResourceRequest $request)
     {
         $page = new Page();
-//        $page->create([
-//            'content'     => request('content'),
-//            'title'       => request('title'),
-//            'description' => request('description'),
-//            'slug'        => $this->metadataHandler->generateSlug(request('slug')),
-//            'template'    => $this->metadataHandler->generateTemplate(request('template')),
-//            'css'         => $this->cssHandler(
-//                request('css'),
-//                $this->metadataHandler->generateSlug(request('slug'))),
-//        ]);
-        $page->create($request->except('_token'));
+        $page->create([
+            'contents'    => $request->contents,
+            'title'       => $request->title,
+            'description' => $request->description,
+            'slug'        => MetadataHandler::generateSlug($request->slug),
+            'template'    => MetadataHandler::generateTemplate($request->template),
+            'css'         => $this->cssHandler(
+                $request->css,
+                MetadataHandler::generateSlug($request->slug)),
+        ]);
 
         return redirect()->route('pages');
     }
@@ -53,7 +43,7 @@ class PageController extends Controller
     public function edit(Page $page)
     {
         if ($page->css) {
-            $page->css = Storage::disk('public')->get('/css/pages/'. $page->css);
+            $page->css = Storage::disk('public')->get('/css/pages/' . $page->css);
         }
 
         return view('backend.pages.edit', compact('page'));
@@ -61,15 +51,24 @@ class PageController extends Controller
 
     public function update(ResourceRequest $request, Page $page)
     {
-        $page->update($request->except('_token'));
+        $page->update([
+            'contents'    => $request->contents,
+            'title'       => $request->title,
+            'description' => $request->description,
+            'slug'        => MetadataHandler::generateSlug($request->slug),
+            'template'    => MetadataHandler::generateTemplate($request->template),
+            'css'         => $this->cssHandler(
+                $request->css,
+                MetadataHandler::generateSlug($request->slug)),
+        ]);
 
         return redirect()->route('pages');
     }
 
-    public function cssHandler ($css, $slug)
+    public function cssHandler($css, $slug)
     {
         if ($css) {
-            Storage::disk('public')->put('/css/pages/'. $slug .'.css', $css);
+            Storage::disk('public')->put('/css/pages/' . $slug . '.css', $css);
             return $slug . '.css';
         } else {
             return null;

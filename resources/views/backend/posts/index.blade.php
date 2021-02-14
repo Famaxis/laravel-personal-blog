@@ -22,7 +22,7 @@
                 @endif
             >
                 <td>{!! $post->description!!}</td>
-                <td>{!! $post->content !!}</td>
+                <td>{!! $post->contents !!}</td>
                 <td>
                     @foreach($post->tags as $tag)
                         <a class="paper-btn btn-small"

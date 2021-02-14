@@ -15,7 +15,7 @@
 @section('content')
     <div class="container">
         <article class="article">
-            {!! $post->content !!}
+            {!! $post->contents !!}
         </article>
             <p>
                 @if($next)
