@@ -43,6 +43,11 @@
                            class="active"
                                 @endif
                         >Tags</a></li>
+                    <li><a href="{{ route('templates.index')}}"
+                           @if(route('templates.index') == Request::url())
+                           class="active"
+                                @endif
+                        >Templates</a></li>
                 </ul>
             </div>
         </div>

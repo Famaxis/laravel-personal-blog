@@ -2,18 +2,17 @@
 
 namespace App\Models;
 
-use App\Services\MetadataHandler;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Page extends Model
+class Template extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
 
-    public function template()
+    public function pages()
     {
-        return $this->belongsTo(Template::class);
+        return $this->hasMany(Page::class);
     }
 }

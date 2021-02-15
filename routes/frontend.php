@@ -5,6 +5,7 @@ use App\Http\Controllers\Frontend\CommentController;
 use App\Http\Controllers\Frontend\PostController;
 use App\Http\Controllers\Frontend\SitemapController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Frontend\PageController;
 
 
 // Authentication Routes
@@ -24,3 +25,5 @@ Route::get('/', [PostController::class, 'index'])->name('front.posts');
 Route::get('tag/{tag:slug}', [PostController::class, 'fetchByTag'])->name('front.posts.fetch');
 Route::get('{post:slug}', [PostController::class, 'show'])->name('front.posts.show');
 
+// Pages in frontend
+Route::get('{page:slug}', [PageController::class, 'show'])->name('front.pages.show');
