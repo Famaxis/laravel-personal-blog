@@ -32,7 +32,7 @@
                 <td>{!! $post->first_sentence !!}</td>
                 <td>{!! $post->template !!}</td>
                 <td>
-                    <a href="{{ route('front.posts.show',$post->slug) }}" class="paper-btn btn-secondary-outline">Read</a>
+                    <a href="{{ route('front.resource.show',$post->slug) }}" class="paper-btn btn-secondary-outline">Read</a>
                     <a href="{{ route('posts.edit', $post->slug) }}" class="paper-btn btn-success-outline">Edit</a>
                     <form action="{{route('posts.destroy', $post->slug)}}" method="POST">
                         @method('DELETE')

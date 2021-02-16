@@ -4,9 +4,7 @@
 </div>
 
 <div class="form-group flex-right">
-        <textarea class="form-control" name="contents" rows="6" id="editor">
-            {{ old('contents', $template->contents ?? null) }}
-        </textarea>
+        <textarea class="form-control" name="file" rows="6" id="editor">{{ old('file', $template->file ?? null) }}</textarea>
 </div>
 
 <div class="form-group">
@@ -19,17 +17,15 @@
     <textarea id="css" name="css" class="input-block" rows="3">{{ old('css', $template->css ?? null) }}</textarea>
 </div>
 
+<div class="form-group">
+    <label for="js">Js</label>
+    <textarea id="js" name="js" class="input-block" rows="3">{{ old('js', $template->js ?? null) }}</textarea>
+</div>
+
 @section('styles')
 
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 
-    <script>
-        CKEDITOR.replace('editor', {
-            filebrowserUploadUrl: "{{route('upload_image', ['_token' => csrf_token() ])}}",
-            filebrowserUploadMethod: 'form'
-        });
-    </script>
 @endsection

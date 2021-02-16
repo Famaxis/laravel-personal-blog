@@ -21,17 +21,19 @@ Route::post('posts/{post:slug}', [PostController::class, 'update'])->name('posts
 Route::delete('posts/destroy/{post:slug}', [PostController::class, 'destroy'])->name('posts.destroy');
 
 // Pages
-Route::get('/pages/', [PageController::class, 'index'])->name('pages');
-Route::get('/pages/create', [PageController::class, 'create'])->name('pages.create');
-Route::post('/pages/create', [PageController::class, 'store'])->name('pages.store');
-Route::get('pages/{page:slug}', [PageController::class, 'edit'])->name('pages.edit');
-Route::post('pages/{page:slug}', [PageController::class, 'update'])->name('pages.update');
-Route::delete('pages/destroy/{page:slug}', [PageController::class, 'destroy'])->name('pages.destroy');
+Route::prefix('pages')->group(function () {
+    Route::get('/', [PageController::class, 'index'])->name('pages');
+    Route::get('create', [PageController::class, 'create'])->name('pages.create');
+    Route::post('create', [PageController::class, 'store'])->name('pages.store');
+    Route::get('{page:slug}', [PageController::class, 'edit'])->name('pages.edit');
+    Route::post('{page:slug}', [PageController::class, 'update'])->name('pages.update');
+    Route::delete('destroy/{page:slug}', [PageController::class, 'destroy'])->name('pages.destroy');
+});
 
 // Templates
-Route::resource('templates', TemplateController::class)->except([
-    'show'
-]);
+Route::resource('templates', TemplateController::class)
+    ->except(['show'])
+    ->names(['index' => 'templates']);
 
 // Tags
 Route::get('tags', [TagController::class, 'index'])->name('tags');

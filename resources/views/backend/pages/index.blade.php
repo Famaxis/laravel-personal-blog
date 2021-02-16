@@ -21,7 +21,7 @@
                 <td>{!! $page->title !!}</td>
                 <td>{!! $page->template !!}</td>
                 <td>
-{{--                    <a href="{{ route('front.pages.show',$page->slug) }}" class="paper-btn btn-secondary-outline">Read</a>--}}
+                    <a href="{{ route('front.resource.show',$page->slug) }}" class="paper-btn btn-secondary-outline">Read</a>
                     <a href="{{ route('pages.edit', $page->slug) }}" class="paper-btn btn-success-outline">Edit</a>
                     <form action="{{route('pages.destroy', $page->slug)}}" method="POST">
                         @method('DELETE')

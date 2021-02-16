@@ -24,23 +24,7 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-        // optimizing queries number
-        if($post->tagNames())  {
-            $tags = Post::existingTags()->pluck('name');
-        } else {
-            $tags = [];
-        }
-
-        $next = Post::where('id', '>', $post->id)
-            ->published()
-            ->oldest('id')
-            ->first();
-        $prev = Post::where('id', '<', $post->id)
-            ->published()
-            ->latest('id')
-            ->first();
-
-        return view('frontend.posts.single', compact('post','next', 'prev', 'tags'));
+        // relocated to ResourceController
     }
 
     public function fetchByTag(Tag $tag)

@@ -47,13 +47,13 @@
 
 
                             @if($post->comments->count())
-                                <p><a href="{{ route('front.posts.show',$post->slug) . '#comments' }}">Comments: {{ $post->comments->count() }}</a></p>
+                                <p><a href="{{ route('front.resource.show',$post->slug) . '#comments' }}">Comments: {{ $post->comments->count() }}</a></p>
 
                             @endif
 
 
                     </div>
-                    <a href="{{ route('front.posts.show',$post->slug) }}" class="read-more
+                    <a href="{{ route('front.resource.show',$post->slug) }}" class="read-more
 sm-6 md-4 lg-1 col flex-center">
                         <svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><path fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='48' d='M184 112l144 144-144 144'/></svg>
                     </a>

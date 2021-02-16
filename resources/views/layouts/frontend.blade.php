@@ -44,8 +44,8 @@
     <main>
         @yield('content')
     </main>
-    @include('components.footer')
 </div>
+@include('components.footer')
 @yield('scripts')
 </body>
 </html>

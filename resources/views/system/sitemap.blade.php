@@ -3,7 +3,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     @foreach ($posts as $post)
         <url>
-            <loc>{{ route('front.posts.show',$post->slug) }}</loc>
+            <loc>{{ route('front.resource.show',$post->slug) }}</loc>
             <lastmod>{{ $post->created_at->tz('UTC')->toAtomString() }}</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.5</priority>

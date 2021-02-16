@@ -21,19 +21,21 @@ class CommentController extends Controller
     // for guests
     public function store(CommentRequest $request, $post)
     {
-        $comment = new Comment;
-
-        // honeypot for spamers
+        // honeypot for spamers, this fields must be hidden in css with "opacity: 0"
         if ($request->filled('email') || $request->filled('website')) {
             return redirect()->route('front.posts');
         }
 
+        // antispam checking
         if (Antispam::detect(
-            request('comment'),
-            request('name')
+            $request->comment,
+            $request->name
         )) {
             return redirect()->route('front.posts');
         }
+
+        // if it's possible not spam, saving comment
+        $comment = new Comment;
 
         $comment->name = CommentHandler::setDefaultNickname(request('name'));
         $comment->comment = strip_tags($request->comment);
@@ -42,7 +44,7 @@ class CommentController extends Controller
         $comment->user_id = null;
         $comment->save();
 
-        return redirect()->back();
+        return redirect(url()->previous() . '#comments');
     }
 
     // for admin, without antispam and validation
@@ -57,6 +59,6 @@ class CommentController extends Controller
         $comment->user()->associate($request->user());
         $comment->save();
 
-        return redirect()->back();
+        return redirect(url()->previous() . '#comments');
     }
 }

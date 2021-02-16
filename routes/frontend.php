@@ -3,9 +3,9 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Frontend\CommentController;
 use App\Http\Controllers\Frontend\PostController;
+use App\Http\Controllers\Frontend\ResourceController;
 use App\Http\Controllers\Frontend\SitemapController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Frontend\PageController;
 
 
 // Authentication Routes
@@ -23,7 +23,6 @@ Route::post('comment/admin/{post:slug}', [CommentController::class, 'storeForAdm
 // Posts in frontend
 Route::get('/', [PostController::class, 'index'])->name('front.posts');
 Route::get('tag/{tag:slug}', [PostController::class, 'fetchByTag'])->name('front.posts.fetch');
-Route::get('{post:slug}', [PostController::class, 'show'])->name('front.posts.show');
 
-// Pages in frontend
-Route::get('{page:slug}', [PageController::class, 'show'])->name('front.pages.show');
+// Post and page in frontend
+Route::get('{slug}', [ResourceController::class, 'show'])->name('front.resource.show');
