@@ -2,9 +2,9 @@
 
 @section('content')
     <div class="container">
-        <h1>Create Page</h1>
+        <h1>Create template</h1>
 
-        <form method="post" enctype="multipart/form-data" data-persist="garlic" action="{{ route('templates.store') }}">
+        <form method="POST" enctype="multipart/form-data" data-persist="garlic" action="{{ route('templates.store') }}">
             @csrf
             @include('backend.templates._form')
 

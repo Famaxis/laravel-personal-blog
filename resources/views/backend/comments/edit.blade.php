@@ -2,9 +2,9 @@
 
 @section('content')
     <div class="container">
-        <h1>Update Comment</h1>
+        <h1>Update comment</h1>
 
-        <form method="post" data-persist="garlic" action="{{ route('comments.update', $comment) }} ">
+        <form method="POST" data-persist="garlic" action="{{ route('comments.update', $comment) }} ">
             @csrf
             <div class="form-group col-9">
                 <label for="comment">Comment</label>

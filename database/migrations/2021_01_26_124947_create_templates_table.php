@@ -18,6 +18,7 @@ class CreateTemplatesTable extends Migration
             $table->string('name');
             $table->string('description')->nullable();
             $table->string('file');
+            $table->string('file_name')->unique();
             $table->string('css')->nullable();
             $table->string('js')->nullable();
             $table->timestamps();

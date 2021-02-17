@@ -28,31 +28,64 @@ class TemplateController extends Controller
         $template->create([
             'name'        => $request->name,
             'description' => $request->description,
-            'file'        => $request->file,
-            'css'         => $request->css,
-            'js'          => $request->js,
+            'file_name'   => $request->file_name,
+            'file'        => $this->createFile($request->file, $request->file_name),
+            'css'         => $this->createCss($request->css, $request->file_name),
+            'js'          => $this->createJs($request->js, $request->file_name),
         ]);
 
         return redirect()->route('templates');
     }
 
+    public function createFile($file, $filename)
+    {
+        Storage::disk('template_views')->put($filename . '.blade.php', $file);
+        return $filename . '.blade.php';
+    }
+
+    public function createCss($css, $filename)
+    {
+        if ($css) {
+            Storage::disk('public')->put('/css/templates/' . $filename . '.css', $css);
+            return $filename . '.css';
+        }
+        return null;
+    }
+
+    public function createJs($js, $filename)
+    {
+        if ($js) {
+            Storage::disk('public')->put('/js/templates/' . $filename . '.js', $js);
+            return $filename . '.js';
+        }
+        return null;
+    }
+
     public function edit(Template $template)
     {
-        if ($template->css) {
-            $template->css = Storage::disk('public')->get('/css/templates/' . $template->css);
-        }
+        $template->file = Storage::disk('template_views')->get($template->file);
+        $template->css = Storage::disk('public')->get('/css/templates/' . $template->css);
+        $template->js = Storage::disk('public')->get('/js/templates/' . $template->js);
 
         return view('backend.templates.edit', compact('template'));
     }
 
     public function update(Request $request, Template $template)
     {
+        if ($template->file_name != $request->file_name)
+        {
+            Storage::disk('template_views')->delete($template->file);
+            Storage::disk('public')->delete('/css/templates/' . $template->css);
+            Storage::disk('public')->delete('/js/templates/' . $template->js);
+        }
+
         $template->update([
             'name'        => $request->name,
             'description' => $request->description,
-            'file'        => $request->file,
-            'css'         => $request->css,
-            'js'          => $request->js,
+            'file_name'   => $request->file_name,
+            'file'        => $this->createFile($request->file, $request->file_name),
+            'css'         => $this->createCss($request->css, $request->file_name),
+            'js'          => $this->createJs($request->js, $request->file_name),
         ]);
 
         return redirect()->route('templates');
@@ -60,6 +93,9 @@ class TemplateController extends Controller
 
     public function destroy(Template $template)
     {
+        Storage::disk('template_views')->delete($template->file);
+        Storage::disk('public')->delete('/css/templates/' . $template->css);
+        Storage::disk('public')->delete('/js/templates/' . $template->js);
         $template->delete();
         return redirect()->back();
     }

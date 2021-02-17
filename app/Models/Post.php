@@ -9,9 +9,7 @@ use App\Traits\CacheClear;
 
 class Post extends Model
 {
-    use HasFactory;
-    use Taggable;
-    use CacheClear;
+    use HasFactory, Taggable, CacheClear;
 
     protected $guarded = [];
 

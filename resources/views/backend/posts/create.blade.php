@@ -2,9 +2,9 @@
 
 @section('content')
     <div class="container">
-        <h1>Create Post</h1>
+        <h1>Create post</h1>
 
-        <form method="post" enctype="multipart/form-data" data-persist="garlic" action="{{ route('posts.store') }}">
+        <form method="POST" enctype="multipart/form-data" data-persist="garlic" action="{{ route('posts.store') }}">
             @csrf
             @include('backend.posts._form')
 

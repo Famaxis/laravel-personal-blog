@@ -2,9 +2,9 @@
 
 @section('content')
     <div class="container">
-        <h1>Update Page</h1>
+        <h1>Update page</h1>
 
-        <form method="post" enctype="multipart/form-data" data-persist="garlic" action="{{ route('pages.update', $page->slug) }} ">
+        <form method="POST" enctype="multipart/form-data" data-persist="garlic" action="{{ route('pages.update', $page->slug) }} ">
             @csrf
             @include('backend.pages._form')
 

@@ -70,9 +70,8 @@ class PageController extends Controller
         if ($css) {
             Storage::disk('public')->put('/css/pages/' . $slug . '.css', $css);
             return $slug . '.css';
-        } else {
-            return null;
         }
+            return null;
     }
 
     public function destroy(Page $page)
