@@ -34,7 +34,7 @@ class CommentController extends Controller
             return redirect()->route('front.posts');
         }
 
-        // if it's possible not spam, saving comment
+        // if it's probably not spam, saving comment
         $comment = new Comment;
 
         $comment->name = CommentHandler::setDefaultNickname(request('name'));

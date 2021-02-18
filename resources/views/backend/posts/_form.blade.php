@@ -76,6 +76,7 @@
 @endsection
 
 @section('scripts')
+    <script src="{{ asset('js/selectize.js') }}"></script>
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 
     <script>

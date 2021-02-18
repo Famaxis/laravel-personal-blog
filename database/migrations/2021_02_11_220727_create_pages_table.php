@@ -19,7 +19,7 @@ class CreatePagesTable extends Migration
             $table->text('description')->nullable();
             $table->text('contents')->nullable();
             $table->string('slug')->unique();
-            $table->string('template')->nullable();
+            $table->string('default_template')->nullable();
             $table->integer('custom_template')->unsigned()->nullable();
             $table->foreign('custom_template')
                 ->references('id')->on('templates')->onDelete('set null');

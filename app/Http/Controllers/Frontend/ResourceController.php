@@ -16,8 +16,8 @@ class ResourceController extends Controller
         }
 
         if (Page::where('slug', $request)->first()){
-            $page = Page::where('slug', $request)->first();
-            return $this->showPage($page);
+            $resource = Page::where('slug', $request)->first();
+            return $this->showPage($resource);
         }
 
         return abort('404');
@@ -44,8 +44,12 @@ class ResourceController extends Controller
         return view('frontend.posts.single', compact('post','next', 'prev', 'tags'));
     }
 
-    public function showPage($page)
+    public function showPage($resource)
     {
-        return view('frontend.pages.single', compact('page'));
+        if($resource->custom_template)
+        {
+            return view('frontend.pages.single-custom', compact('resource'));
+        }
+        return view('frontend.pages.single', compact('resource'));
     }
 }

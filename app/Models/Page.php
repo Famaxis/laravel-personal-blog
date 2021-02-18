@@ -14,6 +14,6 @@ class Page extends Model
 
     public function template()
     {
-        return $this->belongsTo(Template::class);
+        return $this->belongsTo(Template::class, 'custom_template');
     }
 }

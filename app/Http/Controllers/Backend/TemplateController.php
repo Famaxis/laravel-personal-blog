@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Template;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Services\ResourceFilesHandler;
 
 class TemplateController extends Controller
 {
@@ -29,41 +30,17 @@ class TemplateController extends Controller
             'name'        => $request->name,
             'description' => $request->description,
             'file_name'   => $request->file_name,
-            'file'        => $this->createFile($request->file, $request->file_name),
-            'css'         => $this->createCss($request->css, $request->file_name),
-            'js'          => $this->createJs($request->js, $request->file_name),
+            'file'        => ResourceFilesHandler::createFile($request->file, $request->file_name),
+            'css'         => ResourceFilesHandler::createCss($request->css, $request->file_name, 'templates'),
+            'js'          => ResourceFilesHandler::createJs($request->js, $request->file_name, 'templates'),
         ]);
 
         return redirect()->route('templates');
     }
 
-    public function createFile($file, $filename)
-    {
-        Storage::disk('template_views')->put($filename . '.blade.php', $file);
-        return $filename . '.blade.php';
-    }
-
-    public function createCss($css, $filename)
-    {
-        if ($css) {
-            Storage::disk('public')->put('/css/templates/' . $filename . '.css', $css);
-            return $filename . '.css';
-        }
-        return null;
-    }
-
-    public function createJs($js, $filename)
-    {
-        if ($js) {
-            Storage::disk('public')->put('/js/templates/' . $filename . '.js', $js);
-            return $filename . '.js';
-        }
-        return null;
-    }
-
     public function edit(Template $template)
     {
-        $template->file = Storage::disk('template_views')->get($template->file);
+        $template->file = Storage::disk('template_views')->get($template->file . '.blade.php');
         $template->css = Storage::disk('public')->get('/css/templates/' . $template->css);
         $template->js = Storage::disk('public')->get('/js/templates/' . $template->js);
 
@@ -83,9 +60,9 @@ class TemplateController extends Controller
             'name'        => $request->name,
             'description' => $request->description,
             'file_name'   => $request->file_name,
-            'file'        => $this->createFile($request->file, $request->file_name),
-            'css'         => $this->createCss($request->css, $request->file_name),
-            'js'          => $this->createJs($request->js, $request->file_name),
+            'file'        => ResourceFilesHandler::createFile($request->file, $request->file_name),
+            'css'         => ResourceFilesHandler::createCss($request->css, $request->file_name, 'templates'),
+            'js'          => ResourceFilesHandler::createJs($request->js, $request->file_name, 'templates'),
         ]);
 
         return redirect()->route('templates');

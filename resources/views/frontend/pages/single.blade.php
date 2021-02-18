@@ -1,21 +1,21 @@
 @extends('layouts.frontend')
 
 @section('meta')
-<meta name="description" content="{!! $page->description !!}">
+<meta name="description" content="{!! $resource->description !!}">
 @endsection
 
 @section('styles')
-<link href="{{ asset('css/colors/' . $page->template . '.css') }}" rel="stylesheet">
+<link href="{{ asset('css/colors/' . $resource->template . '.css') }}" rel="stylesheet">
 @endsection
 
 @section('title')
-{!! $page->title !!} |
+{!! $resource->title !!} |
 @endsection
 
 @section('content')
     <div class="container">
         <article class="article">
-            {!! $page->contents !!}
+            {!! $resource->contents !!}
         </article>
 
         <p>
