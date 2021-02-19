@@ -1,16 +1,19 @@
 @extends('layouts.frontend')
 
 @section('meta')
-<meta name="description" content="{!! $resource->description !!}">
+    <meta name="description" content="{!! $resource->description !!}">
 @endsection
 
 @section('styles')
-<link href="{{ asset('css/colors/' . $resource->template . '.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/colors/' . $resource->template . '.css') }}" rel="stylesheet">
+    @if($resource->css)
+        <link href="{{ asset('css/resources/' . $resource->css) }}" rel="stylesheet">
+    @endif
 @endsection
 
-@section('title')
-{!! $resource->title !!} |
-@endsection
+@if($resource->title)
+    @section('title'){!! $resource->title !!} |@endsection
+@endif
 
 @section('content')
     <div class="container">
@@ -26,3 +29,9 @@
 
     </div>
 @endsection
+
+@if($resource->js)
+    @section('scripts')
+        <script src="{{asset('js/resources/' . $resource->js) }}" type="text/javascript" charset="utf-8"></script>
+    @endsection
+@endif

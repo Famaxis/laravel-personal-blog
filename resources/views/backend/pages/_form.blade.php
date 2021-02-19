@@ -13,16 +13,21 @@
     <fieldset class="form-group col-4">
         <legend>Сhoosing a color theme</legend>
         <label for="blue" class="paper-radio">
-{{--            <input type="radio" name="default_template" id="blue" value="blue" {{ ($page->default_template==='blue')? "checked" : "" }} >--}}
-            <input type="radio" name="default_template" id="blue" value="blue" {{ ((old('default_template') === 'blue') || ($page->default_template === 'blue')) ? 'checked' : '' }} >
+            <input type="radio" name="default_template" id="blue" value="blue"
+                    {{ ((old('default_template') === 'blue') || ($page->default_template === 'blue')) ? 'checked' : '' }}
+            >
             <span>Blue</span>
         </label>
         <label for="red" class="paper-radio">
-            <input type="radio" name="default_template" id="red" value="red" {{ ((old('default_template') === 'red') || ($page->default_template === 'red')) ? 'checked' : '' }} >
+            <input type="radio" name="default_template" id="red" value="red"
+                    {{ ((old('default_template') === 'red') || ($page->default_template === 'red')) ? 'checked' : '' }}
+            >
             <span>Red</span>
         </label>
         <label for="purple" class="paper-radio">
-            <input type="radio" name="default_template" id="purple" value="purple" {{ ((old('default_template') === 'purple') || ($page->default_template === 'purple')) ? 'checked' : '' }} >
+            <input type="radio" name="default_template" id="purple" value="purple"
+                    {{ ((old('default_template') === 'purple') || ($page->default_template === 'purple')) ? 'checked' : '' }}
+            >
             <span>Purple</span>
         </label>
     </fieldset>
@@ -31,7 +36,6 @@
         <label for="custom_template">Custom template</label>
         <select id="custom_template" name="custom_template">
             <option label=" "></option>
-
             @foreach($templates as $template)
                 <option value="{{ $template->id }}" {{ ((count($errors) && old('custom_template') == $template->id) || (!count($errors) && $page->custom_template == $template->id)) ? 'selected' : '' }}>{{ $template->name }}</option>
             @endforeach
@@ -45,7 +49,6 @@
         @enderror
         <input type="text" name="slug" id="slug" value="{{ old('slug', $page->slug ?? null) }}">
     </div>
-
 </div>
 
 <div class="form-group">
@@ -53,7 +56,7 @@
     <textarea id="description" name="description" rows="3">{{ old('description', $page->description ?? null) }}</textarea>
 </div>
 
-<div class="collapsible">
+<div class="collapsible margin-bottom">
     <input id="collapsible1" type="checkbox" name="collapsible">
     <label for="collapsible1">Scripts & styles</label>
     <div class="collapsible-body">

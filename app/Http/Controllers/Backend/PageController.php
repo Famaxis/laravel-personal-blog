@@ -59,6 +59,12 @@ class PageController extends Controller
 
     public function update(ResourceRequest $request, Page $page)
     {
+        if ($page->slug != $request->slug)
+        {
+            Storage::disk('public')->delete("/css/resources/$page->css");
+            Storage::disk('public')->delete("/js/resources/$page->js");
+        }
+
         $page->update([
             'contents'         => $request->contents,
             'title'            => $request->title,

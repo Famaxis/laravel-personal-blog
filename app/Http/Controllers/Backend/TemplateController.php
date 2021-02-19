@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TemplateRequest;
 use App\Models\Template;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use App\Services\ResourceFilesHandler;
+use Illuminate\Support\Facades\Storage;
 
 class TemplateController extends Controller
 {
@@ -18,12 +18,12 @@ class TemplateController extends Controller
         return view('backend.templates.index', compact('templates'));
     }
 
-    public function create()
+    public function create(Template $template)
     {
-        return view('backend.templates.create');
+        return view('backend.templates.create', compact('template'));
     }
 
-    public function store(Request $request)
+    public function store(TemplateRequest $request)
     {
         $template = new Template();
         $template->create([
@@ -41,19 +41,18 @@ class TemplateController extends Controller
     public function edit(Template $template)
     {
         $template->file = Storage::disk('template_views')->get($template->file . '.blade.php');
-        $template->css = Storage::disk('public')->get('/css/templates/' . $template->css);
-        $template->js = Storage::disk('public')->get('/js/templates/' . $template->js);
+        $template->css = Storage::disk('public')->get("/css/templates/$template->css");
+        $template->js = Storage::disk('public')->get("/js/templates/$template->js");
 
         return view('backend.templates.edit', compact('template'));
     }
 
-    public function update(Request $request, Template $template)
+    public function update(TemplateRequest $request, Template $template)
     {
-        if ($template->file_name != $request->file_name)
-        {
-            Storage::disk('template_views')->delete($template->file);
-            Storage::disk('public')->delete('/css/templates/' . $template->css);
-            Storage::disk('public')->delete('/js/templates/' . $template->js);
+        if ($template->file_name != $request->file_name and $template->file_name !== 'demo') {
+            Storage::disk('template_views')->delete("$template->file.blade.php");
+            Storage::disk('public')->delete("/css/templates/$template->css");
+            Storage::disk('public')->delete("/js/templates/$template->js");
         }
 
         $template->update([
@@ -70,9 +69,12 @@ class TemplateController extends Controller
 
     public function destroy(Template $template)
     {
-        Storage::disk('template_views')->delete($template->file);
-        Storage::disk('public')->delete('/css/templates/' . $template->css);
-        Storage::disk('public')->delete('/js/templates/' . $template->js);
+        if ($template->file_name !== 'demo') {
+            Storage::disk('template_views')->delete("$template->file.blade.php");
+            Storage::disk('public')->delete("/css/templates/$template->css");
+            Storage::disk('public')->delete("/js/templates/$template->js");
+        }
+
         $template->delete();
         return redirect()->back();
     }

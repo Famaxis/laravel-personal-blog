@@ -46,10 +46,12 @@ class ResourceController extends Controller
 
     public function showPage($resource)
     {
+        // view for custom template
         if($resource->custom_template)
         {
             return view('frontend.pages.single-custom', compact('resource'));
         }
+        // view for default template
         return view('frontend.pages.single', compact('resource'));
     }
 }

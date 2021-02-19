@@ -9,15 +9,21 @@
     <fieldset class="form-group col-4">
         <legend>Сhoosing a color theme</legend>
         <label for="blue" class="paper-radio">
-            <input type="radio" name="template" id="blue" value="blue" @isset($post) {{ ($post->template==='blue')? "checked" : "" }} @endisset >
+            <input type="radio" name="template" id="blue" value="blue"
+                    {{ ((old('template') === 'blue') || ($post->template === 'blue')) ? 'checked' : '' }}
+            >
             <span>Blue</span>
         </label>
         <label for="red" class="paper-radio">
-            <input type="radio" name="template" id="red" value="red" @isset($post) {{ ($post->template==='red')? "checked" : "" }} @endisset >
+            <input type="radio" name="template" id="red" value="red"
+                    {{ ((old('template') === 'red') || ($post->template === 'red')) ? 'checked' : '' }}
+            >
             <span>Red</span>
         </label>
         <label for="purple" class="paper-radio">
-            <input type="radio" name="template" id="purple" value="purple" @isset($post) {{ ($post->template==='purple')? "checked" : "" }} @endisset >
+            <input type="radio" name="template" id="purple" value="purple"
+                    {{ ((old('template') === 'purple') || ($post->template === 'purple')) ? 'checked' : '' }}
+            >
             <span>Purple</span>
         </label>
     </fieldset>
@@ -26,15 +32,8 @@
         <label class="paper-switch-2">
 
             <input id="published" name="is_published" type="checkbox" value="1"
-                   @isset($post)
-                   @if($post->is_published)
-                   checked
-                   @endif
-                   @else
-                   checked
-                    @endisset
+                    {{ ((old('is_published') == '1') || ($post->is_published == '1')) || (!$post->id) ? 'checked' : '' }}
             />
-
             <span class="paper-switch-slider round"></span>
         </label>
         <label for="published" class="paper-switch-2-label">
@@ -59,7 +58,6 @@
 
 <div class="form-group">
     <label for="tags">Tags</label>
-
     <input type="text" name="tags" id="tags"
            value="@php
                if(old('tags')) {
@@ -68,7 +66,23 @@
                     echo implode(',', $post->tagged->pluck('tag_name')->toArray() );
                 }
            @endphp">
+</div>
 
+<div class="collapsible margin-bottom">
+    <input id="collapsible1" type="checkbox" name="collapsible">
+    <label for="collapsible1">Scripts & styles</label>
+    <div class="collapsible-body">
+        <div class="form-group">
+            <label for="css">Css</label>
+            <textarea id="css" name="css" class="input-block border border-4 border-primary" data-editor="css"
+                      rows="10">{{ old('css', $page->css ?? null) }}</textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="js">Js</label>
+            <textarea id="js" name="js" class="input-block border border-6 border-primary" data-editor="javascript" rows="10">{{ old('js', $page->js ?? null) }}</textarea>
+        </div>
+    </div>
 </div>
 
 @section('styles')
@@ -78,6 +92,13 @@
 @section('scripts')
     <script src="{{ asset('js/selectize.js') }}"></script>
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+
+    {{--    <script src="{{ asset('ace/ace.js') }}" type="text/javascript" charset="utf-8"></script>--}}
+    <script src="{{ asset('ace/emmet.js') }}" type="text/javascript" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.min.js" type="text/javascript"
+            charset="utf-8"></script>
+    <script src="{{ asset('ace/ext-emmet.js') }}" type="text/javascript" charset="utf-8"></script>
+    <script src="{{ asset('ace/config.js') }}" type="text/javascript" charset="utf-8"></script>
 
     <script>
         CKEDITOR.replace('editor', {
@@ -112,7 +133,6 @@
             var selectedValue = $(this).attr("data-value");
             // 2. Remove the option
             select[0].selectize.removeItem(selectedValue);
-
             select[0].selectize.refreshItems();
             select[0].selectize.refreshOptions();
         });

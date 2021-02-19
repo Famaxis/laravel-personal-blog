@@ -10,6 +10,8 @@
         <th>Name</th>
         <th>Description</th>
         <th>File</th>
+        <th>Css</th>
+        <th>Js</th>
         <th>Action</th>
         </thead>
         <tbody>
@@ -17,7 +19,9 @@
             <tr>
                 <td>{!! $template->name !!}</td>
                 <td>{!! $template->description!!}</td>
-                <td>{!! $template->file !!}</td>
+                <td>{!! "$template->file.blade.php" !!}</td>
+                <td>{!! $template->css !!}</td>
+                <td>{!! $template->js !!}</td>
                 <td>
 {{--                    <a href="{{ route('front.templates.show',$template->id) }}" class="paper-btn btn-secondary-outline">Read</a>--}}
                     <a href="{{ route('templates.edit', $template->id) }}" class="paper-btn btn-success-outline">Edit</a>

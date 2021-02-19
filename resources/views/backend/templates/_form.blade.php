@@ -2,10 +2,16 @@
 
 <div class="form-group col-5">
     <label for="name">Template name *</label>
+    @error('name')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
     <input type="text" class="input-block" name="name" id="name" value="{{ old('name', $template->name ?? null) }}" required>
 </div>
     <div class="form-group col-5">
         <label for="file_name">File name *</label>
+        @error('file_name')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
         <input type="text" class="input-block" name="file_name" id="file_name"
                value="{{ old('file_name', $template->file_name ?? null) }}" required>
     </div>
@@ -19,6 +25,9 @@
 
 <div class="form-group flex-right">
     <label for="file">File blade.php *</label>
+    @error('file')
+    <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
     <textarea class="form-control input-block border border-3 border-primary" name="file" id="file" data-editor="php_laravel_blade"
               rows="16">{{ old('file', $template->file ?? null) }}</textarea>
 </div>

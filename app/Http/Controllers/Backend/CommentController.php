@@ -11,7 +11,6 @@ class CommentController extends Controller
     public function index()
     {
         $comments = Comment::orderBy('created_at', 'desc')->paginate(5);
-
         return view('backend.comments.index', compact('comments'));
     }
 
@@ -25,14 +24,12 @@ class CommentController extends Controller
         $comment->update([
             'comment' => request('comment'),
         ]);
-
         return redirect()->route('comments');
     }
 
     public function destroy(Comment $comment)
     {
         $comment->delete();
-
         return redirect()->back();
     }
 }

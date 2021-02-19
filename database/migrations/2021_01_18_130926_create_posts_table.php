@@ -21,6 +21,8 @@ class CreatePostsTable extends Migration
             $table->string('slug')->unique();
             $table->string('template')->default('blue');
             $table->boolean('is_published')->default(true)->nullable();
+            $table->string('css')->nullable();
+            $table->string('js')->nullable();
             $table->timestamps();
         });
     }

@@ -12,6 +12,7 @@
     <title> @yield('title') {{ $settings->site_name }}</title>
 
 <!-- Styles -->
+    <link href="{{ asset('css/normalize.css') }}" rel="stylesheet">
     @yield('styles')
 
 </head>
