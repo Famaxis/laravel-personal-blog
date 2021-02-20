@@ -1,24 +1,24 @@
 @extends('layouts.frontend')
 
 @section('meta')
-    <meta name="description" content="{!! $post->first_sentence !!}">
+    <meta name="description" content="{!! $resource->first_sentence !!}">
 @endsection
 
 @section('styles')
-    <link href="{{ asset('css/colors/' . $post->template . '.css') }}" rel="stylesheet">
-    @if($post->css)
-        <link href="{{ asset('css/resources/' . $post->css) }}" rel="stylesheet">
+    <link href="{{ asset('css/colors/' . $resource->default_template . '.css') }}" rel="stylesheet">
+    @if($resource->css)
+        <link href="{{ asset('css/resources/' . $resource->css) }}" rel="stylesheet">
     @endif
 @endsection
 
 @section('title')
-    {!! $post->first_sentence !!} |
+    {!! $resource->first_sentence !!} |
 @endsection
 
 @section('content')
     <div class="container">
         <article class="article">
-            {!! $post->contents !!}
+            {!! $resource->contents !!}
         </article>
         <p>
             @if($next)
@@ -44,7 +44,7 @@
             <a href="{{ route('front.posts') }}">On main page</a>
         </p>
 
-        @foreach($post->tags as $tag)
+        @foreach($resource->tags as $tag)
             <a class="paper-btn btn-small"
                href="{{ route('front.posts.fetch', $tag->slug) }}">{{ $tag->name }}</a>
         @endforeach
@@ -59,8 +59,8 @@
     </div>
 @endsection
 
-@if($post->js)
+@if($resource->js)
     @section('scripts')
-        <script src="{{asset('js/resources/' . $post->js) }}" type="text/javascript" charset="utf-8"></script>
+        <script src="{{asset('js/resources/' . $resource->js) }}" type="text/javascript" charset="utf-8"></script>
     @endsection
 @endif

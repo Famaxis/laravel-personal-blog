@@ -40,7 +40,7 @@ class TemplateController extends Controller
 
     public function edit(Template $template)
     {
-        $template->file = Storage::disk('template_views')->get($template->file . '.blade.php');
+        $template->file = Storage::disk('template_views')->get("$template->file.blade.php");
         $template->css = Storage::disk('public')->get("/css/templates/$template->css");
         $template->js = Storage::disk('public')->get("/js/templates/$template->js");
 

@@ -11,8 +11,8 @@ class ResourceController extends Controller
     public function show($request)
     {
         if (Post::where('slug', $request)->first()){
-            $post = Post::where('slug', $request)->first();
-            return $this->showPost($post);
+            $resource = Post::where('slug', $request)->first();
+            return $this->showPost($resource);
         }
 
         if (Page::where('slug', $request)->first()){
@@ -23,25 +23,30 @@ class ResourceController extends Controller
         return abort('404');
     }
 
-    public function showPost($post)
+    public function showPost($resource)
     {
         // optimizing queries number
-        if($post->tagNames())  {
+        if($resource->tagNames())  {
             $tags = Post::existingTags()->pluck('name');
         } else {
             $tags = [];
         }
 
-        $next = Post::where('id', '>', $post->id)
+        $next = Post::where('id', '>', $resource->id)
             ->published()
             ->oldest('id')
             ->first();
-        $prev = Post::where('id', '<', $post->id)
+        $prev = Post::where('id', '<', $resource->id)
             ->published()
             ->latest('id')
             ->first();
 
-        return view('frontend.posts.single', compact('post','next', 'prev', 'tags'));
+        // view for custom template
+        if($resource->custom_template) {
+            return view('frontend.posts.single-custom', compact('resource','next', 'prev', 'tags'));
+        }
+        // view for default template
+        return view('frontend.posts.single', compact('resource','next', 'prev', 'tags'));
     }
 
     public function showPage($resource)

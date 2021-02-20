@@ -19,7 +19,7 @@
 
 <div class="form-group">
     <label for="description">Description</label>
-    <textarea id="description" name="description"
+    <textarea id="description" name="description" class="input-block"
               rows="3">{{ old('description', $template->description ?? null) }}</textarea>
 </div>
 

@@ -13,6 +13,7 @@
         <th style="min-width: 10rem;">Tags</th>
         <th>First Sentence</th>
         <th>Template</th>
+        <th>Css & Js</th>
         <th>Action</th>
         </thead>
         <tbody>
@@ -30,7 +31,8 @@
                     @endforeach
                 </td>
                 <td>{!! $post->first_sentence !!}</td>
-                <td>{!! $post->template !!}</td>
+                <td>{!! $post->default_template !!}</td>
+                <td>{!! $post->css .' '. $post->js !!}</td>
                 <td>
                     <a href="{{ route('front.resource.show',$post->slug) }}" class="paper-btn btn-secondary-outline">Read</a>
                     <a href="{{ route('posts.edit', $post->slug) }}" class="paper-btn btn-success-outline">Edit</a>

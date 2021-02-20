@@ -19,6 +19,11 @@ class Post extends Model
         return $this->hasMany(Comment::class)->orderBy('created_at','DESC')->with('user');
     }
 
+    public function template()
+    {
+        return $this->belongsTo(Template::class, 'custom_template');
+    }
+
     public function scopePublished($query)
     {
         return $query->where('is_published', 1);

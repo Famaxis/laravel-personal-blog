@@ -23,7 +23,6 @@ class PageController extends Controller
     public function create(Page $page)
     {
         $templates = Template::all();
-
         return view('backend.pages.create', compact('templates', 'page'));
     }
 

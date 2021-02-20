@@ -1,17 +1,20 @@
 <div class="form-group">
-    <label for="title">Title</label>
+    <label for="title">Title:</label>
     <input type="text" class="input-block" name="title" id="title" value="{{ old('title', $page->title ?? null) }}">
+    <span class="annotation">Will be displayed as a page title in meta tags.</span>
 </div>
+
 
 <div class="form-group flex-right">
         <textarea class="form-control" name="contents" rows="6" id="editor">
             {{ old('contents', $page->contents ?? null) }}
         </textarea>
+    <span class="annotation">Optional. Yes, page content is optional, you can leave all the form empty, if you wish. Nothing is required.</span>
 </div>
 
 <div class="row">
-    <fieldset class="form-group col-4">
-        <legend>Сhoosing a color theme</legend>
+    <fieldset class="form-group col-3 margin-right-small">
+        <legend>Pick a color theme:</legend>
         <label for="blue" class="paper-radio">
             <input type="radio" name="default_template" id="blue" value="blue"
                     {{ ((old('default_template') === 'blue') || ($page->default_template === 'blue')) ? 'checked' : '' }}
@@ -30,30 +33,35 @@
             >
             <span>Purple</span>
         </label>
+        <span class="annotation">You can leave it empty for random pick.</span>
     </fieldset>
 
-    <fieldset class="form-group col-4">
-        <label for="custom_template">Custom template</label>
+    <fieldset class="form-group col-3 margin-right">
+        <label for="custom_template">Or pick a custom template:</label>
         <select id="custom_template" name="custom_template">
             <option label=" "></option>
             @foreach($templates as $template)
                 <option value="{{ $template->id }}" {{ ((count($errors) && old('custom_template') == $template->id) || (!count($errors) && $page->custom_template == $template->id)) ? 'selected' : '' }}>{{ $template->name }}</option>
             @endforeach
         </select>
+        <span class="annotation">If you prefer your own created template.</span>
     </fieldset>
 
-    <div class="form-group">
-        <label for="slug">Slug</label>
+    <div class="form-group col-4">
+        <label for="slug">Slug:</label>
         @error('slug')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
         <input type="text" name="slug" id="slug" value="{{ old('slug', $page->slug ?? null) }}">
+        <span class="annotation">It will be generated automatically. If you want to create slug, it should be unique for posts and pages both.</span>
     </div>
+
 </div>
 
 <div class="form-group">
-    <label for="description">Description</label>
-    <textarea id="description" name="description" rows="3">{{ old('description', $page->description ?? null) }}</textarea>
+    <label for="description">Description:</label>
+    <textarea id="description" class="input-block" name="description" rows="3">{{ old('description', $page->description ?? null) }}</textarea>
+    <span class="annotation">Description text will be displayed in meta tags.</span>
 </div>
 
 <div class="collapsible margin-bottom">

@@ -7,18 +7,18 @@
     </div>
     <table class="table-alternating">
         <thead>
+        <th>Title</th>
         <th>Description</th>
         <th>Contents</th>
-        <th>Title</th>
         <th>Template</th>
         <th>Action</th>
         </thead>
         <tbody>
         @foreach($pages as $page)
             <tr>
+                <td>{!! $page->title !!}</td>
                 <td>{!! $page->description!!}</td>
                 <td>{!! $page->contents !!}</td>
-                <td>{!! $page->title !!}</td>
                 <td>{!! $page->default_template !!}</td>
                 <td>
                     <a href="{{ route('front.resource.show',$page->slug) }}" class="paper-btn btn-secondary-outline">Read</a>

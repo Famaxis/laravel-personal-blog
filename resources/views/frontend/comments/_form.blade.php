@@ -1,7 +1,7 @@
 <p>Leave a comment</p>
 
 @auth
-    <form action="{{ route('comment.store_for_admin', $post->id) }}" data-persist="garlic" method="POST">
+    <form action="{{ route('comment.store_for_admin', $resource->id) }}" data-persist="garlic" method="POST">
         @csrf
         <div class="row flex-right">
             <div class="form-group col-12">
@@ -16,7 +16,7 @@
 @endauth
 
 @guest
-    <form action="{{ route('comment.store', $post->id) }}" data-persist="garlic" method="POST">
+    <form action="{{ route('comment.store', $resource->id) }}" data-persist="garlic" method="POST">
         @csrf
 
         @if (session('message'))

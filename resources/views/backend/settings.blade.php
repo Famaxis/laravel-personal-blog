@@ -6,7 +6,7 @@
     <form action="{{ route('settings.update') }}" method="POST">
     @csrf
         <fieldset class="form-group">
-            <label for="site_name">Site name</label>
+            <label for="site_name">Site name:</label>
             <input type="text" name="site_name" value="{{ $settings->site_name }}" id="site_name" required>
         </fieldset>
 
@@ -20,12 +20,12 @@
                 <span class="paper-switch-slider round"></span>
             </label>
             <label for="comments_allowed" class="paper-switch-2-label">
-                Allow comments
+                Allow comments?
             </label>
         </fieldset>
 
         <fieldset class="form-group col-4">
-            <legend>Сhoosing a color theme</legend>
+            <legend>Pick a color theme:</legend>
             <label for="blue" class="paper-radio">
                 <input type="radio" name="main_template" id="blue" value="blue" {{ ($settings->main_template==='blue')? "checked" : "" }} >
                 <span>Blue</span>
@@ -37,6 +37,10 @@
             <label for="purple" class="paper-radio">
                 <input type="radio" name="main_template" id="purple" value="purple" {{ ($settings->main_template==='purple')? "checked" : "" }} >
                 <span>Purple</span>
+            </label>
+            <label for="sand" class="paper-radio">
+                <input type="radio" name="main_template" id="sand" value="sand" {{ ($settings->main_template==='sand')? "checked" : "" }} >
+                <span>Sand</span>
             </label>
         </fieldset>
 

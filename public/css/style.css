@@ -14,10 +14,6 @@ table.table-alternating tbody tr:nth-of-type(2n),
     background-color: var(--muted-light) !important;
 }
 
-.cke_dialog_ui_input_file {
-    min-height: 400px;
-}
-
 a.active {
     color: var(--link);
     background-color: var(--optional-color);
@@ -37,7 +33,7 @@ h1, h2 {
 }
 
 .selectize-input {
-    border: none;
+    border: none !important;
 }
 
 img {
@@ -58,10 +54,6 @@ img {
     justify-content: center;
 }
 
-#description {
-    min-width: 100%;
-}
-
 .btn-small {
     padding: .4rem;
 }
@@ -72,7 +64,7 @@ img {
 
 .selectize-control.multi .selectize-input>div,
 .selectize-control.multi .selectize-input>div.active{
-    background-color: black !important;
+    background-color: var(--link) !important;
     padding: .2rem .7rem;
     font-size: 1rem;
     color: #ffffff !important;
@@ -86,6 +78,10 @@ img {
 
 .container {
     background-color: var(--lighter-optional);
+}
+
+.container.container-lg {
+    max-width: 1400px;
 }
 
 input, select, textarea {
@@ -104,4 +100,19 @@ input, select, textarea {
 
 header.container {
     background-color: var(--optional-color);
+}
+
+.annotation {
+    font-size: 0.8rem;
+    color: var(--link);
+    margin-top: 1.5rem;
+}
+
+.cke_1 .cke_top, .cke_bottom, .cke_chrome, .cke_dialog_title{
+    background-color: var(--optional-color) !important;
+    border-color: var(--darker-optional) !important;
+}
+
+table thead tr th {
+    font-size: 0.8rem;
 }

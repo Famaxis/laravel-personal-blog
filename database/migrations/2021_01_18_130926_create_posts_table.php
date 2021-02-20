@@ -19,7 +19,10 @@ class CreatePostsTable extends Migration
             $table->text('description')->nullable();
             $table->text('contents')->nullable();
             $table->string('slug')->unique();
-            $table->string('template')->default('blue');
+            $table->string('default_template')->default('blue');
+            $table->integer('custom_template')->unsigned()->nullable();
+            $table->foreign('custom_template')
+                ->references('id')->on('templates')->onDelete('set null');
             $table->boolean('is_published')->default(true)->nullable();
             $table->string('css')->nullable();
             $table->string('js')->nullable();

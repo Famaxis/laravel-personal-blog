@@ -5,7 +5,7 @@
 @endsection
 
 @section('styles')
-    <link href="{{ asset('css/colors/' . $resource->template . '.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/colors/' . $resource->default_template . '.css') }}" rel="stylesheet">
     @if($resource->css)
         <link href="{{ asset('css/resources/' . $resource->css) }}" rel="stylesheet">
     @endif

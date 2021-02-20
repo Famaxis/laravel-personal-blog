@@ -10,12 +10,12 @@ class TemplateSeeder extends Seeder
     public function run()
     {
         DB::table('templates')->insert([
-            'name' => 'Demo',
+            'name'        => 'Demo',
             'description' => 'Demo template. You can apply it to a page or a post with some content',
-            'file_name' => 'demo',
-            'file' => 'demo',
-            'css' => 'demo.css',
-            'js' => 'demo.js',
+            'file_name'   => 'demo',
+            'file'        => 'demo',
+            'css'         => 'demo.css',
+            'js'          => 'demo.js',
         ]);
     }
 }
