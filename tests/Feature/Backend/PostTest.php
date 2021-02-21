@@ -10,8 +10,8 @@ class PostTest extends TestCase
     {
         $this->withoutExceptionHandling();
         $response = $this->actingAsAdmin()
-            ->post('/home', [
-                'contents'      => 'Here is content.',
+            ->post(route('posts.create'), [
+                'contents'     => 'Here is content.',
                 'is_published' => true,
                 'slug'         => 'a slug',
                 'description'  => 'Description',
@@ -23,10 +23,10 @@ class PostTest extends TestCase
     public function testPostsList()
     {
         $this->actingAsAdmin()
-            ->get('/home/posts')
+            ->get(route('posts'))
             ->assertOk()
-            ->assertSee('Here is content.');
-
+            ->assertSee('Here is content.')
+            ->assertSee('Second Tag');
     }
 
     public function testPostCanBeUpdated()
@@ -47,8 +47,8 @@ class PostTest extends TestCase
     {
         return array_merge([
             'contents' => "Here is updated content.",
-            'slug'    => "a new slug",
-            'tags'    => 'tag, third tag'
+            'slug'     => "a new slug",
+            'tags'     => 'tag, third tag'
         ], $overrides);
     }
 }

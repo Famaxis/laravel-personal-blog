@@ -47,7 +47,7 @@
 
 
                             @if($post->comments->count())
-                                <p><a href="{{ route('front.resource.show',$post->slug) . '#comments' }}">Comments: {{ $post->comments->count() }}</a></p>
+                                <p><a href="{{ route('front.resource.show', $post->slug) . '#comments' }}">Comments: {{ $post->comments->count() }}</a></p>
 
                             @endif
 

@@ -32,10 +32,6 @@ h1, h2 {
     margin-bottom: 0;
 }
 
-.selectize-input {
-    border: none !important;
-}
-
 img {
     object-fit: cover;
 }
@@ -60,14 +56,6 @@ img {
 
 .tags {
     margin: 1rem 0 0 0;
-}
-
-.selectize-control.multi .selectize-input>div,
-.selectize-control.multi .selectize-input>div.active{
-    background-color: var(--link) !important;
-    padding: .2rem .7rem;
-    font-size: 1rem;
-    color: #ffffff !important;
 }
 
 .ionicon {
@@ -108,11 +96,27 @@ header.container {
     margin-top: 1.5rem;
 }
 
+table thead tr th {
+    font-size: 0.8rem;
+}
+
+/*CKEditor*/
+
 .cke_1 .cke_top, .cke_bottom, .cke_chrome, .cke_dialog_title{
     background-color: var(--optional-color) !important;
     border-color: var(--darker-optional) !important;
 }
 
-table thead tr th {
-    font-size: 0.8rem;
+/*Selectize.js*/
+
+.selectize-input {
+    border: none !important;
+}
+
+.selectize-control.multi .selectize-input>div,
+.selectize-control.multi .selectize-input>div.active{
+    background-color: var(--link) !important;
+    padding: .2rem .7rem;
+    font-size: 1rem;
+    color: #ffffff !important;
 }

@@ -33,5 +33,14 @@ class PostSeeder extends Seeder
             'default_template' => 'sea',
         ]);
         $post2->tag('application, time optimization');
+
+        $post3 = Post::create([
+            'first_sentence'   => 'Secret post',
+            'contents'         => '<p>This post is unpublished. It\'s only available via a direct link.</p>',
+            'slug'             => 'unpublished',
+            'is_published'     => null,
+            'default_template' => 'blue',
+        ]);
+        $post3->tag('unpublished');
     }
 }
