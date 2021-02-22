@@ -1,4 +1,44 @@
 /* Additional styles for framework. Not standalone */
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+nav {
+    display: inline-block;
+    width: auto;
+    /*background-color: var(--lighter-optional);*/
+}
+
+nav a {
+    border-bottom-color: var(--lighter-optional);
+    transition: .5s ease;
+}
+
+nav a:hover {
+    border-bottom-color: var(--optional-color);
+    transition: .5s ease;
+}
+
+.nav-inner {
+    position: sticky;
+    top: 1rem;
+}
+
+nav ul.inline {
+    margin: 0;
+}
+
+nav ul.inline li {
+    margin: 0;
+}
+
+.main {
+    display: flex;
+    flex: 1 0 auto;
+    padding: 0;
+}
 
 .col {
     display: flex;
@@ -12,6 +52,15 @@ table.table-alternating tbody tr:nth-of-type(2n),
 
 .unpublished {
     background-color: var(--muted-light) !important;
+}
+
+ul li {
+    padding: 0.7rem;
+    font-size: 1.3rem;
+}
+
+ul li:before {
+    content: "";
 }
 
 a.active {
@@ -30,6 +79,11 @@ h1, h2 {
 
 .row {
     margin-bottom: 0;
+}
+
+.profile-image {
+    max-width: 7rem;
+    min-width: 4rem;
 }
 
 img {
@@ -66,10 +120,13 @@ img {
 
 .container {
     background-color: var(--lighter-optional);
+    margin: 0;
 }
 
 .container.container-lg {
     max-width: 1400px;
+    padding-top: 0;
+    padding-left: 4rem;
 }
 
 input, select, textarea {
@@ -100,9 +157,21 @@ table thead tr th {
     font-size: 0.8rem;
 }
 
+.footer {
+    width: 100%;
+    background-color: var(--lighter-optional);
+    display: flex;
+    justify-content: center;
+    align-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    flex: 0 0 auto;
+    margin: 0;
+}
+
 /*CKEditor*/
 
-.cke_1 .cke_top, .cke_bottom, .cke_chrome, .cke_dialog_title{
+.cke_1 .cke_top, .cke_bottom, .cke_chrome, .cke_dialog_title, .cke_dialog_footer{
     background-color: var(--optional-color) !important;
     border-color: var(--darker-optional) !important;
 }

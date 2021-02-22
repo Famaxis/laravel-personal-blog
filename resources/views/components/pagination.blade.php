@@ -3,9 +3,9 @@
         <ul class="pagination inline">
             {{-- Previous Page Link --}}
             @if ($paginator->onFirstPage())
-                <li class="disabled" aria-disabled="true" aria-label="@lang('pagination.previous')">
-                    <span aria-hidden="true"></span>
-                </li>
+{{--                <li class="disabled" aria-disabled="true" aria-label="@lang('pagination.previous')">--}}
+{{--                    <span aria-hidden="true"></span>--}}
+{{--                </li>--}}
             @else
                 <li>
                     <a href="{{ $paginator->previousPageUrl() }}" rel="prev" aria-label="@lang('pagination.previous')">
@@ -41,9 +41,9 @@
                     </a>
                 </li>
             @else
-                <li class="disabled" aria-disabled="true" aria-label="@lang('pagination.next')">
-                    <span aria-hidden="true"></span>
-                </li>
+{{--                <li class="disabled" aria-disabled="true" aria-label="@lang('pagination.next')">--}}
+{{--                    <span aria-hidden="true"></span>--}}
+{{--                </li>--}}
             @endif
         </ul>
     </nav>

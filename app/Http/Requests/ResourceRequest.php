@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
 class ResourceRequest extends FormRequest
@@ -27,7 +28,14 @@ class ResourceRequest extends FormRequest
     {
         return [
             'slug.unique' => 'Slug should be unique',
-            'slug.max' => 'Slug should be shorter',
+            'slug.max'    => 'Slug should be shorter',
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'slug' => Str::snake($this->slug),
+        ]);
     }
 }

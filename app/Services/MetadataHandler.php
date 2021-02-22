@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 class MetadataHandler
 {
@@ -29,8 +30,7 @@ class MetadataHandler
     {
         if ($slug) {
             // replacing whitespaces
-            $slug = str_replace(" ", "_", $slug);
-            return $slug;
+             return Str::snake($slug);
         }
         return Carbon::now()->format('Y-m-d-His');
     }
@@ -45,13 +45,13 @@ class MetadataHandler
         if($sentence) {
             if (strlen($sentence) > 255) {
                 return mb_strimwidth($sentence, 0, 255, "...");
-            } else {
-                return $sentence;
             }
+                return $sentence;
+
             // if there is nothing that we can extract, let it be null
-        } else {
-            return null;
         }
+            return null;
+
     }
 
     public static function prepareFirstSentence ($content, $description)
@@ -64,7 +64,7 @@ class MetadataHandler
         }
 
         // preparing content
-        $content = html_entity_decode(strip_tags($content));
+        $content = strip_tags($content);
 
         // removing some possible misprints
         $content = str_replace(" .", ".", $content);
@@ -79,9 +79,9 @@ class MetadataHandler
             if (preg_match('/^.*[^\s](\.|\?|\!)/U', $description, $match)) {
                 return $match[0];
             }
-        } else {
+        }
             // if method can't generate first sentence neither from content or description
             return null;
-        }
+
     }
 }

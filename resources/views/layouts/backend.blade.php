@@ -17,7 +17,7 @@
 {{--    <link rel="dns-prefetch" href="//fonts.gstatic.com">--}}
 {{--    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">--}}
 
-    <!-- Styles -->
+<!-- Styles -->
     <link href="https://unpkg.com/papercss@1.8.2/dist/paper.min.css" rel="stylesheet">
     <link href="{{ asset('css/colors/' . $settings->main_template . '.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
@@ -25,15 +25,17 @@
 
 </head>
 <body>
-<div class="paper container container-lg" id="app">
+<div class="main">
     @auth
         @include('components.navbar')
     @endauth
-
-    <main>
-        @yield('content')
-    </main>
+    <div class="paper shadow container container-lg" id="app">
+        <main>
+            @yield('content')
+        </main>
+    </div>
 </div>
+
 @include('components.footer')
 @yield('scripts')
 </body>

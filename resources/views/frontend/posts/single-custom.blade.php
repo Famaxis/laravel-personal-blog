@@ -1,7 +1,7 @@
 @extends('layouts.plain')
 
 @section('meta')
-<meta name="description" content="{!! $resource->first_sentence ?? $resource->description !!}">
+<meta name="description" content="{{ $resource->first_sentence ?? $resource->description }}">
 @endsection
 
 @section('title'){{ $resource->first_sentence }} | @endsection

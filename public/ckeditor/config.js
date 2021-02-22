@@ -26,6 +26,7 @@ CKEDITOR.editorConfig = function( config ) {
 		{ name: 'about' }
 	];
 
+
 	// Languages
 	config.defaultLanguage = 'en';
 	config.language = 'en';
@@ -36,8 +37,9 @@ CKEDITOR.editorConfig = function( config ) {
 	// Common settings
 	config.toolbarCanCollapse = true;
 	config.disableObjectResizing = false;
-	config.uiColor = "#f0f9ff";
+	config.uiColor = "var(--optional-color)";
 	config.dialog_backgroundCoverOpacity = '0.5';
+	config.allowedContent = true;
 
 	// Autocorrect
 	config.autocorrect_doubleQuotes = "«»";
@@ -65,6 +67,5 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// Simplify the dialog windows.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
-
 
 };

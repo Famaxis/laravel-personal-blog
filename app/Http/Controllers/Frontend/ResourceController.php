@@ -54,7 +54,11 @@ class ResourceController extends Controller
         // view for custom template
         if($resource->custom_template)
         {
-            return view('frontend.pages.single-custom', compact('resource'));
+            // for common templates
+            $next = null;
+            $prev = null;
+            $tags = null;
+            return view('frontend.pages.single-custom', compact('resource', 'next', 'prev', 'tags'));
         }
         // view for default template
         return view('frontend.pages.single', compact('resource'));

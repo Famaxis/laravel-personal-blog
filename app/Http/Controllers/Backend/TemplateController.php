@@ -7,6 +7,7 @@ use App\Http\Requests\TemplateRequest;
 use App\Models\Template;
 use App\Services\ResourceFilesHandler;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class TemplateController extends Controller
 {
@@ -29,7 +30,7 @@ class TemplateController extends Controller
         $template->create([
             'name'        => $request->name,
             'description' => $request->description,
-            'file_name'   => $request->file_name,
+            'file_name'   => Str::snake($request->file_name),
             'file'        => ResourceFilesHandler::createFile($request->file, $request->file_name),
             'css'         => ResourceFilesHandler::createCss($request->css, $request->file_name, 'templates'),
             'js'          => ResourceFilesHandler::createJs($request->js, $request->file_name, 'templates'),
@@ -58,7 +59,7 @@ class TemplateController extends Controller
         $template->update([
             'name'        => $request->name,
             'description' => $request->description,
-            'file_name'   => $request->file_name,
+            'file_name'   => Str::snake($request->file_name),
             'file'        => ResourceFilesHandler::createFile($request->file, $request->file_name),
             'css'         => ResourceFilesHandler::createCss($request->css, $request->file_name, 'templates'),
             'js'          => ResourceFilesHandler::createJs($request->js, $request->file_name, 'templates'),

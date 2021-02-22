@@ -30,8 +30,8 @@
                            href="{{ route('posts.fetch', $tag->slug) }}">{!! $tag->name !!}</a>
                     @endforeach
                 </td>
-                <td>{!! $post->first_sentence !!}</td>
-                <td>{!! $post->default_template !!}</td>
+                <td>{{ $post->first_sentence }}</td>
+                <td>{{ $post->default_template }}</td>
                 <td>{!! $post->css .' '. $post->js !!}</td>
                 <td>
                     <a href="{{ route('front.resource.show',$post->slug) }}" class="paper-btn btn-secondary-outline">Read</a>

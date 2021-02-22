@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
 @section('meta')
-    <meta name="description" content="{!! $resource->first_sentence !!}">
+    <meta name="description" content="{{ $resource->first_sentence }}">
 @endsection
 
 @section('styles')
@@ -11,9 +11,7 @@
     @endif
 @endsection
 
-@section('title')
-    {!! $resource->first_sentence !!} |
-@endsection
+@section('title'){{ $resource->first_sentence }} | @endsection
 
 @section('content')
     <div class="container">

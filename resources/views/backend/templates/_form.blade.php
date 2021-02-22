@@ -1,48 +1,52 @@
 <div class="row flex-edges">
 
     <div class="form-group col-5">
-        <label for="name">Template name *</label>
+        <label for="name">Template name: *</label>
         @error('name')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
         <input type="text" class="input-block" name="name" id="name" value="{{ old('name', $template->name ?? null) }}"
                required>
+        <span class="annotation">Will be displayed in templates dropdown list, in post and page form.</span>
     </div>
     <div class="form-group col-5">
-        <label for="file_name">File name *</label>
+        <label for="file_name">File name: *</label>
         @error('file_name')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
         <input type="text" class="input-block" name="file_name" id="file_name"
                value="{{ old('file_name', $template->file_name ?? null) }}" required>
+        <span class="annotation">Just one-two words, without any file extension. Will be used in all files in this template.</span>
     </div>
 </div>
 
 <div class="form-group">
-    <label for="description">Description</label>
+    <label for="description">Description:</label>
     <textarea id="description" name="description" class="input-block"
               rows="3">{{ old('description', $template->description ?? null) }}</textarea>
+    <span class="annotation">Some notes about template, if you wish.</span>
 </div>
 
 <div class="form-group flex-right">
-    <label for="file">File blade.php *</label>
+    <label for="file">File blade.php: *</label>
     @error('file')
     <div class="alert alert-danger">{{ $message }}</div>
     @enderror
     <textarea class="form-control input-block border border-3 border-primary" name="file" id="file"
               data-editor="php_laravel_blade"
               rows="16">{{ old('file', $template->file ?? null) }}</textarea>
+    <span class="annotation">Use <code>@{!! $resource->contents !!}</code> for displaying post or page contents. Vars <code>$tags, $next, $prev</code> can work with posts only. In case with page they will return null.</span>
 </div>
 <div id="editor"></div>
 
 <div class="form-group">
-    <label for="css">Css</label>
+    <label for="css">Css:</label>
     <textarea id="css" name="css" class="input-block border border-4 border-primary" data-editor="css"
               rows="10">{{ old('css', $template->css ?? null) }}</textarea>
 </div>
 
 <div class="form-group">
-    <label for="js">Js</label>
+    <label for="js">Js:</label>
     <textarea id="js" name="js" class="input-block border border-6 border-primary" data-editor="javascript"
               rows="10">{{ old('js', $template->js ?? null) }}</textarea>
 </div>

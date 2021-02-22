@@ -14,7 +14,7 @@
 @endsection
 
 @section('content')
-    @include('templates/' . $resource->template->file, compact('resource'))
+    @include('templates/' . $resource->template->file, compact('resource', 'tags', 'next', 'prev'))
 @endsection
 
 @section('scripts')
