@@ -18,7 +18,7 @@ class PostSeeder extends Seeder
             'is_published'     => 1,
             'default_template' => 'sand',
             'css'              => ResourceFilesHandler::createCss(
-                'body {background-color: var(--darker-optional);}',
+                'header, footer {background: radial-gradient(circle, var(--darker-optional) 0%, var(--optional-color) 100%);}',
                 'my_day',
                 'resources'),
         ]);

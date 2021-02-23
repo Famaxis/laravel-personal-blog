@@ -5,35 +5,6 @@ body {
     flex-direction: column;
 }
 
-nav {
-    display: inline-block;
-    width: auto;
-    /*background-color: var(--lighter-optional);*/
-}
-
-nav a {
-    border-bottom-color: var(--lighter-optional);
-    transition: .5s ease;
-}
-
-nav a:hover {
-    border-bottom-color: var(--optional-color);
-    transition: .5s ease;
-}
-
-.nav-inner {
-    position: sticky;
-    top: 1rem;
-}
-
-nav ul.inline {
-    margin: 0;
-}
-
-nav ul.inline li {
-    margin: 0;
-}
-
 .main {
     display: flex;
     flex: 1 0 auto;
@@ -54,15 +25,6 @@ table.table-alternating tbody tr:nth-of-type(2n),
     background-color: var(--muted-light) !important;
 }
 
-ul li {
-    padding: 0.7rem;
-    font-size: 1.3rem;
-}
-
-ul li:before {
-    content: "";
-}
-
 a.active {
     color: var(--link);
     background-color: var(--optional-color);
@@ -73,8 +35,8 @@ a.active {
     background-image: none;
 }
 
-h1, h2 {
-    margin: 1rem 0;
+h1 {
+    margin: 0.5rem 0 !important;
 }
 
 .row {
@@ -112,6 +74,14 @@ img {
     margin: 1rem 0 0 0;
 }
 
+.avatar {
+    margin-top: 0.5rem;
+    max-height: 150px;
+    float: left;
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+
 .ionicon {
     width: 1rem;
     height: 1rem;
@@ -124,13 +94,18 @@ img {
 }
 
 .container.container-lg {
-    max-width: 1400px;
+    max-width: 100%;
     padding-top: 0;
     padding-left: 4rem;
 }
 
 input, select, textarea {
     background-color: #fff;
+}
+
+.collapsible label {
+    border-bottom: 1px solid #41403e;
+    border-bottom-color: var(--optional-color);
 }
 
 .email, .website {
@@ -153,11 +128,15 @@ header.container {
     margin-top: 1.5rem;
 }
 
+.mini-heading {
+    font-size: 1.2rem;
+}
+
 table thead tr th {
     font-size: 0.8rem;
 }
 
-.footer {
+footer {
     width: 100%;
     background-color: var(--lighter-optional);
     display: flex;
@@ -167,6 +146,45 @@ table thead tr th {
     flex-direction: column;
     flex: 0 0 auto;
     margin: 0;
+}
+
+/*Nav*/
+
+nav {
+    display: inline-block;
+    width: auto;
+}
+
+nav a {
+    border-bottom-color: var(--lighter-optional);
+    transition: .5s ease;
+}
+
+nav a:hover {
+    border-bottom-color: var(--optional-color);
+    transition: .5s ease;
+}
+
+.nav-inner {
+    position: sticky;
+    top: 1rem;
+}
+
+nav ul.inline {
+    margin: 0;
+}
+
+nav ul.inline li {
+    margin: 0;
+}
+
+ul li {
+    padding: 0.7rem;
+    font-size: 1.3rem;
+}
+
+ul li:before {
+    content: "";
 }
 
 /*CKEditor*/

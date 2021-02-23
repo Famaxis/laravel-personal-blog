@@ -34,7 +34,7 @@
     @endauth
 
     <div class="paper shadow container container-lg" id="app">
-        <header class="paper container container-lg">
+        <header class="paper container border">
             <h1><a href="{{ route('front.posts') }}"
                    @if(route('front.posts') == Request::url())
                    class="active"

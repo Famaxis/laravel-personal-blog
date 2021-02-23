@@ -11,7 +11,6 @@
         <th>Description</th>
         <th>Post</th>
         <th style="min-width: 10rem;">Tags</th>
-        <th>First Sentence</th>
         <th>Template</th>
         <th>Css & Js</th>
         <th>Action</th>
@@ -30,7 +29,6 @@
                            href="{{ route('posts.fetch', $tag->slug) }}">{!! $tag->name !!}</a>
                     @endforeach
                 </td>
-                <td>{{ $post->first_sentence }}</td>
                 <td>{{ $post->default_template }}</td>
                 <td>{!! $post->css .' '. $post->js !!}</td>
                 <td>

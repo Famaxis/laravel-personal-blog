@@ -1,5 +1,5 @@
-<div class="paper footer">
+<footer>
     <div class="row flex-center margin-small">
-        <div class="col align-middle">Footer</div>
+        <div class="col align-middle">© <?=date("Y")?>, {{ $settings->site_name }} </div>
     </div>
-</div>
+</footer>

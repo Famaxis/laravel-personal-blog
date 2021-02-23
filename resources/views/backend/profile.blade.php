@@ -5,7 +5,7 @@
         <div class="row flex-center">
             <div>
                 <div class="flex-center">
-                    <img src="/avatar/{{ $user->avatar }}" style="max-height:150px; float:left; border-radius:50%; margin-right:25px;">
+                    <img src="/avatar/{{ $user->avatar }}" class="avatar">
                     <h1>{{ $user->name }}'s Profile</h1>
                 </div>
 
