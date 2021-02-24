@@ -10,7 +10,9 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = cache()->remember('index-posts', 86400, function () {
+        // cache with pagination
+        $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        $posts = cache()->remember('index-posts-' . $currentPage, 86400, function () {
             return Post::published()
                 ->with('comments')
                 ->with('tagged')
@@ -36,6 +38,6 @@ class PostController extends Controller
             ->with('tagged')
             ->paginate(5);
 
-        return view('frontend.posts.index', compact('posts','tag'));
+        return view('frontend.posts.index', compact('posts', 'tag'));
     }
 }

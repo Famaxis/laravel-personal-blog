@@ -34,6 +34,7 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
+        // an antispam measure, look to Frontend/CommentController for more details
         $this->renderable(function (ThrottleRequestsException $e) {
             return redirect()->back()->with('message', 'You post comments too often');
         });

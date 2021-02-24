@@ -10,7 +10,6 @@ class TagController extends Controller
     public function index()
     {
         $tags = Post::existingTags();
-
         return view('backend.tags', compact('tags'));
     }
 }

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Services\ImageHandler;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserPasswordRequest;
+use App\Http\Requests\UserAvatarRequest;
+use App\Services\ImageHandler;
 use Auth;
-use App\Rules\CurrentPassword;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -14,10 +14,10 @@ class UserController extends Controller
 {
     public function profile()
     {
-        return view('backend.profile', array('user' => Auth::user()) );
+        return view('backend.profile', array('user' => Auth::user()));
     }
 
-    public function update(Request $request)
+    public function update(UserAvatarRequest $request)
     {
         $user = Auth::user();
         ImageHandler::updateAvatar($request->file('avatar'));
@@ -26,15 +26,10 @@ class UserController extends Controller
         return redirect()->back();
     }
 
-    public function changePassword(Request $request)
+    public function changePassword(UserPasswordRequest $request)
     {
-        $request->validate([
-            'current_password' => ['required', new CurrentPassword],
-            'new_password' => ['required'],
-        ]);
-
         $user = Auth::user();
-        $user->update(['password'=> Hash::make($request->new_password)]);
+        $user->update(['password' => Hash::make($request->new_password)]);
 
         return redirect()->back();
     }

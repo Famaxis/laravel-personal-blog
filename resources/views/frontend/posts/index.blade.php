@@ -23,11 +23,11 @@
 @break
 
                 @case(4)
-                        border-primary background-primary border-4
+                        border-danger background-danger border-5
 @break
 
                 @default
-                        border-danger background-danger border-5
+                        border-primary background-primary border-4
 @endswitch
                         ">
 

@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class EditorImageUploadController extends Controller
 {
-    public function uploadImage (Request $request)
+    public function uploadImage(Request $request)
     {
         ImageHandler::handleUploadedImage(
             $request->file('upload'),

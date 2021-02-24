@@ -12,6 +12,6 @@ In the blog you can write posts.
 - Tags for posts, using [rtconner/laravel-tagging](https://github.com/rtconner/laravel-tagging).
 - Design made with beautiful CSS framework [PaperCSS](https://www.getpapercss.com).
 
-## How to use
+## How to use:
 
 Configure your database settings in .env, then `<php artisan migrate --seed>`. Admin page available at (/login), default user: 'admin@example.com', password - '1234'.

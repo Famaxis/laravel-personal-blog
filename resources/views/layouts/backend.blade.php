@@ -18,7 +18,8 @@
 {{--    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">--}}
 
 <!-- Styles -->
-    <link href="https://unpkg.com/papercss@1.8.2/dist/paper.min.css" rel="stylesheet">
+{{--    <link href="https://unpkg.com/papercss@1.8.2/dist/paper.min.css" rel="stylesheet">--}}
+    <link href="{{ asset('css/paper.css') }}" rel="stylesheet">
     <link href="{{ asset('css/colors/' . $settings->main_template . '.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     @yield('styles')

@@ -10,7 +10,12 @@
                     <tbody>
                     @foreach($comments as $comment)
                         <tr>
-                            <td>{{ $comment->name }}</td>
+                            <td>
+                                @if ($comment->user_id)
+                                    <b>{{ $comment->user->name }}</b>
+                                @endif
+                                {{ $comment->name }}
+                            </td>
                             <td>{{ $comment->comment }}</td>
                             <td>
                                 <a href="{{ route('front.resource.show', $comment->post->slug) . '#' . $comment->created_at->format('Y-m-d_h-i-s') }}" class="paper-btn btn-secondary-outline">Read</a>

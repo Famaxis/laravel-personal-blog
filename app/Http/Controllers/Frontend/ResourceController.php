@@ -10,12 +10,12 @@ class ResourceController extends Controller
 {
     public function show($request)
     {
-        if (Post::where('slug', $request)->first()){
+        if (Post::where('slug', $request)->first()) {
             $resource = Post::where('slug', $request)->first();
             return $this->showPost($resource);
         }
 
-        if (Page::where('slug', $request)->first()){
+        if (Page::where('slug', $request)->first()) {
             $resource = Page::where('slug', $request)->first();
             return $this->showPage($resource);
         }
@@ -26,7 +26,7 @@ class ResourceController extends Controller
     public function showPost($resource)
     {
         // optimizing queries number
-        if($resource->tagNames())  {
+        if ($resource->tagNames()) {
             $tags = Post::existingTags()->pluck('name');
         } else {
             $tags = [];
@@ -42,18 +42,17 @@ class ResourceController extends Controller
             ->first();
 
         // view for custom template
-        if($resource->custom_template) {
-            return view('frontend.posts.single-custom', compact('resource','next', 'prev', 'tags'));
+        if ($resource->custom_template) {
+            return view('frontend.posts.single-custom', compact('resource', 'next', 'prev', 'tags'));
         }
         // view for default template
-        return view('frontend.posts.single', compact('resource','next', 'prev', 'tags'));
+        return view('frontend.posts.single', compact('resource', 'next', 'prev', 'tags'));
     }
 
     public function showPage($resource)
     {
         // view for custom template
-        if($resource->custom_template)
-        {
+        if ($resource->custom_template) {
             // for common templates
             $next = null;
             $prev = null;

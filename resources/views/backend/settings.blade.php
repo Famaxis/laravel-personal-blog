@@ -5,12 +5,12 @@
 <h1>Project settings</h1>
     <form action="{{ route('settings.update') }}" method="POST">
     @csrf
-        <fieldset class="form-group">
+        <fieldset class="form-group settings">
             <label for="site_name">Site name:</label>
             <input type="text" name="site_name" value="{{ $settings->site_name }}" id="site_name" required>
         </fieldset>
 
-        <fieldset class="form-group col-4">
+        <fieldset class="form-group col-4 settings">
             <label class="paper-switch-2">
                 <input id="comments_allowed" name="comments_allowed" type="checkbox" value="1"
                        @if($settings->comments_allowed)
@@ -24,7 +24,7 @@
             </label>
         </fieldset>
 
-        <fieldset class="form-group col-4">
+        <fieldset class="form-group col-4 settings">
             <legend>Pick a color theme:</legend>
             <label for="blue" class="paper-radio">
                 <input type="radio" name="main_template" id="blue" value="blue" {{ ($settings->main_template==='blue')? "checked" : "" }} >

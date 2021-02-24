@@ -41,6 +41,7 @@ class TemplateController extends Controller
 
     public function edit(Template $template)
     {
+        // show files contents
         $template->file = Storage::disk('template_views')->get("$template->file.blade.php");
         $template->css = Storage::disk('public')->get("/css/templates/$template->css");
         $template->js = Storage::disk('public')->get("/js/templates/$template->js");
@@ -50,6 +51,7 @@ class TemplateController extends Controller
 
     public function update(TemplateRequest $request, Template $template)
     {
+        // protect demo files in case in file_name rename
         if ($template->file_name != $request->file_name and $template->file_name !== 'demo') {
             Storage::disk('template_views')->delete("$template->file.blade.php");
             Storage::disk('public')->delete("/css/templates/$template->css");
@@ -70,6 +72,7 @@ class TemplateController extends Controller
 
     public function destroy(Template $template)
     {
+        // protect demo files
         if ($template->file_name !== 'demo') {
             Storage::disk('template_views')->delete("$template->file.blade.php");
             Storage::disk('public')->delete("/css/templates/$template->css");

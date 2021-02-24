@@ -8,8 +8,7 @@
             <div class="col-3">
                 <p><strong>{{ $comment->user->name ?? $comment->name }}</strong></p>
                 @if ($comment->user_id)
-                    <img src="/avatar/{{ $comment->user->avatar }}"
-                         style="max-height:150px; float:left; border-radius:50%; margin-right:25px;">
+                    <img src="/avatar/{{ $comment->user->avatar }}" class="avatar" style="margin-top: -0.5rem;">
                 @endif
             </div>
             @if ($comment->user_id)
