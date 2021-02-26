@@ -17,8 +17,8 @@ Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 
 // Saving comment
-Route::post('comment/{post:slug}', [CommentController::class, 'store'])->name('comment.store');
-Route::post('comment/admin/{post:slug}', [CommentController::class, 'storeForAdmin'])->name('comment.store_for_admin');
+Route::post('comment/{post:id}', [CommentController::class, 'store'])->name('comment.store');
+Route::post('comment/admin/{post:id}', [CommentController::class, 'storeForAdmin'])->name('comment.store_for_admin');
 
 // Posts in frontend
 Route::get('/', [PostController::class, 'index'])->name('front.posts');

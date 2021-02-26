@@ -36,10 +36,10 @@ class MetadataHandler
     }
 
     // for using first sentence in meta: page title or/and in description
-    public static function generateFirstSentence($content, $description)
+    public static function generateFirstSentence($contents, $description)
     {
         // let's see, what we can extract from content and description...
-        $sentence = static::prepareFirstSentence($content, $description);
+        $sentence = static::prepareFirstSentence($contents, $description);
 
         // if extracted string is too long for type STRING in db, make it shorter
         if($sentence) {
@@ -54,25 +54,25 @@ class MetadataHandler
 
     }
 
-    public static function prepareFirstSentence ($content, $description)
+    public static function prepareFirstSentence ($contents, $description)
     {
         // title from H1, if it exists
-        if (strpos($content, 'h1') !== false) {
+        if (strpos($contents, 'h1') !== false) {
             $pattern = "#<\s*?h1\b[^>]*>(.*?)</h1\b[^>]*>#s";
-            preg_match($pattern, $content, $matches);
+            preg_match($pattern, $contents, $matches);
             return $matches[1];
         }
 
         // preparing content
-        $content = strip_tags($content);
+        $contents = strip_tags($contents);
 
         // removing some possible misprints
-        $content = str_replace(" .", ".", $content);
-        $content = str_replace(" ?", "?", $content);
-        $content = str_replace(" !", "!", $content);
+        $contents = str_replace(" .", ".", $contents);
+        $contents = str_replace(" ?", "?", $contents);
+        $contents = str_replace(" !", "!", $contents);
 
         // first sentence from the content
-        if (preg_match('/^.*[^\s](\.|\?|\!)/U', $content, $match)) {
+        if (preg_match('/^.*[^\s](\.|\?|\!)/U', $contents, $match)) {
             return $match[0];
         } else if ($description) {
             // first sentence from the description
@@ -83,5 +83,13 @@ class MetadataHandler
             // if method can't generate first sentence neither from content or description
             return null;
 
+    }
+    
+    public static function checkIfPostHasImage($contents)
+    {
+        if(strpos($contents, '<img')){
+            return true;
+        }
+            return false;
     }
 }

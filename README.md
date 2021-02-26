@@ -16,7 +16,7 @@ In the blog you can write posts.
 
 Configure your database settings in .env, then `<php artisan migrate --seed>`. Admin page available at (/login), default user: 'admin@example.com', password - '1234'.
 
-## Screenshots
+## Screenshots:
 
 ![](https://i.postimg.cc/x1Qzqg2f/1.png)
 

@@ -24,6 +24,7 @@ class CreatePostsTable extends Migration
             $table->foreign('custom_template')
                 ->references('id')->on('templates')->onDelete('set null');
             $table->boolean('is_published')->default(true)->nullable();
+            $table->boolean('has_image')->default(false)->nullable();
             $table->string('css')->nullable();
             $table->string('js')->nullable();
             $table->timestamps();

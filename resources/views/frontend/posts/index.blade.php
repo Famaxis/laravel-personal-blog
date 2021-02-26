@@ -5,7 +5,6 @@
         @if(Route::current()->getName() === 'front.posts.fetch')
             <h2>Posts tagged with {!! $tag->name !!}</h2>
         @endif
-        <article class="article">
             @foreach($posts as $post)
 
                 <div class="border border-primary row flex-edges margin padding-large
@@ -61,7 +60,6 @@ sm-6 md-4 lg-1 col flex-center">
 
             @endforeach
 
-        </article>
         {!! $posts->links() !!}
     </div>
 @endsection

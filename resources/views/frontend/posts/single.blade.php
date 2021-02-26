@@ -57,8 +57,12 @@
     </div>
 @endsection
 
-@if($resource->js)
-    @section('scripts')
+@section('scripts')
+    @if($resource->has_image)
+        <script src="{{asset('js/lightbox.js') }}" type="text/javascript" charset="utf-8"></script>
+    @endif
+
+    @if($resource->js)
         <script src="{{asset('js/resources/' . $resource->js) }}" type="text/javascript" charset="utf-8"></script>
-    @endsection
-@endif
+    @endif
+@endsection

@@ -15,11 +15,11 @@ class CommentController extends Controller
     public function __construct()
     {
         // comment frequency limiter, no restrictions for admin
-        $this->middleware('throttle:2,1')->except('storeForAdmin');
+        $this->middleware('throttle:1,1')->except('storeForAdmin');
     }
 
     // for guests
-    public function store(CommentRequest $request, $post)
+    public function store(CommentRequest $request, $resource)
     {
         // honeypot for spamers, this fields must be hidden in css with "opacity: 0"
         if ($request->filled('email') || $request->filled('website')) {
@@ -37,9 +37,9 @@ class CommentController extends Controller
         // if it's probably not spam, saving comment
         $comment = new Comment;
 
-        $comment->name = CommentHandler::setDefaultNickname(request('name'));
+        $comment->name = CommentHandler::setDefaultNickname($request->name);
         $comment->comment = strip_tags($request->comment);
-        $comment->post_id = $post;
+        $comment->post_id = $resource;
         // guest doesn't have user_id
         $comment->user_id = null;
         $comment->save();

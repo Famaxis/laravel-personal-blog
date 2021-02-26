@@ -1,11 +1,11 @@
 <nav class="shadow">
     <div class="nav-inner">
-        <div class="">
-            <!-- Left Side Of Navbar -->
+        <div>
+
             <div class="nav-brand">
                 <h4><a href="{{ url('/') }}">{{ $settings->site_name }}</a></h4>
             </div>
-            <ul class="">
+            <ul>
                 <li><a href="{{ route('posts.create')}}"
                        @if(route('posts.create') == Request::url())
                        class="active"
@@ -44,8 +44,8 @@
             </ul>
 
         </div>
-        <!-- Right Side Of Navbar -->
-        <div class="">
+
+        <div>
             <img src="/avatar/{{ Auth::user()->avatar }}" class="profile-image">
             <ul>
                 <li><a href="{{ route('profile') }}">{{ Auth::user()->name }}</a></li>
