@@ -15,8 +15,7 @@ class Post extends Model
 
     public function comments()
     {
-        //eager load
-        return $this->hasMany(Comment::class)->orderBy('created_at','DESC')->with('user');
+        return $this->hasMany(Comment::class)->orderBy('created_at','DESC');
     }
 
     public function template()

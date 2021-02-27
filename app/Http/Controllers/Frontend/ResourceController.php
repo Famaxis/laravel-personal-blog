@@ -11,7 +11,9 @@ class ResourceController extends Controller
     public function show($request)
     {
         if (Post::where('slug', $request)->first()) {
-            $resource = Post::where('slug', $request)->first();
+            $resource = Post::where('slug', $request)
+                ->with('comments.user')
+                ->first();
             return $this->showPost($resource);
         }
 

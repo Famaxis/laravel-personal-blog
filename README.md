@@ -18,14 +18,14 @@ Configure your database settings in .env, then `<php artisan migrate --seed>`. A
 
 ## Screenshots:
 
-![](https://i.postimg.cc/x1Qzqg2f/1.png)
+![1](https://user-images.githubusercontent.com/43377214/109390974-81ee3900-7936-11eb-90fc-d198f7ec4ea5.png)
 
-![](https://i.postimg.cc/qMyKkSWD/2.png)
+![2](https://user-images.githubusercontent.com/43377214/109390975-831f6600-7936-11eb-8451-2ed843aab5d8.png)
 
-![](https://i.postimg.cc/XYgy5Fjw/3.png)
+![3](https://user-images.githubusercontent.com/43377214/109390976-831f6600-7936-11eb-9747-9a35a922b3da.png)
 
-![](https://i.postimg.cc/1z5VrtXb/4.png)
+![4](https://user-images.githubusercontent.com/43377214/109390977-83b7fc80-7936-11eb-90d3-3d779ad671bf.png)
 
-![](https://i.postimg.cc/7PC7Rf9k/5.png)
+![5](https://user-images.githubusercontent.com/43377214/109390979-83b7fc80-7936-11eb-8e8c-326d8fb4a19e.PNG)
 
-![](https://i.postimg.cc/66DRxtbG/6.png)
+![6](https://user-images.githubusercontent.com/43377214/109390980-84509300-7936-11eb-9b7f-5f2055ccd0e6.png)

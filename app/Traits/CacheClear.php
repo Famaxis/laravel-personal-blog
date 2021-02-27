@@ -1,9 +1,8 @@
 <?php
 
-
 namespace App\Traits;
 
-use Illuminate\Support\Facades\Artisan;
+use Artisan;
 
 trait CacheClear
 {

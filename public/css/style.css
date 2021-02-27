@@ -35,7 +35,7 @@ a.active {
     background-image: none;
 }
 
-h1 {
+h1, h2 {
     margin: 0.5rem 0 !important;
 }
 

@@ -55,3 +55,5 @@ Route::post('profile/password', [UserController::class, 'changePassword'])->name
 // Settings
 Route::get('settings', [SettingController::class, 'index'])->name('settings');
 Route::post('settings', [SettingController::class, 'update'])->name('settings.update');
+Route::get('settings/cache_clear', [SettingController::class, 'cacheClear'])->name('settings.cache_clear');
+Route::get('settings/cache_make', [SettingController::class, 'cacheMake'])->name('settings.cache_make');

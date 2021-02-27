@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
+use Artisan;
 
 class SettingController extends Controller
 {
@@ -23,5 +24,20 @@ class SettingController extends Controller
         ]);
 
         return redirect()->route('settings');
+    }
+
+    public function cacheClear()
+    {
+        Artisan::call('cache:clear');
+        Artisan::call('route:clear');
+        Artisan::call('view:clear');
+        return redirect()->back()->with('status', 'Cache cleared.');
+    }
+
+    public function cacheMake()
+    {
+        Artisan::call('view:cache');
+        Artisan::call('route:cache');
+        return redirect()->back()->with('status', 'Everything is cached.');
     }
 }

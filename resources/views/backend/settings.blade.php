@@ -1,16 +1,16 @@
 @extends('layouts.backend')
 
 @section('content')
-<div class="container">
+<div class="container row">
 <h1>Project settings</h1>
-    <form action="{{ route('settings.update') }}" method="POST">
+    <form action="{{ route('settings.update') }}" method="POST" class="col-6">
     @csrf
         <fieldset class="form-group settings">
             <label for="site_name">Site name:</label>
             <input type="text" name="site_name" value="{{ $settings->site_name }}" id="site_name" required>
         </fieldset>
 
-        <fieldset class="form-group col-4 settings">
+        <fieldset class="form-group settings">
             <label class="paper-switch-2">
                 <input id="comments_allowed" name="comments_allowed" type="checkbox" value="1"
                        @if($settings->comments_allowed)
@@ -24,7 +24,7 @@
             </label>
         </fieldset>
 
-        <fieldset class="form-group col-4 settings">
+        <fieldset class="form-group settings">
             <legend>Pick a color theme:</legend>
             <label for="blue" class="paper-radio">
                 <input type="radio" name="main_template" id="blue" value="blue" {{ ($settings->main_template==='blue')? "checked" : "" }} >
@@ -48,5 +48,17 @@
             <input type="submit" class="paper-btn btn-secondary" value="Update">
         </div>
     </form>
+
+    <div class="form-group col-4">
+        <h2>Caching</h2>
+        @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
+        <a class="paper-btn btn-warning" href="{{ route('settings.cache_clear') }}">Clear cache</a>
+        <a class="paper-btn btn-success" href="{{ route('settings.cache_make') }}">Cache again</a>
+    </div>
+
 </div>
 @endsection
