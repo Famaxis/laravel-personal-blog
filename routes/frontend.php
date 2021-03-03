@@ -6,6 +6,7 @@ use App\Http\Controllers\Frontend\PostController;
 use App\Http\Controllers\Frontend\ResourceController;
 use App\Http\Controllers\Frontend\SitemapController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Frontend\SearchController;
 
 
 // Authentication Routes
@@ -15,6 +16,9 @@ Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
 // Sitemap
 Route::get('sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
+
+// Search
+Route::get('/search', [SearchController::class, 'search'])->name('search');
 
 // Saving comment
 Route::post('comment/{post:id}', [CommentController::class, 'store'])->name('comment.store');

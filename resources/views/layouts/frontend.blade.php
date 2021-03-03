@@ -44,9 +44,9 @@
         <main>
             @yield('content')
         </main>
+        @include('components.search')
     </div>
 </div>
-
 @include('components.footer')
 @yield('scripts')
 </body>

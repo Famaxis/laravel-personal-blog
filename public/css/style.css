@@ -157,6 +157,14 @@ article img {
     cursor: pointer;
 }
 
+.search-item {
+    border-bottom: 1px solid var(--darker-optional);
+}
+
+.search {
+    width: fit-content;
+}
+
 /*Nav*/
 
 nav {

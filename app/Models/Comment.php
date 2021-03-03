@@ -21,4 +21,14 @@ class Comment extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        // clear main page after creating comment
+        static::saved(function () {
+            cache()->forget('index-posts-1');
+        });
+    }
 }

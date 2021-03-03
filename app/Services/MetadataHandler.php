@@ -47,10 +47,9 @@ class MetadataHandler
                 return mb_strimwidth($sentence, 0, 255, "...");
             }
                 return $sentence;
-
-            // if there is nothing that we can extract, let it be null
         }
-            return null;
+        // if there is nothing that we can extract, set the default value
+        return 'Post';
 
     }
 
@@ -80,8 +79,8 @@ class MetadataHandler
                 return $match[0];
             }
         }
-            // if method can't generate first sentence neither from content or description
-            return null;
+        // if method can't generate first sentence neither from content or description
+        return implode(' ', array_slice(explode(' ', $contents), 0, 5));
 
     }
     

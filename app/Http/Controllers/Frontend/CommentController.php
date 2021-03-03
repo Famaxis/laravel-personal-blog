@@ -15,7 +15,7 @@ class CommentController extends Controller
     public function __construct()
     {
         // comment frequency limiter, no restrictions for admin
-        $this->middleware('throttle:1,1')->except('storeForAdmin');
+        $this->middleware('throttle:2,1')->except('storeForAdmin');
     }
 
     // for guests
