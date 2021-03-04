@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\PageController;
 use App\Http\Controllers\Backend\TagController;
+use App\Http\Controllers\Backend\SearchController;
 //use App\Http\Controllers\Backend\TemplateController;
 
 
@@ -57,3 +58,6 @@ Route::get('settings', [SettingController::class, 'index'])->name('settings');
 Route::post('settings', [SettingController::class, 'update'])->name('settings.update');
 Route::get('settings/cache_clear', [SettingController::class, 'cacheClear'])->name('settings.cache_clear');
 Route::get('settings/cache_make', [SettingController::class, 'cacheMake'])->name('settings.cache_make');
+
+// Search
+Route::get('search', [SearchController::class, 'search'])->name('search');

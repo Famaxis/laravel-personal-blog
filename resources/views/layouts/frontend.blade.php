@@ -44,7 +44,7 @@
         <main>
             @yield('content')
         </main>
-        @include('components.search')
+        @include('frontend._search')
     </div>
 </div>
 @include('components.footer')

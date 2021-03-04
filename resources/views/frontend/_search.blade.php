@@ -1,5 +1,5 @@
-<div class="margin-top md-4">
-    <input type="text" class="form-controller" id="search" name="search" autocomplete="off" placeholder="Search...">
+<div class="margin-top-large md-4">
+    <input type="text" class="shadow" id="search" name="search" autocomplete="off" placeholder="Search...">
     <div class="search">
     </div>
 </div>
@@ -10,7 +10,7 @@
         if ($("#search").val()) {
             $.ajax({
                 type: 'get',
-                url: '{{ route('search') }}',
+                url: '{{ route('front.search') }}',
                 data: {'search': $value},
                 success: function (data) {
                     $('.search').slideUp('fast');

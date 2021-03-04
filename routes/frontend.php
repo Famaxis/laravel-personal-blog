@@ -18,7 +18,7 @@ Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 
 // Search
-Route::get('/search', [SearchController::class, 'search'])->name('search');
+Route::get('search', [SearchController::class, 'search'])->name('front.search');
 
 // Saving comment
 Route::post('comment/{post:id}', [CommentController::class, 'store'])->name('comment.store');

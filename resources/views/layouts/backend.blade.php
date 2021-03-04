@@ -34,6 +34,7 @@
         <main>
             @yield('content')
         </main>
+        @include('backend._search')
     </div>
 </div>
 
