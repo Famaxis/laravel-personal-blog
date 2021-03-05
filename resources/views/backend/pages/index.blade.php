@@ -26,7 +26,11 @@
                     <form action="{{route('pages.destroy', $page->slug)}}" method="POST">
                         @method('DELETE')
                         @csrf
-                        <button type="submit" class="paper-btn btn-danger-outline">Delete</button>
+                        <button type="submit" class="paper-btn btn-danger-outline"
+                                @if($settings->confirm_deletion)
+                                onclick="return confirm('Are you sure?')"
+                                @endif
+                        >Delete</button>
                     </form>
                 </td>
             </tr>

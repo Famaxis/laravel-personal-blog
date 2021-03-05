@@ -13,19 +13,31 @@
         <fieldset class="form-group settings">
             <label class="paper-switch-2">
                 <input id="comments_allowed" name="comments_allowed" type="checkbox" value="1"
-                       @if($settings->comments_allowed)
-                       checked
-                       @endif
+                        {{ ($settings->comments_allowed) ? 'checked' : '' }}
                 />
                 <span class="paper-switch-slider round"></span>
             </label>
             <label for="comments_allowed" class="paper-switch-2-label">
                 Allow comments?
             </label>
+            <p class="annotation">Existing comments still will be shown.</p>
         </fieldset>
 
         <fieldset class="form-group settings">
-            <legend>Pick a color theme:</legend>
+            <label class="paper-switch-2">
+                <input id="confirm_deletion" name="confirm_deletion" type="checkbox" value="1"
+                        {{ ($settings->confirm_deletion) ? 'checked' : '' }}
+                />
+                <span class="paper-switch-slider round"></span>
+            </label>
+            <label for="confirm_deletion" class="paper-switch-2-label">
+                Confirm deletion?
+            </label>
+            <p class="annotation">This is about posts, pages and templates. Not the comments.</p>
+        </fieldset>
+
+        <fieldset class="form-group settings">
+            <legend>Pick a main color theme:</legend>
             <label for="blue" class="paper-radio">
                 <input type="radio" name="main_template" id="blue" value="blue" {{ ($settings->main_template==='blue')? "checked" : "" }} >
                 <span>Blue</span>

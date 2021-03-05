@@ -42,9 +42,9 @@
             <a href="{{ route('front.posts') }}">On main page</a>
         </p>
 
-        @foreach($resource->tags as $tag)
+        @foreach($resource->tagged as $tagged)
             <a class="paper-btn btn-small"
-               href="{{ route('front.posts.fetch', $tag->slug) }}">{{ $tag->name }}</a>
+               href="{{ route('front.posts.fetch', $tagged->tag_slug) }}">{{ $tagged->tag_name }}</a>
         @endforeach
         <hr class="margin-large">
 

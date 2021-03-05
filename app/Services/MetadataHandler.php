@@ -50,7 +50,6 @@ class MetadataHandler
         }
         // if there is nothing that we can extract, set the default value
         return 'Post';
-
     }
 
     public static function prepareFirstSentence ($contents, $description)
@@ -66,9 +65,7 @@ class MetadataHandler
         $contents = strip_tags($contents);
 
         // removing some possible misprints
-        $contents = str_replace(" .", ".", $contents);
-        $contents = str_replace(" ?", "?", $contents);
-        $contents = str_replace(" !", "!", $contents);
+        $contents = str_replace([" .", " ?", " !"], [".", "?", "!"], $contents);
 
         // first sentence from the content
         if (preg_match('/^.*[^\s](\.|\?|\!)/U', $contents, $match)) {

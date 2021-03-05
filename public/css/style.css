@@ -130,7 +130,7 @@ header.container {
 .settings {
     border-bottom: 1px solid var(--darker-optional) !important;
     width: fit-content;
-    padding: 1rem !important;
+    padding: 0.5rem !important;
 }
 
 .mini-heading {

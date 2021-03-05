@@ -5,6 +5,7 @@
         @if(Route::current()->getName() === 'front.posts.fetch')
             <h2>Posts tagged with {!! $tag->name !!}</h2>
         @endif
+
             @foreach($posts as $post)
 
                 <div class="border border-primary row flex-edges margin padding-large
@@ -45,9 +46,8 @@
                         </p>
 
 
-                            @if($post->comments->count())
-                                <p><a href="{{ route('front.resource.show', $post->slug) . '#comments' }}">Comments: {{ $post->comments->count() }}</a></p>
-
+                            @if($post->comments_count)
+                                <p><a href="{{ route('front.resource.show', $post->slug) . '#comments' }}">Comments: {{ $post->comments_count }}</a></p>
                             @endif
 
 

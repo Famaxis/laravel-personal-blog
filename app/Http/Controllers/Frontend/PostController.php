@@ -14,7 +14,7 @@ class PostController extends Controller
         $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
         $posts = cache()->remember('index-posts-' . $currentPage, 86400, function () {
             return Post::published()
-                ->with('comments:post_id')
+                ->withCount('comments')
                 ->with('tagged')
                 ->orderBy('created_at', 'desc')
                 ->paginate(5)
@@ -33,11 +33,12 @@ class PostController extends Controller
     {
         $slug = $tag->slug;
         $posts = Post::withAnyTag([$slug])
-            ->with('comments:post_id')
+            ->withCount('comments')
             ->published()
             ->orderBy('created_at', 'desc')
             ->with('tagged')
-            ->paginate(5);
+            ->paginate(5)
+            ->onEachSide(1);
 
         return view('frontend.posts.index', compact('posts', 'tag'));
     }

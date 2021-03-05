@@ -18,6 +18,7 @@ class CreateSettingsTable extends Migration
             $table->string('site_name')->default('My blog');
             $table->string('main_template')->default('blue');
             $table->boolean('comments_allowed')->default(true)->nullable();
+            $table->boolean('confirm_deletion')->default(false)->nullable();
         });
     }
 

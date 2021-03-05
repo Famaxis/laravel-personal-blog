@@ -13,6 +13,7 @@ class SettingSeeder extends Seeder
             'site_name'        => 'My blog',
             'main_template'    => 'blue',
             'comments_allowed' => true,
+            'confirm_deletion' => false,
         ]);
     }
 }
