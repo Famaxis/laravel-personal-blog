@@ -1,7 +1,6 @@
 <nav class="shadow">
     <div class="nav-inner">
         <div>
-
             <div class="nav-brand">
                 <h4><a href="{{ url('/') }}">{{ $settings->site_name }}</a></h4>
             </div>
@@ -42,7 +41,6 @@
                             @endif
                     >Settings</a></li>
             </ul>
-
         </div>
 
         <div>
@@ -60,6 +58,4 @@
             </ul>
         </div>
     </div>
-
-
 </nav>

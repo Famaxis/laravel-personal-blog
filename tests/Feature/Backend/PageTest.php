@@ -15,7 +15,6 @@ class PageTest extends TestCase
                 'contents'    => 'Here is a page content.',
                 'slug'        => 'page slug',
                 'description' => 'Page description',
-
             ]);
         $response->assertStatus(302);
     }

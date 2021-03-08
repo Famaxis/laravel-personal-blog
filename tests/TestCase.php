@@ -12,7 +12,6 @@ abstract class TestCase extends BaseTestCase
     protected function actingAsAdmin()
     {
         $admin = User::first();
-
         $this->actingAs($admin);
 
         return $this;

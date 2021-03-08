@@ -14,6 +14,7 @@ class PostController extends Controller
         $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
         $posts = cache()->remember('index-posts-' . $currentPage, 86400, function () {
             return Post::published()
+                ->select(['id', 'contents', 'description', 'slug'])
                 ->withCount('comments')
                 ->with('tagged')
                 ->orderBy('created_at', 'desc')

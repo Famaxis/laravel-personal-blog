@@ -11,7 +11,7 @@ class ResourceController extends Controller
     // is requested slug relevant to post or page?
     public function show($request)
     {
-        if (Post::where('slug', $request)->first()) {
+        if (Post::where('slug', $request)->exists()) {
             $resource = Post::where('slug', $request)
                 ->with('comments.user')
                 ->with('tagged')
@@ -19,8 +19,9 @@ class ResourceController extends Controller
             return $this->showPost($resource);
         }
 
-        if (Page::where('slug', $request)->first()) {
-            $resource = Page::where('slug', $request)->first();
+        if (Page::where('slug', $request)->exists()) {
+            $resource = Page::where('slug', $request)
+                ->first();
             return $this->showPage($resource);
         }
 

@@ -25,9 +25,7 @@
                         <button type="submit" class="paper-btn btn-danger-outline">Delete</button>
                     </form>
                 </div>
-
             @endauth
-
         </div>
     @endforeach
 @endif
