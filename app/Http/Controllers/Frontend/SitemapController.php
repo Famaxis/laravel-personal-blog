@@ -11,6 +11,7 @@ class SitemapController extends Controller
     {
         $posts = cache()->remember('sitemap-posts', 86400, function () {
             return Post::published()
+                ->select(['slug', 'updated_at'])
                 ->orderBy('created_at', 'desc')
                 ->get();
         });

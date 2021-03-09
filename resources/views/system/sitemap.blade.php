@@ -4,7 +4,7 @@
     @foreach ($posts as $post)
         <url>
             <loc>{{ route('front.resource.show',$post->slug) }}</loc>
-            <lastmod>{{ $post->created_at->tz('UTC')->toAtomString() }}</lastmod>
+            <lastmod>{{ $post->updated_at->tz('UTC')->toAtomString() }}</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.5</priority>
         </url>

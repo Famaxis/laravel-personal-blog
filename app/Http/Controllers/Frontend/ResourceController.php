@@ -13,8 +13,8 @@ class ResourceController extends Controller
     {
         if (Post::where('slug', $request)->exists()) {
             $resource = Post::where('slug', $request)
-                ->with('comments.user')
                 ->with('tagged')
+                ->withCount('comments')
                 ->first();
             return $this->showPost($resource);
         }
@@ -25,7 +25,7 @@ class ResourceController extends Controller
             return $this->showPage($resource);
         }
 
-        // if there is no resource with this slug
+        // if there is no resource with that slug
         return abort('404');
     }
 
@@ -42,12 +42,17 @@ class ResourceController extends Controller
             ->latest('id')
             ->first();
 
+        $comments = $resource->comments()
+            ->with('user')
+            ->paginate(50)
+            ->onEachSide(1);
+
         // view for custom template
         if ($resource->custom_template) {
-            return view('frontend.posts.single-custom', compact('resource', 'next', 'prev'));
+            return view('frontend.posts.single-custom', compact('resource','comments', 'next', 'prev'));
         }
         // view for default template
-        return view('frontend.posts.single', compact('resource', 'next', 'prev'));
+        return view('frontend.posts.single', compact('resource','comments','next', 'prev'));
     }
 
     public function showPage($resource)

@@ -1,8 +1,8 @@
-@if($resource->comments->count() > 0)
+@if($resource->comments_count > 0)
     <a id="comments"></a>
-    <p>Comments: {{ $resource->comments()->count() }}</p>
+    <p>Comments: {{ $resource->comments_count }}</p>
 
-    @foreach($resource->comments as $comment)
+    @foreach($comments as $comment)
         <div class="row flex-right shadow padding margin border">
             <a id="{{ $comment->created_at->format('Y-m-d_h-i-s') }}"></a>
             <div class="col-3">
@@ -28,4 +28,5 @@
             @endauth
         </div>
     @endforeach
+    {!! $comments->links() !!}
 @endif

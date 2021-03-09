@@ -7,7 +7,6 @@
         @endif
 
             @foreach($posts as $post)
-
                 <div class="border border-primary row flex-edges margin padding-large
 @switch($loop->iteration)
                 @case(1)
@@ -45,11 +44,17 @@
                             @endforeach
                         </p>
 
-
-                            @if($post->comments_count)
-                                <p><a href="{{ route('front.resource.show', $post->slug) . '#comments' }}">Comments: {{ $post->comments_count }}</a></p>
+                            @if($post->comments_count == 1)
+                                <p>
+                                    <a href="{{ route('front.resource.show', $post->slug) . '#comments' }}">1 comment</a>
+                                </p>
                             @endif
 
+                            @if($post->comments_count > 1)
+                                <p>
+                                    <a href="{{ route('front.resource.show', $post->slug) . '#comments' }}">Comments: {{ $post->comments_count }}</a>
+                                </p>
+                            @endif
 
                     </div>
                     <a href="{{ route('front.resource.show',$post->slug) }}" class="read-more
@@ -57,9 +62,7 @@ sm-6 md-4 lg-1 col flex-center">
                         <svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><path fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='48' d='M184 112l144 144-144 144'/></svg>
                     </a>
                 </div>
-
             @endforeach
-
         {!! $posts->links() !!}
     </div>
 @endsection
