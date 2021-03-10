@@ -23,7 +23,7 @@ class UserController extends Controller
         ImageHandler::updateAvatar($request->file('avatar'));
         $user->update($request->all());
 
-        return redirect()->back();
+        return back();
     }
 
     public function changePassword(UserPasswordRequest $request)
@@ -31,6 +31,6 @@ class UserController extends Controller
         $user = Auth::user();
         $user->update(['password' => Hash::make($request->new_password)]);
 
-        return redirect()->back();
+        return back();
     }
 }

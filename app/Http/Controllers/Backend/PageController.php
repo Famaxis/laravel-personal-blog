@@ -83,6 +83,6 @@ class PageController extends Controller
         Storage::disk('public')->delete("/css/resources/$page->css");
         Storage::disk('public')->delete("/js/resources/$page->js");
         $page->delete();
-        return redirect()->back();
+        return back();
     }
 }

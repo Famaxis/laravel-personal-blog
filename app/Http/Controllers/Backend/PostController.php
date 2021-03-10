@@ -106,6 +106,6 @@ class PostController extends Controller
         Storage::disk('public')->delete("/css/resources/$post->css");
         Storage::disk('public')->delete("/js/resources/$post->js");
         $post->delete();
-        return redirect()->back();
+        return back();
     }
 }

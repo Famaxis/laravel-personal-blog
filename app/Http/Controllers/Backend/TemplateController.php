@@ -80,6 +80,6 @@ class TemplateController extends Controller
         }
 
         $template->delete();
-        return redirect()->back();
+        return back();
     }
 }

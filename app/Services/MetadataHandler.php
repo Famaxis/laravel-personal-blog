@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use Carbon\Carbon;
 use Illuminate\Support\Str;
 
 class MetadataHandler
@@ -32,7 +31,7 @@ class MetadataHandler
             // replacing whitespaces
              return Str::snake($slug);
         }
-        return Carbon::now()->format('Y-m-d-His');
+        return now()->format('Y-m-d-His');
     }
 
     // for using first sentence in meta: page title or/and in description

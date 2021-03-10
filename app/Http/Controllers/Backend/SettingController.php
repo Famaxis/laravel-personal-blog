@@ -33,7 +33,7 @@ class SettingController extends Controller
         Artisan::call('route:clear');
         Artisan::call('view:clear');
         Artisan::call('config:clear ');
-        return redirect()->back()->with('status', 'Cache cleared.');
+        return back()->with('status', 'Cache cleared.');
     }
 
     public function cacheMake()
@@ -41,6 +41,6 @@ class SettingController extends Controller
         Artisan::call('view:cache');
         Artisan::call('route:cache');
         Artisan::call('config:cache');
-        return redirect()->back()->with('status', 'Everything is cached.');
+        return back()->with('status', 'Everything is cached.');
     }
 }
