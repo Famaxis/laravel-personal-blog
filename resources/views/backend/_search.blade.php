@@ -1,4 +1,4 @@
-<div class="margin-top-large md-4">
+<div class="margin-top-large col-4">
     <input type="text" class="shadow" id="search" name="search" autocomplete="off" placeholder="Search...">
     <div class="search">
     </div>

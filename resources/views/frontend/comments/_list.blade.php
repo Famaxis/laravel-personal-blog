@@ -1,6 +1,6 @@
 @if($resource->comments_count > 0)
     <a id="comments"></a>
-    <p>Comments: {{ $resource->comments_count }}</p>
+    <p>{{ trans_choice('comments.count', $resource->comments_count) }}</p>
 
     @foreach($comments as $comment)
         <div class="row flex-right shadow padding margin border">

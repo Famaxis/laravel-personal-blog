@@ -3,7 +3,7 @@
 @section('content')
 
     @if(Route::current()->getName() === 'posts.fetch')
-       <h1>Posts tagged with {!! $tag->name !!}</h1>
+        <h1>Posts tagged with {!! $tag->name !!}</h1>
     @endif
 
     <table class="table-alternating">
@@ -17,10 +17,7 @@
         </thead>
         <tbody>
         @foreach($posts as $post)
-            <tr @if(!$post->is_published)
-                    class="unpublished"
-                @endif
-            >
+            <tr class="{{ (!$post->is_published) ? 'unpublished' : '' }}">
                 <td>{!! $post->description!!}</td>
                 <td>{!! $post->contents !!}</td>
                 <td>
@@ -41,13 +38,13 @@
                                 @if($settings->confirm_deletion)
                                 onclick="return confirm('Are you sure?')"
                                 @endif
->Delete</button>
+                        >Delete
+                        </button>
                     </form>
                 </td>
             </tr>
         @endforeach
         </tbody>
     </table>
-
     {!! $posts->links() !!}
 @endsection

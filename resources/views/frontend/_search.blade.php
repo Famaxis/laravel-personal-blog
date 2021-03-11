@@ -1,5 +1,5 @@
 <div class="margin-top-large md-4">
-    <input type="text" class="shadow" id="search" name="search" autocomplete="off" placeholder="Search...">
+    <input type="text" class="shadow" id="search" name="search" autocomplete="off" placeholder="@lang('aside.search')...">
     <div class="search">
     </div>
 </div>

@@ -16,7 +16,6 @@
 @endif
 
 @section('content')
-    <div class="container">
         <article class="article">
             {!! $resource->contents !!}
         </article>
@@ -26,8 +25,6 @@
         </p>
 
         <hr class="margin-large">
-
-    </div>
 @endsection
 
 @if($resource->js)

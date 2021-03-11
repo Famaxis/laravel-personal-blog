@@ -1,16 +1,14 @@
 @extends('layouts.backend')
 
 @section('content')
-    <div class="container">
-        <h1>Update page</h1>
+    <h1>Update page</h1>
+    <form method="POST" enctype="multipart/form-data" data-persist="garlic"
+          action="{{ route('pages.update', $page->slug) }}" class="col-8">
+        @csrf
+        @include('backend.pages._form')
 
-        <form method="POST" enctype="multipart/form-data" data-persist="garlic" action="{{ route('pages.update', $page->slug) }} ">
-            @csrf
-            @include('backend.pages._form')
-
-            <div class="form-group">
-                <input type="submit" class="paper-btn btn-secondary" value="Update page"/>
-            </div>
-        </form>
-    </div>
+        <div class="form-group">
+            <input type="submit" class="paper-btn btn-secondary" value="Update page"/>
+        </div>
+    </form>
 @endsection

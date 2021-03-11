@@ -40,7 +40,7 @@
                         @endif
                 >{{ $settings->site_name }}</a></h1>
         </header>
-        <main>
+        <main class="padding col-8">
             @yield('content')
         </main>
         @include('frontend._search')

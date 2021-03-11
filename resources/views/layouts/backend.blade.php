@@ -30,7 +30,7 @@
         @include('components.navbar')
     @endauth
     <div class="paper shadow container container-lg" id="app">
-        <main>
+        <main class="padding">
             @yield('content')
         </main>
         @if(!Route::is('login') )

@@ -14,7 +14,6 @@
 @section('title'){{ $resource->first_sentence }} | @endsection
 
 @section('content')
-    <div class="container">
         <article class="article">
             {!! $resource->contents !!}
         </article>
@@ -26,11 +25,11 @@
                         <path fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round'
                               stroke-width='48' d='M328 112L184 256l144 144'/>
                     </svg>
-                    next</a>
+                    @lang('posts.next')</a>
             @endif
 
             @if($prev)
-                <a href="{{ $prev->slug }}">prev
+                <a href="{{ $prev->slug }}">@lang('posts.prev')
                     <svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'>
                         <path fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round'
                               stroke-width='48' d='M184 112l144 144-144 144'/>
@@ -39,7 +38,7 @@
             @endif
         </p>
         <p>
-            <a href="{{ route('front.posts') }}">On main page</a>
+            <a href="{{ route('front.posts') }}">@lang('posts.to main')</a>
         </p>
 
         @foreach($resource->tagged as $tagged)
@@ -55,7 +54,6 @@
         @endif
         @include('frontend.comments._list')
 
-    </div>
 @endsection
 
 @section('scripts')

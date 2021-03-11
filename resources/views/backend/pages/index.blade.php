@@ -1,7 +1,6 @@
 @extends('layouts.backend')
 
 @section('content')
-
     <div class="form-group margin-top">
         <a class="paper-btn" href="{{ route('pages.create') }}">Create page</a>
     </div>
@@ -30,13 +29,13 @@
                                 @if($settings->confirm_deletion)
                                 onclick="return confirm('Are you sure?')"
                                 @endif
-                        >Delete</button>
+                        >Delete
+                        </button>
                     </form>
                 </td>
             </tr>
         @endforeach
         </tbody>
     </table>
-
     {!! $pages->links() !!}
 @endsection

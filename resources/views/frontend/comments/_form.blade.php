@@ -1,11 +1,11 @@
-<p><span class="mini-heading">Leave a comment, if you wish</span></p>
+<p><span class="mini-heading">@lang('comments.leave comment')</span></p>
 
 @auth
     <form action="{{ route('comment.store_for_admin', $resource->id) }}" data-persist="garlic" method="POST">
         @csrf
         <div class="row flex-right">
             <div class="form-group col-12">
-                <label for="comment">Comment:</label>
+                <label for="comment">@lang('comments.comment'):</label>
                 <textarea id="comment" name="comment" rows="3" class="input-block"></textarea>
             </div>
             <div class="form-group col">
@@ -31,7 +31,7 @@
                 <input type="text" name="name" id="name" maxlength="200">
             </div>
             <div class="form-group col-9">
-                <label for="comment">Comment:</label>
+                <label for="comment">@lang('comments.comment'):</label>
                 <textarea id="comment" name="comment" rows="3" class="input-block" minlength="2" maxlength="1000"
                           required></textarea>
             </div>
@@ -43,7 +43,7 @@
             <input class="website" autocomplete="off" type="text" id="website" name="website" placeholder="Your website">
 
             <div class="form-group">
-                <input type="submit" class="paper-btn btn-secondary" value="Comment">
+                <input type="submit" class="paper-btn btn-secondary" value="@lang('comments.to comment')">
             </div>
         </div>
     </form>

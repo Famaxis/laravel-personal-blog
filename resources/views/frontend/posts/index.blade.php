@@ -1,7 +1,6 @@
 @extends('layouts.frontend')
 
 @section('content')
-    <div class="container">
         @if(Route::current()->getName() === 'front.posts.fetch')
             <h2>Posts tagged with {!! $tag->name !!}</h2>
         @endif
@@ -44,15 +43,9 @@
                             @endforeach
                         </p>
 
-                            @if($post->comments_count == 1)
+                            @if($post->comments_count > 0)
                                 <p>
-                                    <a href="{{ route('front.resource.show', $post->slug) . '#comments' }}">1 comment</a>
-                                </p>
-                            @endif
-
-                            @if($post->comments_count > 1)
-                                <p>
-                                    <a href="{{ route('front.resource.show', $post->slug) . '#comments' }}">Comments: {{ $post->comments_count }}</a>
+                                    <a href="{{ route('front.resource.show', $post->slug) . '#comments' }}">{{ trans_choice('comments.count', $post->comments_count) }}</a>
                                 </p>
                             @endif
 
@@ -64,5 +57,4 @@ sm-6 md-4 lg-1 col flex-center">
                 </div>
             @endforeach
         {!! $posts->links() !!}
-    </div>
 @endsection

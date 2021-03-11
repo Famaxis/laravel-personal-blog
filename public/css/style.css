@@ -5,6 +5,10 @@ body {
     flex-direction: column;
 }
 
+main {
+    backdrop-filter: contrast(1.1);
+}
+
 .main {
     display: flex;
     flex: 1 0 auto;

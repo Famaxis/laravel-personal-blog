@@ -1,10 +1,9 @@
 @extends('layouts.backend')
 
 @section('content')
-    <div class="container">
         <h1>Create post</h1>
-
-        <form method="POST" enctype="multipart/form-data" data-persist="garlic" action="{{ route('posts.store') }}">
+        <form method="POST" enctype="multipart/form-data" data-persist="garlic" action="{{ route('posts.store') }}"
+              class="col-8">
             @csrf
             @include('backend.posts._form')
 
@@ -12,5 +11,4 @@
                 <input type="submit" class="paper-btn btn-secondary" value="Create post"/>
             </div>
         </form>
-    </div>
 @endsection
