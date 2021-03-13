@@ -29,6 +29,10 @@ table.table-alternating tbody tr:nth-of-type(2n),
     background-color: var(--muted-light) !important;
 }
 
+.chosen {
+    background-color: var(--darker-optional) !important;
+}
+
 a.active {
     color: var(--link);
     background-color: var(--optional-color);

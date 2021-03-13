@@ -4,7 +4,7 @@ namespace App\Services;
 
 use Illuminate\Support\Facades\Storage;
 
-class ResourceFilesHandler
+class AssetsHandler
 {
     public static function createFile($file, $filename)
     {

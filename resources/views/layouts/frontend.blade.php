@@ -43,7 +43,11 @@
         <main class="padding col-8">
             @yield('content')
         </main>
-        @include('frontend._search')
+        <div class="row">
+            @include('components.chosen-posts')
+            @include('frontend._search')
+        </div>
+
     </div>
 </div>
 @include('components.footer')

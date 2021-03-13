@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ResourceRequest;
 use App\Models\Post;
 use App\Models\Template;
+use App\Services\AssetsHandler;
 use App\Services\MetadataHandler;
-use App\Services\ResourceFilesHandler;
 use Conner\Tagging\Model\Tag;
 use Illuminate\Support\Facades\Storage;
 
@@ -45,15 +45,16 @@ class PostController extends Controller
         $post = Post::create([
             'contents'         => $request->contents,
             'is_published'     => $request->is_published,
+            'is_chosen'        => $request->is_chosen,
             'description'      => $request->description,
             'custom_template'  => $request->custom_template,
             'slug'             => MetadataHandler::generateSlug($request->slug),
             'has_image'        => MetadataHandler::checkIfPostHasImage($request->contents),
             'first_sentence'   => MetadataHandler::generateFirstSentence($request->contents, $request->description),
             'default_template' => MetadataHandler::generateTemplate($request->default_template),
-            'css'              => ResourceFilesHandler::createCss($request->css,
+            'css'              => AssetsHandler::createCss($request->css,
                 MetadataHandler::generateSlug($request->slug), 'resources'),
-            'js'               => ResourceFilesHandler::createJs($request->js,
+            'js'               => AssetsHandler::createJs($request->js,
                 MetadataHandler::generateSlug($request->slug), 'resources')
         ]);
         $post->tag(explode(',', $request->tags));
@@ -85,15 +86,16 @@ class PostController extends Controller
         $post->update([
             'contents'         => $request->contents,
             'is_published'     => $request->is_published,
+            'is_chosen'        => $request->is_chosen,
             'description'      => $request->description,
             'custom_template'  => $request->custom_template,
             'slug'             => MetadataHandler::generateSlug($request->slug),
             'has_image'        => MetadataHandler::checkIfPostHasImage($request->contents),
             'first_sentence'   => MetadataHandler::generateFirstSentence($request->contents, $request->description),
             'default_template' => MetadataHandler::generateTemplate($request->default_template),
-            'css'              => ResourceFilesHandler::createCss($request->css,
+            'css'              => AssetsHandler::createCss($request->css,
                 MetadataHandler::generateSlug($request->slug), 'resources'),
-            'js'               => ResourceFilesHandler::createJs($request->js,
+            'js'               => AssetsHandler::createJs($request->js,
                 MetadataHandler::generateSlug($request->slug), 'resources')
         ]);
         $post->retag($request->tags);

@@ -27,4 +27,9 @@ class Post extends Model
     {
         return $query->where('is_published', 1);
     }
+
+    public function scopeChosen($query)
+    {
+        return $query->where('is_chosen', 1);
+    }
 }

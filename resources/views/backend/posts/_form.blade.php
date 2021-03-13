@@ -41,17 +41,31 @@
     </fieldset>
 
     <fieldset class="form-group col-3 margin-right-large">
-        <label class="paper-switch-2">
+        <div>
+            <label class="paper-switch-2">
+                <input id="published" name="is_published" type="checkbox" value="1"
+                        {{ ((old('is_published') == '1') || ($post->is_published == '1')) || (!$post->id) ? 'checked' : '' }}
+                />
+                <span class="paper-switch-slider round"></span>
+            </label>
+            <label for="published" class="paper-switch-2-label">
+                Is this post published?
+            </label>
+            <span class="annotation">You can hide it, and it will be only available via a direct link.</span>
+        </div>
 
-            <input id="published" name="is_published" type="checkbox" value="1"
-                    {{ ((old('is_published') == '1') || ($post->is_published == '1')) || (!$post->id) ? 'checked' : '' }}
-            />
-            <span class="paper-switch-slider round"></span>
-        </label>
-        <label for="published" class="paper-switch-2-label">
-            Is this post published?
-        </label>
-        <span class="annotation">You can hide it, so post will not be displayed in the main page, or in the sitemap, etc.</span>
+        <div>
+            <label class="paper-switch-2">
+                <input id="is_chosen" name="is_chosen" type="checkbox" value="1"
+                        {{ ((old('is_chosen') == '1') || ($post->is_chosen == '1')) ? 'checked' : '' }}
+                />
+                <span class="paper-switch-slider round"></span>
+            </label>
+            <label for="is_chosen" class="paper-switch-2-label">
+                Is this post chosen?
+            </label>
+            <span class="annotation">For the "editor's choice" component.</span>
+        </div>
     </fieldset>
 
     <div class="form-group col-3">
@@ -67,7 +81,8 @@
 
 <div class="form-group">
     <label for="description">Description:</label>
-    <textarea id="description" class="input-block" name="description" rows="3">{{ old('description', $post->description ?? null) }}</textarea>
+    <textarea id="description" class="input-block" name="description"
+              rows="3">{{ old('description', $post->description ?? null) }}</textarea>
     <span class="annotation">Description text will be displayed in the post preview and in meta tags.</span>
 </div>
 
@@ -95,7 +110,8 @@
 
         <div class="form-group">
             <label for="js">Js</label>
-            <textarea id="js" name="js" class="input-block border border-6 border-primary" data-editor="javascript" rows="10">{{ old('js', $post->js ?? null) }}</textarea>
+            <textarea id="js" name="js" class="input-block border border-6 border-primary" data-editor="javascript"
+                      rows="10">{{ old('js', $post->js ?? null) }}</textarea>
         </div>
     </div>
 </div>

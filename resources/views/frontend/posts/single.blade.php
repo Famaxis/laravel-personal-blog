@@ -53,7 +53,6 @@
             @include('frontend.comments._form')
         @endif
         @include('frontend.comments._list')
-
 @endsection
 
 @section('scripts')

@@ -17,7 +17,7 @@
         </thead>
         <tbody>
         @foreach($posts as $post)
-            <tr class="{{ (!$post->is_published) ? 'unpublished' : '' }}">
+            <tr class="{{ (!$post->is_published) ? 'unpublished' : '' }} {{ ($post->is_chosen) ? 'chosen' : '' }}">
                 <td>{!! $post->description!!}</td>
                 <td>{!! $post->contents !!}</td>
                 <td>

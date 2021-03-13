@@ -2,28 +2,14 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\View;
+use App\Models\Post;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\ServiceProvider;
 
 class ViewServiceProvider extends ServiceProvider
 {
-    /**
-     * Register services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
-    }
-
-    /**
-     * Bootstrap services.
-     *
-     * @return void
-     */
     public function boot()
     {
         // checking table existence, or migrations will fail
@@ -31,5 +17,14 @@ class ViewServiceProvider extends ServiceProvider
             View::share('settings', Setting::first());
         }
 
+        // view component 'chosen-posts'
+        if (Schema::hasTable('posts')) {
+            View::composer('components.chosen-posts', function ($view) {
+                $view->with(['chosenPosts' => Post::published()
+                    ->chosen()
+                    ->select(['first_sentence', 'slug'])
+                    ->get()]);
+            });
+        }
     }
 }

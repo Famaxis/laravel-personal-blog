@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Post;
-use App\Services\ResourceFilesHandler;
+use App\Services\AssetsHandler;
 use Illuminate\Database\Seeder;
 
 class PostSeeder extends Seeder
@@ -17,7 +17,7 @@ class PostSeeder extends Seeder
             'slug'             => 'my_day',
             'is_published'     => 1,
             'default_template' => 'sand',
-            'css'              => ResourceFilesHandler::createCss(
+            'css'              => AssetsHandler::createCss(
                 'header, footer {background: radial-gradient(circle, var(--darker-optional) 0%, var(--optional-color) 100%);}',
                 'my_day',
                 'resources'),
@@ -34,13 +34,22 @@ class PostSeeder extends Seeder
         ]);
         $post2->tag('application, time optimization');
 
-        $post3 = Post::create([
+        $hidden_post = Post::create([
             'first_sentence'   => 'Secret post',
             'contents'         => '<p>This post is unpublished. It\'s only available via a direct link.</p>',
             'slug'             => 'unpublished',
             'is_published'     => null,
             'default_template' => 'blue',
         ]);
-        $post3->tag('unpublished');
+        $hidden_post->tag('unpublished');
+
+        $chosen_post = Post::create([
+            'first_sentence'   => 'My favorite post',
+            'contents'         => '<p>This post is chosen and added in "Editor\'s choice" component.</p>',
+            'slug'             => 'chosen',
+            'is_chosen'        => true,
+            'default_template' => 'blue',
+        ]);
+        $chosen_post->tag('Favorite Post');
     }
 }

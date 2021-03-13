@@ -2,14 +2,13 @@
 
 use App\Http\Controllers\Backend\CommentController;
 use App\Http\Controllers\Backend\EditorImageUploadController;
+use App\Http\Controllers\Backend\PageController;
 use App\Http\Controllers\Backend\PostController;
+use App\Http\Controllers\Backend\SearchController;
 use App\Http\Controllers\Backend\SettingController;
+use App\Http\Controllers\Backend\TagController;
 use App\Http\Controllers\Backend\UserController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Backend\PageController;
-use App\Http\Controllers\Backend\TagController;
-use App\Http\Controllers\Backend\SearchController;
-//use App\Http\Controllers\Backend\TemplateController;
 
 
 // Posts
@@ -29,6 +28,14 @@ Route::prefix('pages')->group(function () {
     Route::get('{page:slug}', [PageController::class, 'edit'])->name('pages.edit');
     Route::post('{page:slug}', [PageController::class, 'update'])->name('pages.update');
     Route::delete('destroy/{page:slug}', [PageController::class, 'destroy'])->name('pages.destroy');
+});
+
+// Settings
+Route::prefix('settings')->group(function () {
+    Route::get('/', [SettingController::class, 'index'])->name('settings');
+    Route::post('/', [SettingController::class, 'update'])->name('settings.update');
+    Route::get('cache_clear', [SettingController::class, 'cacheClear'])->name('settings.cache_clear');
+    Route::get('cache_make', [SettingController::class, 'cacheMake'])->name('settings.cache_make');
 });
 
 // Templates
@@ -52,12 +59,6 @@ Route::delete('comments/delete/{comment}', [CommentController::class, 'destroy']
 Route::get('profile', [UserController::class, 'profile'])->name('profile');
 Route::post('profile', [UserController::class, 'update'])->name('profile.update');
 Route::post('profile/password', [UserController::class, 'changePassword'])->name('profile.password_change');
-
-// Settings
-Route::get('settings', [SettingController::class, 'index'])->name('settings');
-Route::post('settings', [SettingController::class, 'update'])->name('settings.update');
-Route::get('settings/cache_clear', [SettingController::class, 'cacheClear'])->name('settings.cache_clear');
-Route::get('settings/cache_make', [SettingController::class, 'cacheMake'])->name('settings.cache_make');
 
 // Search
 Route::get('search', [SearchController::class, 'search'])->name('search');

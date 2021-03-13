@@ -7,7 +7,7 @@ use App\Http\Requests\ResourceRequest;
 use App\Models\Page;
 use App\Models\Template;
 use App\Services\MetadataHandler;
-use App\Services\ResourceFilesHandler;
+use App\Services\AssetsHandler;
 use Illuminate\Support\Facades\Storage;
 
 class PageController extends Controller
@@ -36,8 +36,8 @@ class PageController extends Controller
             'custom_template'  => $request->custom_template,
             'slug'             => MetadataHandler::generateSlug($request->slug),
             'default_template' => MetadataHandler::generateTemplate($request->default_template),
-            'css'              => ResourceFilesHandler::createCss($request->css, MetadataHandler::generateSlug($request->slug), 'resources'),
-            'js'               => ResourceFilesHandler::createJs($request->js, MetadataHandler::generateSlug($request->slug), 'resources')
+            'css'              => AssetsHandler::createCss($request->css, MetadataHandler::generateSlug($request->slug), 'resources'),
+            'js'               => AssetsHandler::createJs($request->js, MetadataHandler::generateSlug($request->slug), 'resources')
         ]);
 
         return redirect()->route('pages');
@@ -71,8 +71,8 @@ class PageController extends Controller
             'custom_template'  => $request->custom_template,
             'slug'             => MetadataHandler::generateSlug($request->slug),
             'default_template' => MetadataHandler::generateTemplate($request->default_template),
-            'css'              => ResourceFilesHandler::createCss($request->css, MetadataHandler::generateSlug($request->slug), 'resources'),
-            'js'               => ResourceFilesHandler::createJs($request->js, MetadataHandler::generateSlug($request->slug), 'resources')
+            'css'              => AssetsHandler::createCss($request->css, MetadataHandler::generateSlug($request->slug), 'resources'),
+            'js'               => AssetsHandler::createJs($request->js, MetadataHandler::generateSlug($request->slug), 'resources')
         ]);
 
         return redirect()->route('pages');

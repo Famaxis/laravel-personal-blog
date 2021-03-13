@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TemplateRequest;
 use App\Models\Template;
-use App\Services\ResourceFilesHandler;
+use App\Services\AssetsHandler;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -31,9 +31,9 @@ class TemplateController extends Controller
             'name'        => $request->name,
             'description' => $request->description,
             'file_name'   => Str::snake($request->file_name),
-            'file'        => ResourceFilesHandler::createFile($request->file, $request->file_name),
-            'css'         => ResourceFilesHandler::createCss($request->css, $request->file_name, 'templates'),
-            'js'          => ResourceFilesHandler::createJs($request->js, $request->file_name, 'templates'),
+            'file'        => AssetsHandler::createFile($request->file, $request->file_name),
+            'css'         => AssetsHandler::createCss($request->css, $request->file_name, 'templates'),
+            'js'          => AssetsHandler::createJs($request->js, $request->file_name, 'templates'),
         ]);
 
         return redirect()->route('templates');
@@ -62,9 +62,9 @@ class TemplateController extends Controller
             'name'        => $request->name,
             'description' => $request->description,
             'file_name'   => Str::snake($request->file_name),
-            'file'        => ResourceFilesHandler::createFile($request->file, $request->file_name),
-            'css'         => ResourceFilesHandler::createCss($request->css, $request->file_name, 'templates'),
-            'js'          => ResourceFilesHandler::createJs($request->js, $request->file_name, 'templates'),
+            'file'        => AssetsHandler::createFile($request->file, $request->file_name),
+            'css'         => AssetsHandler::createCss($request->css, $request->file_name, 'templates'),
+            'js'          => AssetsHandler::createJs($request->js, $request->file_name, 'templates'),
         ]);
 
         return redirect()->route('templates');

@@ -29,10 +29,7 @@ class SettingController extends Controller
 
     public function cacheClear()
     {
-        Artisan::call('cache:clear');
-        Artisan::call('route:clear');
-        Artisan::call('view:clear');
-        Artisan::call('config:clear ');
+        Artisan::call('optimize:clear');
         return back()->with('status', 'Cache cleared.');
     }
 
