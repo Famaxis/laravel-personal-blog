@@ -20,10 +20,15 @@ class ViewServiceProvider extends ServiceProvider
         // view component 'chosen-posts'
         if (Schema::hasTable('posts')) {
             View::composer('components.chosen-posts', function ($view) {
-                $view->with(['chosenPosts' => Post::published()
-                    ->chosen()
-                    ->select(['first_sentence', 'slug'])
-                    ->get()]);
+
+                $chosenPosts = cache()->remember('chosen-posts', 86400, function () {
+                    return Post::published()
+                        ->chosen()
+                        ->select(['first_sentence', 'slug'])
+                        ->get();
+                });
+
+                $view->with(['chosenPosts' => $chosenPosts]);
             });
         }
     }
