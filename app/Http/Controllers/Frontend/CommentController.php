@@ -19,7 +19,7 @@ class CommentController extends Controller
     }
 
     // for guests
-    public function store(CommentRequest $request, $resource)
+    public function store(CommentRequest $request, $post)
     {
         // honeypot for spamers, this fields must be hidden in css with "opacity: 0"
         if ($request->filled('email') || $request->filled('website')) {
@@ -35,14 +35,13 @@ class CommentController extends Controller
         }
 
         // if it's probably not spam, saving comment
-        $comment = new Comment;
-
-        $comment->name = CommentHandler::setDefaultNickname($request->name);
-        $comment->comment = strip_tags($request->comment);
-        $comment->post_id = $resource;
-        // guest doesn't have user_id
-        $comment->user_id = null;
-        $comment->save();
+        Comment::create([
+            'name'    => CommentHandler::setDefaultNickname($request->name),
+            'comment' => strip_tags($request->comment),
+            'post_id' => $post,
+            // guest doesn't have user_id
+            'user_id' => null,
+        ]);
 
         return redirect(url()->previous() . '#comments');
     }
@@ -50,14 +49,13 @@ class CommentController extends Controller
     // for admin, without antispam and validation
     public function storeForAdmin(Request $request, $post)
     {
-        $comment = new Comment;
-
-        // admin already has nickname
-        $comment->name = null;
-        $comment->comment = $request->comment;
-        $comment->post_id = $post;
-        $comment->user()->associate($request->user());
-        $comment->save();
+        Comment::create([
+            // admin already has nickname
+            'name'    => null,
+            'comment' => $request->comment,
+            'post_id' => $post,
+            'user_id' => $request->user()->id,
+        ]);
 
         return redirect(url()->previous() . '#comments');
     }
