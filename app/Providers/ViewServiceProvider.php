@@ -20,7 +20,6 @@ class ViewServiceProvider extends ServiceProvider
         // view component 'chosen-posts'
         if (Schema::hasTable('posts')) {
             View::composer('components.chosen-posts', function ($view) {
-
                 $chosenPosts = cache()->remember('chosen-posts', 86400, function () {
                     return Post::published()
                         ->chosen()

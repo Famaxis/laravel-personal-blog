@@ -1,13 +1,13 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Frontend\UserController;
 use App\Http\Controllers\Frontend\CommentController;
 use App\Http\Controllers\Frontend\PostController;
 use App\Http\Controllers\Frontend\ResourceController;
-use App\Http\Controllers\Frontend\SitemapController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\SearchController;
+use App\Http\Controllers\Frontend\SitemapController;
+use App\Http\Controllers\Frontend\UserController;
+use Illuminate\Support\Facades\Route;
 
 
 // Authentication

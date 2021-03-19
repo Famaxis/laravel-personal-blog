@@ -7,7 +7,6 @@ use App\Http\Requests\CommentRequest;
 use App\Inspections\Antispam;
 use App\Models\Comment;
 use App\Services\CommentHandler;
-use Auth;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -21,7 +20,7 @@ class CommentController extends Controller
     // for guests
     public function store(CommentRequest $request, $post)
     {
-        // honeypot for spamers, this fields must be hidden in css with "opacity: 0"
+        // honeypot for spamers, these fields must be hidden in css with "opacity: 0"
         if ($request->filled('email') || $request->filled('website')) {
             return redirect()->route('front.posts');
         }

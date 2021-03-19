@@ -26,7 +26,7 @@ class Comment extends Model
     {
         parent::boot();
 
-        // clear main page after creating comment
+        // clear main page cache after creating comment
         static::saved(function () {
             cache()->forget('index-posts-1');
         });

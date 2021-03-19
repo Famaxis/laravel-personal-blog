@@ -30,7 +30,7 @@ table.table-alternating tbody tr:nth-of-type(2n),
 }
 
 .chosen {
-    background-color: var(--darker-optional) !important;
+    background-color: #ffffff52 !important;
 }
 
 a.active {
