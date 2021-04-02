@@ -16,7 +16,7 @@ class Authenticate extends Middleware
     {
         if (! $request->expectsJson()) {
 //          // guests should not know admin's urls
-            return abort(404);
+            abort(404);
         }
     }
 }

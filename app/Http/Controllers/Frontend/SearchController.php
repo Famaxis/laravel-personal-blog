@@ -19,7 +19,7 @@ class SearchController extends Controller
             if ($posts) {
                 foreach ($posts as $post) {
                     $output .=
-                        '<a href="' . route('front.resource.show',$post->slug) . '">
+                        '<a href="' . route('front.resource.show', $post->slug) . '">
                                 <div class="search-item padding-small">' . $post->first_sentence . '</div>
                             </a>';
                 }
